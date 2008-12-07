@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="sample:model" xmlns="http://www.alfresco.org/model/dictionary/1.0">
+
+	<!-- Optional meta-data about the model -->
+	<description>Sample Custom Model</description>
+	<author>Hossein Akhlaghpour</author>
+	<version>1.0</version>
+
+	<!-- Imports are required to allow references to definitions in other models -->
+	<imports>
+		<!-- Import Alfresco Dictionary Definitions -->
+		<import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d" />
+		<!-- Import Alfresco Content Domain Model Definitions -->
+		<import uri="http://www.alfresco.org/model/content/1.0" prefix="cm" />
+	</imports>
+
+	<!-- Introduction of new namespaces defined by this model -->
+	<namespaces>
+		<namespace uri="http://www.genencor.com/model/content/1.0" prefix="sample" />
+	</namespaces>
+
+	<constraints>
+	</constraints>
+
+	<types>
+	</types>
+
+	<aspects>
+       <aspect name="sample:temporal">
+            <title>Adding common types</title>
+            <properties>
+                <property name="sample:expirationDate">
+                    <type>d:date</type>
+                 </property>
+ 				<property name="sample:language">
+					<type>d:text</type>
+				</property>
+ 				<property name="sample:sites">
+					<type>d:text</type>
+					<multiple>true</multiple>
+				</property>
+				<property name="sample:isConfirmed">
+					<type>d:boolean</type>
+					<default>true</default>
+				</property>
+				<property name="sample:zipCode">
+					<type>d:int</type>
+				</property>
+				<property name="sample:cost">
+					<type>d:double</type>
+				</property>
+            </properties>
+        </aspect>
+	</aspects>
+</model>
