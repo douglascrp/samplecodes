@@ -21,7 +21,7 @@
 
 	<constraints>
 		<constraint name="sample:siteList"
-			type="sample.model.constraint.ListOfSitesConstraint">
+			type="sample.model.constraint.ListOfDynamicSitesConstraint">
 			<parameter name="caseSensitive">
 				<value>true</value>
 			</parameter>
