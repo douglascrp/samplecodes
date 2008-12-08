@@ -13,10 +13,10 @@ import javax.faces.model.SelectItem;
 import org.alfresco.repo.dictionary.constraint.ListOfValuesConstraint;
 import org.apache.log4j.Logger;
 
-public class ListOfDynamicSitesConstraint extends ListOfValuesConstraint implements Serializable {
+public class Sites extends ListOfValuesConstraint implements Serializable {
 
     private static final long serialVersionUID = 1;
-    private static Logger log = Logger.getLogger(ListOfDynamicSitesConstraint.class);
+    private static Logger log = Logger.getLogger(Sites.class);
 
     private String sourceUrl;
 
