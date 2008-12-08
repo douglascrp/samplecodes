@@ -20,13 +20,13 @@
 	</namespaces>
 
 	<constraints>
-		<constraint name="sample:siteList"
-			type="sample.model.constraint.Sites">
+		<constraint name="sample:siteList" type="sample.model.constraint.Sites">
 			<parameter name="caseSensitive">
 				<value>true</value>
 			</parameter>
 			<parameter name="sourceUrl">
-				<value>http://localhost:8080/alfresco/d/d/workspace/SpacesStore/f8997f9c-a20f-4305-a9a9-d541754eba98/sites?guest=true</value>
+				<value>http://localhost:8080/alfresco/d/d/workspace/SpacesStore/f8997f9c-a20f-4305-a9a9-d541754eba98/sites?guest=true
+				</value>
 			</parameter>
 		</constraint>
 		<constraint name="sample:languageList" type="LIST">
@@ -44,7 +44,7 @@
 
 	<types>
 		<type name="sample:corpDoc">
-			<title>Corporate Document</title>
+			<title>Sample Corp Doc</title>
 			<parent>cm:content</parent>
 			<mandatory-aspects>
 				<aspect>sample:temporal</aspect>
@@ -53,19 +53,19 @@
 	</types>
 
 	<aspects>
-       <aspect name="sample:temporal">
-            <title>Adding common types</title>
-            <properties>
-                <property name="sample:expirationDate">
-                    <type>d:date</type>
-                 </property>
- 				<property name="sample:language">
+		<aspect name="sample:temporal">
+			<title>Adding common types</title>
+			<properties>
+				<property name="sample:expirationDate">
+					<type>d:date</type>
+				</property>
+				<property name="sample:language">
 					<type>d:text</type>
 					<constraints>
 						<constraint ref="sample:languageList" />
 					</constraints>
 				</property>
- 				<property name="sample:sites">
+				<property name="sample:sites">
 					<type>d:text</type>
 					<multiple>true</multiple>
 					<constraints>
@@ -82,7 +82,7 @@
 				<property name="sample:cost">
 					<type>d:double</type>
 				</property>
-            </properties>
-        </aspect>
+			</properties>
+		</aspect>
 	</aspects>
 </model>

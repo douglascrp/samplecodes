@@ -35,18 +35,4 @@
 			<type name="sample:corpDoc" />
 		</content-types>
 	</config>
-	
-	<config evaluator="string-compare" condition="Advanced Search">
-		<advanced-search>
-			<content-types>
-				<type name="sample:corpDoc" />
-			</content-types>
-			<custom-properties>
-				<meta-data aspect="sample:temporal" property="sample:expirationDate" />
-				<meta-data aspect="sample:temporal" property="sample:sites" />
-				<meta-data aspect="sample:temporal" property="sample:isConfirmed" />
-				<meta-data aspect="sample:temporal" property="sample:cost" />
-			</custom-properties>
-		</advanced-search>
-	</config>
 </alfresco-config>
