@@ -1,0 +1,63 @@
+<alfresco-config>
+
+	<config evaluator="string-compare" condition="Action Wizards">
+		<!-- The list of aspects to show in the add/remove features action and the has-aspect condition -->
+		<aspects>
+			<aspect name="sample:temporal" />
+			<aspect name="sample:social" />
+		</aspects>
+
+		<!-- The list of types shown in the is-subtype condition -->
+		<subtypes>
+			<type name="sample:corpDoc" />
+			<type name="sample:socialDoc" />
+		</subtypes>
+
+		<!-- The list of content and/or folder types shown in the specialise-type action -->
+		<specialise-types>
+			<type name="sample:corpDoc" />
+			<type name="sample:socialDoc" />
+		</specialise-types>
+	</config>
+
+	<!--  add aspect properties to property sheet -->
+	<config evaluator="aspect-name" condition="sample:temporal">
+		<property-sheet>
+			<show-property name="sample:expirationDate" display-label-id="expirationDate" />
+			<show-property name="sample:language" display-label-id="language" />
+			<show-property name="sample:sites" display-label-id="sites" />
+			<show-property name="sample:isConfirmed" display-label-id="isConfirmed" />
+			<show-property name="sample:zipCode" display-label-id="zipCode" />
+			<show-property name="sample:cost" display-label-id="cost" />
+		</property-sheet>
+	</config>
+	<config evaluator="aspect-name" condition="sample:social">
+		<property-sheet>
+			<show-property name="sample:tags" display-label-id="tags" />
+		</property-sheet>
+	</config>
+
+	<!--  add corpDoc types to the content list -->
+	<config evaluator="string-compare" condition="Content Wizards">
+		<content-types>
+			<type name="sample:corpDoc" />
+			<type name="sample:socialDoc" />
+		</content-types>
+	</config>
+	
+	<config evaluator="string-compare" condition="Advanced Search">
+		<advanced-search>
+			<content-types>
+				<type name="sample:corpDoc" />
+				<type name="sample:socialDoc" />
+			</content-types>
+			<custom-properties>
+				<meta-data aspect="sample:temporal" property="sample:expirationDate" />
+				<meta-data aspect="sample:temporal" property="sample:sites" />
+				<meta-data aspect="sample:temporal" property="sample:isConfirmed" />
+				<meta-data aspect="sample:temporal" property="sample:cost" />
+				<meta-data aspect="sample:socia" property="sample:tags" />
+			</custom-properties>
+		</advanced-search>
+	</config>
+</alfresco-config>
