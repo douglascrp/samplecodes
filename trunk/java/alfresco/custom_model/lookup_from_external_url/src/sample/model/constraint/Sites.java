@@ -43,7 +43,8 @@ public class Sites extends ListOfValuesConstraint implements Serializable {
             URLConnection urlConnection = url.openConnection();
             BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
             String inputLine;
-            while ((inputLine = in.readLine()) != null) {
+            while ((inputLine = in.readLine()) != null && inputLine.trim().length() != 0) {
+            	log.error("inputLine: " + inputLine);
                 if (log.isDebugEnabled())
                     log.debug(inputLine);
                 av.add(inputLine);
