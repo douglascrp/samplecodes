@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model name="sample:model"
-	xmlns="http://www.alfresco.org/model/dictionary/1.0">
+<model name="sample:model" xmlns="http://www.alfresco.org/model/dictionary/1.0">
 
 	<!-- Optional meta-data about the model -->
 	<description>Sample Custom Model</description>
@@ -10,28 +9,23 @@
 	<!-- Imports are required to allow references to definitions in other models -->
 	<imports>
 		<!-- Import Alfresco Dictionary Definitions -->
-		<import uri="http://www.alfresco.org/model/dictionary/1.0"
-			prefix="d" />
+		<import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d" />
 		<!-- Import Alfresco Content Domain Model Definitions -->
-		<import uri="http://www.alfresco.org/model/content/1.0"
-			prefix="cm" />
+		<import uri="http://www.alfresco.org/model/content/1.0" prefix="cm" />
 	</imports>
 
 	<!-- Introduction of new namespaces defined by this model -->
 	<namespaces>
-		<namespace uri="http://www.genencor.com/model/content/1.0"
-			prefix="sample" />
+		<namespace uri="sample.model" prefix="sample" />
 	</namespaces>
 
 	<constraints>
-		<constraint name="sample:siteList"
-			type="sample.model.constraint.Sites">
+		<constraint name="sample:siteList" type="sample.model.constraint.Sites">
 			<parameter name="caseSensitive">
 				<value>true</value>
 			</parameter>
 			<parameter name="sourceUrl">
-				<value>
-					http://localhost:8080/alfresco/d/d/workspace/SpacesStore/91b513ae-26fe-4cfb-a9e9-85a908cb7e5e/sites?guest=true
+				<value>http://localhost:8080/alfresco/d/d/workspace/SpacesStore/f8997f9c-a20f-4305-a9a9-d541754eba98/sites?guest=true
 				</value>
 			</parameter>
 		</constraint>
@@ -46,8 +40,8 @@
 				</list>
 			</parameter>
 		</constraint>
-		<constraint name="sample:customConstraint"
-			type="org.alfresco.sample.constraints.LuceneSearchBasedListConstraint">
+		<constraint name="sample:searchBasedConstraint"
+			type="sample.model.constraint.LuceneSearchBasedListConstraint">
 			<parameter name="query">
 				<value>
 					TYPE:"{http://www.alfresco.org/model/content/1.0}content"
@@ -55,7 +49,7 @@
 			</parameter>
 		</constraint>
 		<constraint name="sample:dependentConstraint"
-			type="org.alfresco.sample.constraints.LuceneSearchBasedListConstraint">
+			type="sample.model.constraint.LuceneSearchBasedListConstraint">
 			<parameter name="query">
 				<value>
 					TYPE:"{http://www.alfresco.org/model/content/1.0}content"
@@ -69,41 +63,19 @@
 
 	<types>
 		<type name="sample:corpDoc">
-			<title>Sample Corp Doc</title>
+			<title>Sample Corporate Doc</title>
+			<parent>cm:content</parent>
+		</type>
+		<type name="sample:socialDoc">
+			<title>Sample Social Doc</title>
 			<parent>cm:content</parent>
 			<mandatory-aspects>
-				<aspect>sample:temporal</aspect>
+				<aspect>sample:social</aspect>
 			</mandatory-aspects>
 		</type>
 	</types>
 
 	<aspects>
-		<aspect name="sample:national">
-			<property name="sample:country">
-				<title>Country</title>
-				<type>d:text</type>
-				<index enabled="true">
-					<atomic>true</atomic>
-					<stored>false</stored>
-					<tokenised>false</tokenised>
-				</index>
-				<constraints>
-					<constraint ref="sample:customConstraint" />
-				</constraints>
-			</property>
-			<property name="sample:city">
-				<title>City</title>
-				<type>d:text</type>
-				<index enabled="true">
-					<atomic>true</atomic>
-					<stored>false</stored>
-					<tokenised>false</tokenised>
-				</index>
-				<constraints>
-					<constraint ref="sample:dependentConstraint" />
-				</constraints>
-			</property>
-		</aspect>
 		<aspect name="sample:temporal">
 			<title>Adding common types</title>
 			<properties>
@@ -132,6 +104,56 @@
 				</property>
 				<property name="sample:cost">
 					<type>d:double</type>
+				</property>
+			</properties>
+			<associations>
+				<association name="sample:relatedDocs">
+					<title>Related Docs</title>
+					<source>
+						<mandatory>false</mandatory>
+						<many>true</many>
+					</source>
+					<target>
+						<class>cm:content</class>
+						<mandatory>false</mandatory>
+						<many>true</many>
+					</target>
+				</association>
+			</associations>
+		</aspect>
+		<aspect name="sample:social">
+			<title>Adding properties in a social network</title>
+			<properties>
+				<property name="sample:tags">
+					<type>d:text</type>
+					<multiple>true</multiple>
+				</property>
+			</properties>
+		</aspect>
+		<aspect name="sample:national">
+			<title>Country and its cities</title>
+			<properties>
+				<property name="sample:country">
+					<type>d:text</type>
+					<index enabled="true">
+						<atomic>true</atomic>
+						<stored>false</stored>
+						<tokenised>false</tokenised>
+					</index>
+					<constraints>
+						<constraint ref="sample:searchBasedConstraint" />
+					</constraints>
+				</property>
+				<property name="sample:city">
+					<type>d:text</type>
+					<index enabled="true">
+						<atomic>true</atomic>
+						<stored>false</stored>
+						<tokenised>false</tokenised>
+					</index>
+					<constraints>
+						<constraint ref="sample:dependentConstraint" />
+					</constraints>
 				</property>
 			</properties>
 		</aspect>
