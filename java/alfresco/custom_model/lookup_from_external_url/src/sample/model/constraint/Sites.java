@@ -19,20 +19,9 @@ public class Sites extends ListOfValuesConstraint implements Serializable {
     private static Logger log = Logger.getLogger(Sites.class);
 
     private String sourceUrl;
-
-    public void setCaseSensitive(boolean caseSensitive) {
-    }
-
+    
+    /** TODO: if you remove this method, type dpesn't show up !! */
     public void initialize() {
-        super.setCaseSensitive(false);
-    }
-
-    public List<SelectItem> getSelectItemList() {
-        List<SelectItem> result = new ArrayList<SelectItem>(this.getAllowedValues().size());
-        for (int i = 0; i < this.getAllowedValues().size(); i++) {
-            result.add(new SelectItem((Object) this.getAllowedValues().get(i), (String) this.getAllowedValues().get(i)));
-        }
-        return result;
     }
 
     @Override
@@ -44,7 +33,6 @@ public class Sites extends ListOfValuesConstraint implements Serializable {
             BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
             String inputLine;
             while ((inputLine = in.readLine()) != null && inputLine.trim().length() != 0) {
-            	log.error("inputLine: " + inputLine);
                 if (log.isDebugEnabled())
                     log.debug(inputLine);
                 av.add(inputLine);
@@ -53,6 +41,8 @@ public class Sites extends ListOfValuesConstraint implements Serializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        // you need to set the super class, apparently in super class they used the vairiable directly 
+        super.setAllowedValues(av);
         return av;
     }
 
