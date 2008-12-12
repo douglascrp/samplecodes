@@ -29,13 +29,13 @@ import org.apache.log4j.Logger;
 // TODO:
 
 /*
- * Sample configuration <constraint name="my:customConstraint"
- * type="org.alfresco.sample.web.SearchBasedListConstraint" > <parameter
+ * Sample configuration <constraint name="sample:searchBasedConstraint"
+ * type="sample.model.constraint.SearchBasedListConstraint" > <parameter
  * name="query"> <value>
  * TYPE:"{http://www.alfresco.org/model/content/1.0}content" </value>
  * </parameter> </constraint> <property name="my:authorisedBy">
  * <title>Authorized By</title> <type>d:text</type> <constraints> <constraint
- * ref="my:customConstraint" /> </constraints> </property>
+ * ref="sample:searchBasedConstraint" /> </constraints> </property>
  */
 
 public abstract class SearchBasedListConstraint extends ListOfValuesConstraint
@@ -81,7 +81,7 @@ public abstract class SearchBasedListConstraint extends ListOfValuesConstraint
 		return registry;
 	}
 
-	public static void setServiceRegistry(ServiceRegistry registry) {
+	public void setServiceRegistry(ServiceRegistry registry) {
 		SearchBasedListConstraint.registry = registry;
 	}
 

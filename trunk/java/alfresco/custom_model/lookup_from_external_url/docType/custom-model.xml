@@ -16,7 +16,7 @@
 
 	<!-- Introduction of new namespaces defined by this model -->
 	<namespaces>
-		<namespace uri="http://www.genencor.com/model/content/1.0" prefix="sample" />
+		<namespace uri="sample.model" prefix="sample" />
 	</namespaces>
 
 	<constraints>

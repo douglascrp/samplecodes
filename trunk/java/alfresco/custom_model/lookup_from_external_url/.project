@@ -16,6 +16,11 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>alfresco-WEB-INF</name>
+			<type>2</type>
+			<location>C:/Alfresco/tomcat/webapps/alfresco/WEB-INF</location>
+		</link>
+		<link>
 			<name>log4j.properties</name>
 			<type>1</type>
 			<location>C:/Alfresco/tomcat/webapps/alfresco/WEB-INF/classes/log4j.properties</location>
