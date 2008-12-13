@@ -65,7 +65,7 @@
 				<meta-data aspect="sample:temporal" property="sample:sites" />
 				<meta-data aspect="sample:temporal" property="sample:isConfirmed" />
 				<meta-data aspect="sample:temporal" property="sample:cost" />
-				<meta-data aspect="sample:socia" property="sample:tags" />
+				<meta-data aspect="sample:social" property="sample:tags" />
 			</custom-properties>
 		</advanced-search>
 	</config>

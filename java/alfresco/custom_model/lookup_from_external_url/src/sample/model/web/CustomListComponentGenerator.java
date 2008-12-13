@@ -18,7 +18,6 @@
 
 package sample.model.web;
 
-
 import java.util.List;
 
 import javax.faces.component.UIComponent;
@@ -38,96 +37,86 @@ import org.apache.log4j.Logger;
 import sample.model.constraint.LuceneSearchBasedListConstraint;
 import sample.model.constraint.SearchBasedListConstraint;
 
-
 /**
  * Generates a text field component.
  * 
  * @author jbarmash
  */
-public class CustomListComponentGenerator
-    extends TextFieldGenerator
-{
-    private static Logger log = Logger.getLogger(CustomListComponentGenerator.class);
+public class CustomListComponentGenerator extends TextFieldGenerator {
+	private static Logger log = Logger.getLogger(CustomListComponentGenerator.class);
 
-    // private String tutorialQuery =
-    // "( TYPE:\"{http://www.alfresco.org/model/content/1.0}content\"  AND (@\\{http\\://www.alfresco.org/model/content/1.0\\}name:\"tutorial\"  TEXT:\"tutorial\"))"
-    // ;
+	// private String tutorialQuery =
+	// "( TYPE:\"{http://www.alfresco.org/model/content/1.0}content\" AND
+	// (@\\{http\\://www.alfresco.org/model/content/1.0\\}name:\"tutorial\"
+	// TEXT:\"tutorial\"))"
+	// ;
 
+	private boolean autoRefresh = false;
 
-    private boolean    autoRefresh = false;
+	public boolean isAutoRefresh() {
+		return autoRefresh;
+	}
 
+	/**
+	 * This gets set from faces-config-beans.xml, and allows some drop downs to
+	 * be automaticlaly refreshable (i.e. country), and others not (i.e. city).
+	 */
+	public void setAutoRefresh(boolean autoRefresh) {
+		this.autoRefresh = autoRefresh;
+	}
 
-    public boolean isAutoRefresh()
-    {
-        return autoRefresh;
-    }
+	@Override
+	@SuppressWarnings("unchecked")
+	protected UIComponent createComponent(FacesContext context, UIPropertySheet propertySheet, PropertySheetItem item) {
 
+		UIComponent component = super.createComponent(context, propertySheet, item);
+		if (component instanceof UISelectOne && isAutoRefresh())
+			component.getAttributes().put("onchange", "submit()");
+		return component;
+	}
 
-    /**
-     * This gets set from faces-config-beans.xml, and allows some drop downs to
-     * be automaticlaly refreshable (i.e. country), and others not (i.e. city).
-     */
-    public void setAutoRefresh(boolean autoRefresh)
-    {
-        this.autoRefresh = autoRefresh;
-    }
+	/**
+	 * Retrieves the list of values constraint for the item, if it has one
+	 * 
+	 * @param context
+	 *            FacesContext
+	 * @param propertySheet
+	 *            The property sheet being generated
+	 * @param item
+	 *            The item being generated
+	 * @return The constraint if the item has one, null otherwise
+	 */
+	protected ListOfValuesConstraint getListOfValuesConstraint(FacesContext context, UIPropertySheet propertySheet, PropertySheetItem item) {
+		ListOfValuesConstraint lovConstraint = null;
 
+		log.info("propertySheet: " + propertySheet.getNode() +  " item: " + item.getName());
+		// get the property definition for the item
+		PropertyDefinition propertyDef = getPropertyDefinition(context, propertySheet.getNode(), item.getName());
 
-    @Override
-    @SuppressWarnings("unchecked")
-    protected UIComponent createComponent(FacesContext context, UIPropertySheet propertySheet, PropertySheetItem item)
-    {
+		if (propertyDef != null) {
+			// go through the constaints and see if it has the
+			// list of values constraint
+			List<ConstraintDefinition> constraints = propertyDef.getConstraints();
+			for (ConstraintDefinition constraintDef : constraints) {
+				Constraint constraint = constraintDef.getConstraint();
+				log.info("constraint: " + constraint);
+				log.info("is: " + (constraint instanceof ListOfValuesConstraint));
+				if (constraint instanceof LuceneSearchBasedListConstraint) {
+					Node currentNode = (Node) propertySheet.getNode();
+					// This is a workaround for the fact that constraints do not
+					// have a reference to Node.
+					((LuceneSearchBasedListConstraint) constraint).setNode(currentNode);
+					lovConstraint = (SearchBasedListConstraint) constraint;
+					break;
+				}
 
-        UIComponent component = super.createComponent(context, propertySheet, item);
-        if (component instanceof UISelectOne && isAutoRefresh())
-            component.getAttributes().put("onchange", "submit()");
-        return component;
-    }
-
-
-    /**
-     * Retrieves the list of values constraint for the item, if it has one
-     * 
-     * @param context FacesContext
-     * @param propertySheet The property sheet being generated
-     * @param item The item being generated
-     * @return The constraint if the item has one, null otherwise
-     */
-    protected ListOfValuesConstraint getListOfValuesConstraint(FacesContext context, UIPropertySheet propertySheet,
-            PropertySheetItem item)
-    {
-        ListOfValuesConstraint lovConstraint = null;
-
-        // get the property definition for the item
-        PropertyDefinition propertyDef = getPropertyDefinition(context, propertySheet.getNode(), item.getName());
-
-        if (propertyDef != null)
-        {
-            // go through the constaints and see if it has the
-            // list of values constraint
-            List<ConstraintDefinition> constraints = propertyDef.getConstraints();
-            for (ConstraintDefinition constraintDef : constraints)
-            {
-                Constraint constraint = constraintDef.getConstraint();
-
-                if (constraint instanceof LuceneSearchBasedListConstraint)
-                {
-                    Node currentNode = (Node)propertySheet.getNode();
-                    // This is a workaround for the fact that constraints do not
-                    // have a reference to Node.
-                    ((LuceneSearchBasedListConstraint)constraint).setNode(currentNode);
-                    lovConstraint = (SearchBasedListConstraint)constraint;
-                    break;
-                }
-
-                if (constraint instanceof ListOfValuesConstraint)
-                {
-                    lovConstraint = (ListOfValuesConstraint)constraint;
-                    break;
-                }
-            }
-        }
-        return lovConstraint;
-    }
+				if (constraint instanceof ListOfValuesConstraint) {
+					lovConstraint = (ListOfValuesConstraint) constraint;
+					break;
+				}
+			}
+		}
+		return lovConstraint;
+	}
 
 }
