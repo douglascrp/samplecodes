@@ -8,8 +8,6 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.model.SelectItem;
-
 import org.alfresco.repo.dictionary.constraint.ListOfValuesConstraint;
 import org.apache.log4j.Logger;
 
@@ -26,7 +24,7 @@ public class Sites extends ListOfValuesConstraint implements Serializable {
 
 	@Override
 	public List<String> getAllowedValues() {
-		List<String> av = new ArrayList<String>();
+		List<String> allowedValues = new ArrayList<String>();
 		try {
 			URL url = new URL(this.getSourceUrl());
 			URLConnection urlConnection = url.openConnection();
@@ -35,7 +33,7 @@ public class Sites extends ListOfValuesConstraint implements Serializable {
 			while ((inputLine = in.readLine()) != null && inputLine.trim().length() != 0) {
 				if (log.isDebugEnabled())
 					log.debug(inputLine);
-				av.add(inputLine);
+				allowedValues.add(inputLine);
 			}
 			in.close();
 		} catch (Exception e) {
@@ -43,8 +41,10 @@ public class Sites extends ListOfValuesConstraint implements Serializable {
 		}
 		// you need to set the super class, apparently in super class they used
 		// the vairiable directly
-		super.setAllowedValues(av);
-		return av;
+		if (allowedValues.size() == 0)
+			allowedValues.add("");
+		super.setAllowedValues(allowedValues);
+		return allowedValues;
 	}
 
 	/**

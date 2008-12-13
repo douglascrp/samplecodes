@@ -44,7 +44,7 @@
 			type="sample.model.constraint.LuceneSearchBasedListConstraint">
 			<parameter name="query">
 				<value>
-					TYPE:"{http://www.alfresco.org/model/content/1.0}content"
+					TYPE:"{sample.model}corpDoc"
 				</value>
 			</parameter>
 		</constraint>
@@ -52,9 +52,9 @@
 			type="sample.model.constraint.LuceneSearchBasedListConstraint">
 			<parameter name="query">
 				<value>
-					TYPE:"{http://www.alfresco.org/model/content/1.0}content"
+					TYPE:"{sample.model}corpDoc"
 					AND
-					(@\{http\://www.alfresco.org/model/content/1.0\}name:"${sample:country}"
+					(@\{sample.model\}name:"${sample:country}"
 					TEXT:"${sample:country}")
 				</value>
 			</parameter>

@@ -24,9 +24,6 @@ import java.util.List;
 
 import org.alfresco.repo.dictionary.constraint.ListOfValuesConstraint;
 import org.alfresco.service.ServiceRegistry;
-import org.apache.log4j.Logger;
-
-// TODO:
 
 /*
  * Sample configuration <constraint name="sample:searchBasedConstraint"
@@ -38,10 +35,7 @@ import org.apache.log4j.Logger;
  * ref="sample:searchBasedConstraint" /> </constraints> </property>
  */
 
-public abstract class SearchBasedListConstraint extends ListOfValuesConstraint
-		implements Serializable {
-	private static Logger log = Logger
-			.getLogger(SearchBasedListConstraint.class);
+public abstract class SearchBasedListConstraint extends ListOfValuesConstraint implements Serializable {
 
 	@Override
 	public void initialize() {
