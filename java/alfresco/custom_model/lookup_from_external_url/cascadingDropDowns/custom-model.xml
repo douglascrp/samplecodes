@@ -44,7 +44,7 @@
 			type="sample.model.constraint.LuceneSearchBasedListConstraint">
 			<parameter name="query">
 				<value>
-					ASPECT:"{sample.model}national"
+					ID:"workspace://SpacesStore/a580e314-6468-4fd1-9064-ead45dbbcb6e"
 				</value>
 			</parameter>
 		</constraint>
