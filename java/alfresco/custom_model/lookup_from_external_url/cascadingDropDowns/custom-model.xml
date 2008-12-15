@@ -44,7 +44,7 @@
 			type="sample.model.constraint.LuceneSearchBasedListConstraint">
 			<parameter name="query">
 				<value>
-					TYPE:"{sample.model}corpDoc"
+					ASPECT:"{sample.model}national"
 				</value>
 			</parameter>
 		</constraint>
@@ -52,7 +52,7 @@
 			type="sample.model.constraint.LuceneSearchBasedListConstraint">
 			<parameter name="query">
 				<value>
-					TYPE:"{sample.model}corpDoc"
+					ASPECT:"{sample.model}national"
 					AND
 					(@\{sample.model\}name:"${sample:country}"
 					TEXT:"${sample:country}")
