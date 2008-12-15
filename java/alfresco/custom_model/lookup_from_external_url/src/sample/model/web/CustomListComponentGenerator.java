@@ -68,10 +68,10 @@ public class CustomListComponentGenerator extends TextFieldGenerator {
 	@Override
 	@SuppressWarnings("unchecked")
 	protected UIComponent createComponent(FacesContext context, UIPropertySheet propertySheet, PropertySheetItem item) {
-
 		UIComponent component = super.createComponent(context, propertySheet, item);
-		if (component instanceof UISelectOne && isAutoRefresh())
+		if (component instanceof UISelectOne && isAutoRefresh()) {
 			component.getAttributes().put("onchange", "submit()");
+		}
 		return component;
 	}
 
@@ -89,7 +89,7 @@ public class CustomListComponentGenerator extends TextFieldGenerator {
 	protected ListOfValuesConstraint getListOfValuesConstraint(FacesContext context, UIPropertySheet propertySheet, PropertySheetItem item) {
 		ListOfValuesConstraint lovConstraint = null;
 
-		log.info("propertySheet: " + propertySheet.getNode() +  " item: " + item.getName());
+		//log.info("propertySheet: " + propertySheet.getNode() + " item: " + item.getName());
 		// get the property definition for the item
 		PropertyDefinition propertyDef = getPropertyDefinition(context, propertySheet.getNode(), item.getName());
 
@@ -99,13 +99,13 @@ public class CustomListComponentGenerator extends TextFieldGenerator {
 			List<ConstraintDefinition> constraints = propertyDef.getConstraints();
 			for (ConstraintDefinition constraintDef : constraints) {
 				Constraint constraint = constraintDef.getConstraint();
-				log.info("constraint: " + constraint);
-				log.info("is: " + (constraint instanceof ListOfValuesConstraint));
+				//log.info("constraint: " + constraint);
 				if (constraint instanceof LuceneSearchBasedListConstraint) {
 					Node currentNode = (Node) propertySheet.getNode();
 					// This is a workaround for the fact that constraints do not
 					// have a reference to Node.
 					((LuceneSearchBasedListConstraint) constraint).setNode(currentNode);
+					//((LuceneSearchBasedListConstraint) constraint).setPropertySheetMap(propertySheet.getFacets());
 					lovConstraint = (SearchBasedListConstraint) constraint;
 					break;
 				}
