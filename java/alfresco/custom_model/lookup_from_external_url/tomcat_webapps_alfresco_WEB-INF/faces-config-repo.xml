@@ -6,7 +6,7 @@
    <!-- ==================== COMPONENTS ==================== -->
    <component>
       <component-type>org.alfresco.faces.PropertySheet</component-type>
-      <component-class>org.alfresco.web.ui.repo.component.property.UIPropertySheet</component-class>
+      <component-class>sample.model.web.RefreshableUIPropertySheet</component-class>
    </component>
 
    <component>
