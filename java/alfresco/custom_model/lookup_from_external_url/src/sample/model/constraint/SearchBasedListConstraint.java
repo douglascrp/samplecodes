@@ -79,7 +79,7 @@ public abstract class SearchBasedListConstraint extends ListOfValuesConstraint i
 		SearchBasedListConstraint.registry = registry;
 	}
 
-	protected static String tokenExpression = "\\$\\{[a-zA-Z]+:[a-zA-Z]+\\}";
+	protected static String tokenExpression = "\\$\\{.+\\}";
 
 	public void setTokenExpression(String value) {
 		tokenExpression = value;

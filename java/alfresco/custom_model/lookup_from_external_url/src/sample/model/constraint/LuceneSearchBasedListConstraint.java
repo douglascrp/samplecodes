@@ -60,7 +60,7 @@ public class LuceneSearchBasedListConstraint extends
 
 		if (log.isDebugEnabled())
 			log.debug("Final Query with substitutions " + finalQuery);
-		log.info(">>>>>>>>>>>>>" + strStoreRef);
+		log.info("StoreRef : " + strStoreRef);
 		StoreRef storeRef = new StoreRef(strStoreRef);
 		ResultSet resultSet = getServiceRegistry().getSearchService().query(
 				storeRef, SearchService.LANGUAGE_LUCENE, finalQuery);
