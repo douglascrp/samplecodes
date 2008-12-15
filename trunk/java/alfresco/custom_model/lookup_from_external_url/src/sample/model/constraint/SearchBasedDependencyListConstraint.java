@@ -28,17 +28,24 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.alfresco.web.bean.repository.Node;
+import org.apache.log4j.Logger;
 
 
 public abstract class SearchBasedDependencyListConstraint
     extends SearchBasedListConstraint
 {
+	private static Logger log = Logger
+	.getLogger(SearchBasedDependencyListConstraint.class);
 
     protected String resolveDependenciesOnProperties(String query)
     {
         List<String> propNames = getPropertyNames(query, getTokenExpression());
+        for(String x: propNames) log.info("pro: " + x);
+        log.info("node " + node);
         Map<String, String> map = populateNodeValues(propNames, node);
+        for(String key: map.keySet()) log.info(key + ":" + map.get(key));
         String newQuery = replaceQueryParametersWithValues(query, map);
+        log.info("new query: " + newQuery);
         return newQuery;
     }
 
@@ -67,11 +74,13 @@ public abstract class SearchBasedDependencyListConstraint
     private List<String> getPropertyNames(String query, String tokenRegexpExpression)
     {
         Pattern patternMatcher = Pattern.compile(tokenRegexpExpression);
+        log.info("-----------------------------------------------------> patternMatcher " + patternMatcher);
         Matcher matcher = patternMatcher.matcher(query);
         List<String> arr = new ArrayList<String>();
         while (matcher.find())
         {
             String propToken = matcher.group();
+            log.info("propToken " + propToken);
             propToken = propToken.substring(2, propToken.length() - 1);
             arr.add(propToken);
         }
@@ -84,8 +93,10 @@ public abstract class SearchBasedDependencyListConstraint
         Map<String, String> result = new HashMap<String, String>();
         for (String propName : propNames)
         {
+        	log.info("looking for propName " + propName);
             if (node.hasProperty(propName))
             {
+            	log.info("find value " + node.getProperties().get(propName).toString());
                 result.put(propName, node.getProperties().get(propName).toString());
             }
         }
