@@ -16,9 +16,7 @@
  * available here: http://www.alfresco.com/legal/licensing"
  */
 
-
 package sample.model.constraint;
-
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,94 +28,78 @@ import java.util.regex.Pattern;
 import org.alfresco.web.bean.repository.Node;
 import org.apache.log4j.Logger;
 
+public abstract class SearchBasedDependencyListConstraint extends SearchBasedListConstraint {
+	private static Logger log = Logger.getLogger(SearchBasedDependencyListConstraint.class);
+	private Node node;
 
-public abstract class SearchBasedDependencyListConstraint
-    extends SearchBasedListConstraint
-{
-	private static Logger log = Logger
-	.getLogger(SearchBasedDependencyListConstraint.class);
+	protected String resolveDependenciesOnProperties(String query) {
+		List<String> propNames = getPropertyNames(query, getTokenExpression());
+		Map<String, String> map = populateNodeValues(propNames, node);
+		
+		String newQuery = replaceQueryParametersWithValues(query, map);
+		return newQuery;
+	}
+	public Node getNode() {
+		return node;
+	}
 
-    protected String resolveDependenciesOnProperties(String query)
-    {
-        List<String> propNames = getPropertyNames(query, getTokenExpression());
-        for(String x: propNames) log.info("pro: " + x);
-        log.info("node " + node);
-        Map<String, String> map = populateNodeValues(propNames, node);
-        for(String key: map.keySet()) log.info(key + ":" + map.get(key));
-        String newQuery = replaceQueryParametersWithValues(query, map);
-        log.info("new query: " + newQuery);
-        return newQuery;
-    }
+	public void setNode(Node node) {
+		this.node = node;
+	}
 
+	/**
+	 * Pulls out tokens corresponding to property names
+	 * 
+	 * @param query
+	 * @return
+	 */
+	private List<String> getPropertyNames(String query, String tokenRegexpExpression) {
+		Pattern patternMatcher = Pattern.compile(tokenRegexpExpression);
+		//log.info("-----------------------------------------------------> patternMatcher " + patternMatcher);
+		Matcher matcher = patternMatcher.matcher(query);
+		List<String> arr = new ArrayList<String>();
+		while (matcher.find()) {
+			String propToken = matcher.group();
+			//log.info("propToken " + propToken);
+			propToken = propToken.substring(2, propToken.length() - 1);
+			arr.add(propToken);
+		}
+		return arr;
+	}
 
-    private Node node;
+	private Map<String, String> populateNodeValues(List<String> propNames, Node node) {
+		Map<String, String> result = new HashMap<String, String>();
+		for (String propName : propNames) {
+			log.info("looking for propName " + propName);
+			if (node.hasProperty(propName)) {
+				log.info("find value " + node.getProperties().get(propName).toString());
+				result.put(propName, node.getProperties().get(propName).toString());
+			}
+//			for(QName aspect : node.getAspects()) {
+//				log.info("aspect QName" + aspect);
+//				PolicyScope policyScope = new PolicyScope(aspect);
+//				Map<QName, Serializable> map = policyScope.getProperties();
+//				
+//				if(map != null) for(QName key: map.keySet()) {
+//					log.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX " + key + "<>" + map.get(key));
+//				}
+//			}
+		}
+		return result;
+	}
 
-
-    public Node getNode()
-    {
-        return node;
-    }
-
-
-    public void setNode(Node node)
-    {
-        this.node = node;
-    }
-
-
-    /**
-     * Pulls out tokens corresponding to property names
-     * 
-     * @param query
-     * @return
-     */
-    private List<String> getPropertyNames(String query, String tokenRegexpExpression)
-    {
-        Pattern patternMatcher = Pattern.compile(tokenRegexpExpression);
-        log.info("-----------------------------------------------------> patternMatcher " + patternMatcher);
-        Matcher matcher = patternMatcher.matcher(query);
-        List<String> arr = new ArrayList<String>();
-        while (matcher.find())
-        {
-            String propToken = matcher.group();
-            log.info("propToken " + propToken);
-            propToken = propToken.substring(2, propToken.length() - 1);
-            arr.add(propToken);
-        }
-        return arr;
-    }
-
-
-    private Map<String, String> populateNodeValues(List<String> propNames, Node node)
-    {
-        Map<String, String> result = new HashMap<String, String>();
-        for (String propName : propNames)
-        {
-        	log.info("looking for propName " + propName);
-            if (node.hasProperty(propName))
-            {
-            	log.info("find value " + node.getProperties().get(propName).toString());
-                result.put(propName, node.getProperties().get(propName).toString());
-            }
-        }
-        return result;
-    }
-
-
-    /**
-     * Pulls out tokens corresponding to property names
-     * 
-     * @param query
-     * @return
-     */
-    private String replaceQueryParametersWithValues(String query, Map<String, String> props)
-    {
-        String finalQuery = query;
-        for (String key : props.keySet())
-        {
-            String token = "\\$\\{" + key + "\\}";
-            finalQuery = query.replaceAll(token, props.get(key));
-        }
-        return finalQuery;
-    }
+	/**
+	 * Pulls out tokens corresponding to property names
+	 * 
+	 * @param query
+	 * @return
+	 */
+	private String replaceQueryParametersWithValues(String query, Map<String, String> props) {
+		String finalQuery = query;
+		for (String key : props.keySet()) {
+			String token = "\\$\\{" + key + "\\}";
+			finalQuery = query.replaceAll(token, props.get(key));
+		}
+		return finalQuery;
+	}
 }
