@@ -20,6 +20,7 @@ package sample.model.constraint;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.alfresco.model.ContentModel;
 import org.alfresco.service.cmr.repository.ChildAssociationRef;
@@ -31,67 +32,56 @@ import org.alfresco.service.cmr.search.SearchService;
 import org.apache.log4j.Logger;
 
 /*
- * This class contains utilities that help convert query string with
+ * This class contains utilities that help convert propertyName string with
  * substitution tokens of form ${token} to the string with substituted values.
  * It should handle an arbitrary number of substitution tokens. For example:
- * query TYPE:"{http://www.alfresco.org/model/content/1.0}content" AND
+ * propertyName TYPE:"{http://www.alfresco.org/model/content/1.0}content" AND
  * (@\{http\://www.alfresco.org/model/content/1.0\}name:"${my:authorisedBy}"
  * will gets ${my:authorisedBy} replaced by its actual value.
  */
 
-public class LuceneSearchBasedListConstraint extends SearchBasedDependencyListConstraint {
+public class MultipleValueDependentSearchListConstraint extends SearchBasedDependencyListConstraint {
 
 	private static final long serialVersionUID = 1L;
-	private static Logger log = Logger.getLogger(LuceneSearchBasedListConstraint.class);
+	private static Logger log = Logger.getLogger(MultipleValueDependentSearchListConstraint.class);
 
-	protected String query;
+	protected String propertyName;
+	//protected StoreRef storeRef = new StoreRef(StoreRef.PROTOCOL_WORKSPACE + StoreRef.URI_FILLER + "SpacesStore");
 	protected StoreRef getStoreRef() { return new StoreRef(StoreRef.PROTOCOL_WORKSPACE, "SpacesStore"); }
-	private String childPattern;
 
-	public LuceneSearchBasedListConstraint() {
+	public MultipleValueDependentSearchListConstraint() {
 	}
+	
 
 	protected List<String> getSearchResult() {
 		if (log.isDebugEnabled())
-			log.debug("Original Query  " + query);
+			log.debug("Original Query  " + propertyName);
 
-		String finalQuery = resolveDependenciesOnProperties(query);
-
-		if (log.isDebugEnabled())
-			log.debug("Final Query with substitutions " + finalQuery);
-		StoreRef storeRef = getStoreRef();
-		log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + storeRef);
-		ResultSet resultSet = getServiceRegistry().getSearchService().query(storeRef, SearchService.LANGUAGE_LUCENE, finalQuery);
-		NodeService nodeSvc = getServiceRegistry().getNodeService();
-		log.info("resultSet.length() " + resultSet.length());
-
+//		String finalQuery = resolveDependenciesOnProperties(propertyName);
+//
+//		if (log.isDebugEnabled())
+//			log.debug("Final Query with substitutions " + finalQuery);
+//		StoreRef storeRef = getStoreRef();
+//		log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + storeRef);
+//		ResultSet resultSet = getServiceRegistry().getSearchService().propertyName(storeRef, SearchService.LANGUAGE_LUCENE, finalQuery);
+//		NodeService nodeSvc = getServiceRegistry().getNodeService();
+//		log.info("resultSet.length() " + resultSet.length());
+		log.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" + node.getProperties().get(propertyName));
 		List<String> allowedValues = new ArrayList<String>();
-		if (childPattern != null && resultSet.length() != 0) {
-			ResultSetRow row = resultSet.getRow(0);
-			for (ChildAssociationRef childAssociationRef : nodeSvc.getChildAssocs(row.getNodeRef())) {
-				allowedValues.add((String) nodeSvc.getProperty(childAssociationRef.getChildRef(), ContentModel.PROP_NAME));
-			}
-		} else {
-			for (ResultSetRow row : resultSet) {
-				allowedValues.add((String) nodeSvc.getProperty(row.getNodeRef(), ContentModel.PROP_NAME));
-			}
-		}
-		// the UI cannot render dropdown without any elements, so add at least
-		// one.
-		if (allowedValues.size() == 0)
-			allowedValues.add("");
+//		for (ResultSetRow row : resultSet) {
+//			for (ChildAssociationRef childAssociationRef : nodeSvc.getChildAssocs(row.getNodeRef())) {
+//				allowedValues.add((String) nodeSvc.getProperty(childAssociationRef.getChildRef(), ContentModel.PROP_NAME));
+//			}
+//		}
+//		// the UI cannot render dropdown without any elements, so add at least
+//		// one.
+//		if (allowedValues.size() == 0)
+//			allowedValues.add("");
 		return allowedValues;
 	}
 
-	public void setQuery(String newquery) {
-		query = newquery;
+	public void setPropertyName(String newKey) {
+		propertyName = newKey;
 	}
 	
-	public String getChildPattern() {
-		return childPattern;
-	}
-
-	public void setChildPattern(String childPattern) {
-		this.childPattern = childPattern;
-	}
 }
