@@ -30,7 +30,7 @@ import org.apache.log4j.Logger;
 
 public abstract class SearchBasedDependencyListConstraint extends SearchBasedListConstraint {
 	private static Logger log = Logger.getLogger(SearchBasedDependencyListConstraint.class);
-	private Node node;
+	protected Node node;
 
 	protected String resolveDependenciesOnProperties(String query) {
 		List<String> propNames = getPropertyNames(query, getTokenExpression());
@@ -55,7 +55,6 @@ public abstract class SearchBasedDependencyListConstraint extends SearchBasedLis
 	 */
 	private List<String> getPropertyNames(String query, String tokenRegexpExpression) {
 		Pattern patternMatcher = Pattern.compile(tokenRegexpExpression);
-		//log.info("-----------------------------------------------------> patternMatcher " + patternMatcher);
 		Matcher matcher = patternMatcher.matcher(query);
 		List<String> arr = new ArrayList<String>();
 		while (matcher.find()) {
@@ -72,18 +71,9 @@ public abstract class SearchBasedDependencyListConstraint extends SearchBasedLis
 		for (String propName : propNames) {
 			log.info("looking for propName " + propName);
 			if (node.hasProperty(propName)) {
-				log.info("find value " + node.getProperties().get(propName).toString());
+				//log.info("find value " + node.getProperties().get(propName).toString());
 				result.put(propName, node.getProperties().get(propName).toString());
 			}
-//			for(QName aspect : node.getAspects()) {
-//				log.info("aspect QName" + aspect);
-//				PolicyScope policyScope = new PolicyScope(aspect);
-//				Map<QName, Serializable> map = policyScope.getProperties();
-//				
-//				if(map != null) for(QName key: map.keySet()) {
-//					log.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX " + key + "<>" + map.get(key));
-//				}
-//			}
 		}
 		return result;
 	}
