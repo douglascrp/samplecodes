@@ -44,6 +44,12 @@
 			<type name="sample:socialDoc" />
 		</content-types>
 	</config>
+
+    <config evaluator="node-type" condition="sample:corpDoc">
+        <property-sheet>
+            <show-association name="sample:socialRef"/>
+        </property-sheet>
+    </config>
 	
 	<config evaluator="string-compare" condition="Advanced Search">
 		<advanced-search>

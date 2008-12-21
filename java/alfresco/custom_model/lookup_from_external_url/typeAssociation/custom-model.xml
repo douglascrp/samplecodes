@@ -25,7 +25,7 @@
 				<value>true</value>
 			</parameter>
 			<parameter name="sourceUrl">
-				<value>http://localhost:8080/alfresco/d/d/workspace/SpacesStore/f8997f9c-a20f-4305-a9a9-d541754eba98/sites?guest=true
+				<value>http://localhost:8080/alfresco/d/d/workspace/SpacesStore/8805d4ef-248e-4628-b509-0f21c1dd186b/sites?guest=true
 				</value>
 			</parameter>
 		</constraint>
@@ -44,20 +44,20 @@
 
 	<types>
 		<type name="sample:corpDoc">
-			<title>Sample Corp Doc</title>
+			<title>Sample Corporate Doc</title>
 			<parent>cm:content</parent>
 			<associations>
-				<association name="sample:relatedDocuments">
-					<title>Related Documents</title>
+				<association name="sample:socialRef">
+					<title>Parent</title>
 					<source>
 						<mandatory>false</mandatory>
-						<many>true</many>
+						<many>false</many>
 					</source>
-					<target>
-						<class>sample:socialDoc</class>
-						<mandatory>false</mandatory>
-						<many>true</many>
-					</target>
+                    <target>
+                        <class>sample:socialDoc</class>
+                        <mandatory>false</mandatory>
+                        <many>false</many>
+                    </target>
 				</association>
 			</associations>
 			<mandatory-aspects>
@@ -103,22 +103,8 @@
 				<property name="sample:cost">
 					<type>d:double</type>
 				</property>
-			</properties>
-			<associations>
-				<association name="sample:relatedDocs">
-					<title>Related Docs</title>
-					<source>
-						<mandatory>false</mandatory>
-						<many>true</many>
-					</source>
-					<target>
-						<class>cm:content</class>
-						<mandatory>false</mandatory>
-						<many>true</many>
-					</target>
-				</association>
-			</associations>
-		</aspect>
+            </properties>
+        </aspect>
 		<aspect name="sample:social">
 			<title>Adding properties in a social network</title>
 			<properties>

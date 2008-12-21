@@ -22,7 +22,9 @@ package sample.model.web;
 import java.io.IOException;
 
 import javax.faces.context.FacesContext;
+
 import org.alfresco.web.ui.repo.component.property.UIPropertySheet;
+import org.apache.log4j.Logger;
 
 
 /**
@@ -32,6 +34,7 @@ import org.alfresco.web.ui.repo.component.property.UIPropertySheet;
 public class RefreshableUIPropertySheet
     extends UIPropertySheet
 {
+	private static Logger log = Logger.getLogger(RefreshableUIPropertySheet.class);
     /**
      * @see javax.faces.component.UIComponent#encodeBegin(javax.faces.context.FacesContext)
      */
@@ -39,6 +42,8 @@ public class RefreshableUIPropertySheet
     public void encodeBegin(FacesContext context)
         throws IOException
     {
+       	log.info("---------------------------------------------------------------------------------------------------->" + context);
+       	log.info("-------------------------------------------------->" + getChildren().size());
         // clearing children forces the UIPropertySheet to re-create all the
         // components, which
         // in turn allows reloading of drop downs from the database.

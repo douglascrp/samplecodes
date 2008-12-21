@@ -69,6 +69,7 @@ public class CustomListComponentGenerator extends TextFieldGenerator {
 	@SuppressWarnings("unchecked")
 	protected UIComponent createComponent(FacesContext context, UIPropertySheet propertySheet, PropertySheetItem item) {
 		UIComponent component = super.createComponent(context, propertySheet, item);
+		log.info("********************** " + item + " >" + component + " >" + (component instanceof UISelectOne) + " " +  isAutoRefresh());
 		if (component instanceof UISelectOne && isAutoRefresh()) {
 			component.getAttributes().put("onchange", "submit()");
 		}
@@ -89,7 +90,7 @@ public class CustomListComponentGenerator extends TextFieldGenerator {
 	protected ListOfValuesConstraint getListOfValuesConstraint(FacesContext context, UIPropertySheet propertySheet, PropertySheetItem item) {
 		ListOfValuesConstraint lovConstraint = null;
 
-		//log.info("propertySheet: " + propertySheet.getNode() + " item: " + item.getName());
+		log.info("propertySheet: " + propertySheet.getNode() + " item: " + item.getName());
 		// get the property definition for the item
 		PropertyDefinition propertyDef = getPropertyDefinition(context, propertySheet.getNode(), item.getName());
 
@@ -105,7 +106,6 @@ public class CustomListComponentGenerator extends TextFieldGenerator {
 					// This is a workaround for the fact that constraints do not
 					// have a reference to Node.
 					((LuceneSearchBasedListConstraint) constraint).setNode(currentNode);
-					//((LuceneSearchBasedListConstraint) constraint).setPropertySheetMap(propertySheet.getFacets());
 					lovConstraint = (SearchBasedListConstraint) constraint;
 					break;
 				}

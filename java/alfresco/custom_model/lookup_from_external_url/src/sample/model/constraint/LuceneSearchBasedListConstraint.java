@@ -45,7 +45,11 @@ public class LuceneSearchBasedListConstraint extends SearchBasedDependencyListCo
 	private static Logger log = Logger.getLogger(LuceneSearchBasedListConstraint.class);
 
 	protected String query;
-	protected StoreRef getStoreRef() { return new StoreRef(StoreRef.PROTOCOL_WORKSPACE, "SpacesStore"); }
+
+	protected StoreRef getStoreRef() {
+		return new StoreRef(StoreRef.PROTOCOL_WORKSPACE, "SpacesStore");
+	}
+
 	private String childPattern;
 
 	public LuceneSearchBasedListConstraint() {
@@ -57,15 +61,23 @@ public class LuceneSearchBasedListConstraint extends SearchBasedDependencyListCo
 
 		String finalQuery = resolveDependenciesOnProperties(query);
 
+		List<String> allowedValues = new ArrayList<String>();
+		searchForAllowedValues(finalQuery, allowedValues);
+		// the UI cannot render drop down without any elements, so add at least
+		// one.
+		if (allowedValues.size() == 0)
+			allowedValues.add("");
+		return allowedValues;
+	}
+
+	protected void searchForAllowedValues(String query, List<String> allowedValues) {
 		if (log.isDebugEnabled())
-			log.debug("Final Query with substitutions " + finalQuery);
+			log.debug("Query to get Allowed values " + query);
 		StoreRef storeRef = getStoreRef();
-		log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + storeRef);
-		ResultSet resultSet = getServiceRegistry().getSearchService().query(storeRef, SearchService.LANGUAGE_LUCENE, finalQuery);
+		ResultSet resultSet = getServiceRegistry().getSearchService().query(storeRef, SearchService.LANGUAGE_LUCENE, query);
 		NodeService nodeSvc = getServiceRegistry().getNodeService();
 		log.info("resultSet.length() " + resultSet.length());
 
-		List<String> allowedValues = new ArrayList<String>();
 		if (childPattern != null && resultSet.length() != 0) {
 			ResultSetRow row = resultSet.getRow(0);
 			for (ChildAssociationRef childAssociationRef : nodeSvc.getChildAssocs(row.getNodeRef())) {
@@ -76,17 +88,12 @@ public class LuceneSearchBasedListConstraint extends SearchBasedDependencyListCo
 				allowedValues.add((String) nodeSvc.getProperty(row.getNodeRef(), ContentModel.PROP_NAME));
 			}
 		}
-		// the UI cannot render dropdown without any elements, so add at least
-		// one.
-		if (allowedValues.size() == 0)
-			allowedValues.add("");
-		return allowedValues;
 	}
 
 	public void setQuery(String newquery) {
 		query = newquery;
 	}
-	
+
 	public String getChildPattern() {
 		return childPattern;
 	}

@@ -84,7 +84,7 @@ public abstract class SearchBasedDependencyListConstraint extends SearchBasedLis
 	 * @param query
 	 * @return
 	 */
-	private String replaceQueryParametersWithValues(String query, Map<String, String> props) {
+	protected String replaceQueryParametersWithValues(String query, Map<String, String> props) {
 		String finalQuery = query;
 		for (String key : props.keySet()) {
 			String token = "\\$\\{" + key + "\\}";
