@@ -40,20 +40,20 @@
 		<!-- The list of aspects to show in the add/remove features action and the has-aspect condition -->
 		<aspects>
 			<aspect name="sample:temporal" />
-			<aspect name="sample:social" />
+			<aspect name="sample:tagged" />
 			<aspect name="sample:national" />
 		</aspects>
 
 		<!-- The list of types shown in the is-subtype condition -->
 		<subtypes>
 			<type name="sample:corpDoc" />
-			<type name="sample:socialDoc" />
+			<type name="sample:taggedDoc" />
 		</subtypes>
 
 		<!-- The list of content and/or folder types shown in the specialise-type action -->
 		<specialise-types>
 			<type name="sample:corpDoc" />
-			<type name="sample:socialDoc" />
+			<type name="sample:taggedDoc" />
 		</specialise-types>
 	</config>
 
@@ -68,7 +68,7 @@
 			<show-property name="sample:cost" display-label-id="cost" />
 		</property-sheet>
 	</config>
-	<config evaluator="aspect-name" condition="sample:social">
+	<config evaluator="aspect-name" condition="sample:tagged">
 		<property-sheet>
 			<show-property name="sample:tags" display-label-id="tags" />
 		</property-sheet>
@@ -86,7 +86,7 @@
 	<config evaluator="string-compare" condition="Content Wizards">
 		<content-types>
 			<type name="sample:corpDoc" />
-			<type name="sample:socialDoc" />
+			<type name="sample:taggedDoc" />
 		</content-types>
 	</config>
 
@@ -94,14 +94,14 @@
 		<advanced-search>
 			<content-types>
 				<type name="sample:corpDoc" />
-				<type name="sample:socialDoc" />
+				<type name="sample:taggedDoc" />
 			</content-types>
 			<custom-properties>
 				<meta-data aspect="sample:temporal" property="sample:expirationDate" />
 				<meta-data aspect="sample:temporal" property="sample:sites" />
 				<meta-data aspect="sample:temporal" property="sample:isConfirmed" />
 				<meta-data aspect="sample:temporal" property="sample:cost" />
-				<meta-data aspect="sample:social" property="sample:tags" />
+				<meta-data aspect="sample:tagged" property="sample:tags" />
 			</custom-properties>
 		</advanced-search>
 	</config>
