@@ -54,7 +54,7 @@
 						<many>false</many>
 					</source>
                     <target>
-                        <class>sample:socialDoc</class>
+                        <class>sample:taggedDoc</class>
                         <mandatory>false</mandatory>
                         <many>false</many>
                     </target>
@@ -64,7 +64,7 @@
 				<aspect>sample:temporal</aspect>
 			</mandatory-aspects>
 		</type>
-		<type name="sample:socialDoc">
+		<type name="sample:taggedDoc">
 			<title>Sample Social Doc</title>
 			<parent>cm:content</parent>
             <associations>
@@ -82,7 +82,7 @@
                 </association>
             </associations>
 			<mandatory-aspects>
-				<aspect>sample:social</aspect>
+				<aspect>sample:tagged</aspect>
 			</mandatory-aspects>
 		</type>
 	</types>
@@ -119,8 +119,8 @@
 				</property>
             </properties>
         </aspect>
-		<aspect name="sample:social">
-			<title>Adding properties in a social network</title>
+		<aspect name="sample:tagged">
+			<title>Adding properties in a tagged network</title>
 			<properties>
 				<property name="sample:tags">
 					<type>d:text</type>
