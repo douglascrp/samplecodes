@@ -18,37 +18,42 @@
 
 package sample.model.web;
 
-
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 
+import org.alfresco.web.app.servlet.FacesHelper;
+import org.alfresco.web.bean.generator.IComponentGenerator;
+import org.alfresco.web.ui.repo.component.property.PropertySheetItem;
 import org.alfresco.web.ui.repo.component.property.UIPropertySheet;
 import org.apache.log4j.Logger;
-
 
 /**
  * Component that refreshes and reloads its subcomponents every single time.
  * This allows one property to be dependent on a value in another property.
  */
-public class RefreshableUIPropertySheet
-    extends UIPropertySheet
-{
-	private static Logger log = Logger.getLogger(RefreshableUIPropertySheet.class);
+public class RefreshableUIPropertySheet extends UIPropertySheet {
+    private static Logger log = Logger.getLogger(RefreshableUIPropertySheet.class);
+
     /**
      * @see javax.faces.component.UIComponent#encodeBegin(javax.faces.context.FacesContext)
      */
     @SuppressWarnings("unchecked")
-    public void encodeBegin(FacesContext context)
-        throws IOException
-    {
-       	log.info("---------------------------------------------------------------------------------------------------->" + context);
-       	log.info("-------------------------------------------------->" + getChildren().size());
-        // clearing children forces the UIPropertySheet to re-create all the
-        // components, which
-        // in turn allows reloading of drop downs from the database.
-        if (getChildren().size() != 0)
-            this.getChildren().clear();
+    public void encodeBegin(FacesContext context) throws IOException {
+        Map<Integer, UIComponent> map = new HashMap<Integer, UIComponent>();
+        int indx = 0;
+        for (Iterator iterator = getChildren().iterator(); iterator.hasNext(); indx++) {
+            UIComponent component = (UIComponent) iterator.next();
+            log.info(component.getClass() + " " + component.getId() + " ");
+            if (component.getId().indexOf("refresh") != -1) {
+                CustomListComponentGenerator componentGenerator = (CustomListComponentGenerator) FacesHelper.getComponentGenerator(context, "CustomDependentListComponentGenerator");
+                componentGenerator.generateAndReplace(context, this, (PropertySheetItem) component);
+            }
+        }
         super.encodeBegin(context);
     }
 
