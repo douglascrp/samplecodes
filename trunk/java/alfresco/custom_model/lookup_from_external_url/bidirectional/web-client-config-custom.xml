@@ -47,13 +47,13 @@
 
     <config evaluator="node-type" condition="sample:corpDoc">
         <property-sheet>
-            <show-association name="sample:c2s"/>
+            <show-association name="sample:c2t"/>
         </property-sheet>
     </config>
     
     <config evaluator="node-type" condition="sample:taggedDoc">
         <property-sheet>
-            <show-association name="sample:s2c" read-only="true" />
+            <show-association name="sample:t2c" read-only="true" />
         </property-sheet>
     </config>
 	

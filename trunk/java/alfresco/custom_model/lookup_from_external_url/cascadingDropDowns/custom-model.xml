@@ -75,7 +75,7 @@
 			<parent>cm:content</parent>
 		</type>
 		<type name="sample:taggedDoc">
-			<title>Sample Social Doc</title>
+			<title>Tagged Doc</title>
 			<parent>cm:content</parent>
 			<mandatory-aspects>
 				<aspect>sample:tagged</aspect>

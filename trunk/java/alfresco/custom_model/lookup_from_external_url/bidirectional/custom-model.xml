@@ -47,8 +47,8 @@
 			<title>Sample Corporate Doc</title>
 			<parent>cm:content</parent>
 			<associations>
-				<association name="sample:c2s">
-					<title>Social Doc Link</title>
+				<association name="sample:c2t">
+					<title>Tagged Ref</title>
 					<source>
 						<mandatory>false</mandatory>
 						<many>false</many>
@@ -65,10 +65,10 @@
 			</mandatory-aspects>
 		</type>
 		<type name="sample:taggedDoc">
-			<title>Sample Social Doc</title>
+			<title>Tagged Doc</title>
 			<parent>cm:content</parent>
             <associations>
-                <association name="sample:s2c">
+                <association name="sample:t2c">
                     <title>Copr Doc Ref</title>
                     <source>
                         <mandatory>false</mandatory>
