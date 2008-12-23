@@ -6,6 +6,6 @@
 	<classpathentry kind="var" path="ALFRESCO_HOME/WEB-INF/lib/myfaces-api-1.1.5.jar"/>
 	<classpathentry kind="var" path="ALFRESCO_HOME/WEB-INF/lib/log4j-1.2.15.jar"/>
 	<classpathentry kind="var" path="ALFRESCO_HOME/WEB-INF/lib/alfresco-webscript-framework.jar"/>
-	<classpathentry kind="var" path="ALFRESCO_HOME/WEB-INF/lib/alfresco-web-client.jar"/>
+	<classpathentry kind="var" path="ALFRESCO_HOME/WEB-INF/lib/alfresco-web-client.jar" sourcepath="/ALFRESCO_SRC"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
