@@ -34,7 +34,7 @@
 			<show-property name="sample:cost" display-label-id="cost" />
 			<show-property name="sample:country"
 				component-generator="CustomListComponentGeneratorWithRefresh" />
-			<show-property name="sample:city.refresh"
+			<show-property name="sample:city"
 				component-generator="CustomDependentListComponentGenerator" />
 		</property-sheet>
 	</config>
