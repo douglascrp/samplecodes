@@ -71,7 +71,7 @@
 
 	<types>
 		<type name="sample:corpDoc">
-			<title>Sample Corporate Doc</title>
+			<title>Corporate Doc</title>
 			<parent>cm:content</parent>
 		</type>
 		<type name="sample:taggedDoc">
