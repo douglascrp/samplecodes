@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="sample:model" xmlns="http://www.alfresco.org/model/dictionary/1.0">
+
+	<!-- Optional meta-data about the model -->
+	<description>Sample Custom Model</description>
+	<author>Hossein Akhlaghpour</author>
+	<version>1.0</version>
+
+	<!-- Imports are required to allow references to definitions in other models -->
+	<imports>
+		<!-- Import Alfresco Dictionary Definitions -->
+		<import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d" />
+		<!-- Import Alfresco Content Domain Model Definitions -->
+		<import uri="http://www.alfresco.org/model/content/1.0" prefix="cm" />
+	</imports>
+
+	<!-- Introduction of new namespaces defined by this model -->
+	<namespaces>
+		<namespace uri="sample.model" prefix="sample" />
+	</namespaces>
+
+	<constraints>
+		<constraint name="sample:siteList" type="sample.model.constraint.Sites">
+			<parameter name="caseSensitive">
+				<value>true</value>
+			</parameter>
+			<parameter name="sourceUrl">
+				<value>http://localhost:8080/alfresco/d/d/workspace/SpacesStore/8805d4ef-248e-4628-b509-0f21c1dd186b/sites?guest=true
+				</value>
+			</parameter>
+		</constraint>
+		<constraint name="sample:languageList" type="LIST">
+			<parameter name="allowedValues">
+				<list>
+					<value>English</value>
+					<value>Farsi</value>
+					<value>Danish</value>
+					<value>Chinese</value>
+					<value>Spanish</value>
+				</list>
+			</parameter>
+		</constraint>
+	</constraints>
+
+	<types>
+		<type name="sample:corpDoc">
+			<title>Corporate Doc</title>
+			<parent>cm:content</parent>
+			<associations>
+				<association name="sample:c2t">
+					<title>Tagged Ref</title>
+					<source>
+						<mandatory>false</mandatory>
+						<many>false</many>
+					</source>
+                    <target>
+                        <class>sample:taggedDoc</class>
+                        <mandatory>false</mandatory>
+                        <many>false</many>
+                    </target>
+				</association>
+				<association name="sample:c2a">
+					<title>Attachments</title>
+					<source>
+						<mandatory>false</mandatory>
+						<many>false</many>
+					</source>
+                    <target>
+                        <class>sample:attachment</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+				</association>
+			</associations>
+			<mandatory-aspects>
+				<aspect>sample:temporal</aspect>
+			</mandatory-aspects>
+		</type>
+		<type name="sample:taggedDoc">
+			<title>Tagged Doc</title>
+			<parent>cm:content</parent>
+            <associations>
+                <association name="sample:t2c">
+                    <title>Copr Doc Ref</title>
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>false</many>
+                    </source>
+                    <target>
+                        <class>sample:corpDoc</class>
+                        <mandatory>false</mandatory>
+                        <many>false</many>
+                    </target>
+                </association>
+            </associations>
+			<mandatory-aspects>
+				<aspect>sample:tagged</aspect>
+			</mandatory-aspects>
+		</type>
+		<type name="sample:attachment">
+			<title>Attachment</title>
+			<parent>cm:content</parent>
+            <associations>
+                <association name="sample:a2c">
+                    <title>Copr Doc Ref</title>
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>sample:corpDoc</class>
+                        <mandatory>false</mandatory>
+                        <many>false</many>
+                    </target>
+                </association>
+            </associations>
+		</type>
+	</types>
+
+	<aspects>
+		<aspect name="sample:temporal">
+			<title>Adding common types</title>
+			<properties>
+				<property name="sample:expirationDate">
+					<type>d:date</type>
+				</property>
+				<property name="sample:language">
+					<type>d:text</type>
+					<constraints>
+						<constraint ref="sample:languageList" />
+					</constraints>
+				</property>
+				<property name="sample:sites">
+					<type>d:text</type>
+					<multiple>true</multiple>
+					<constraints>
+						<constraint ref="sample:siteList" />
+					</constraints>
+				</property>
+				<property name="sample:isConfirmed">
+					<type>d:boolean</type>
+					<default>true</default>
+				</property>
+				<property name="sample:zipCode">
+					<type>d:int</type>
+				</property>
+				<property name="sample:cost">
+					<type>d:double</type>
+				</property>
+            </properties>
+        </aspect>
+		<aspect name="sample:tagged">
+			<title>Adding properties in a tagged network</title>
+			<properties>
+				<property name="sample:tags">
+					<type>d:text</type>
+					<multiple>true</multiple>
+				</property>
+			</properties>
+		</aspect>
+	</aspects>
+</model>
