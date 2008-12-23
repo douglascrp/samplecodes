@@ -53,7 +53,7 @@
     
     <config evaluator="node-type" condition="sample:socialDoc">
         <property-sheet>
-            <show-association name="sample:s2c"/>
+            <show-association name="sample:s2c" read-only="true" />
         </property-sheet>
     </config>
 	
