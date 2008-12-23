@@ -137,7 +137,7 @@
             <properties>
                 <property name="sample:userName">
                     <type>d:text</type>
-                    <mandatory>flase</mandatory>
+                    <mandatory>false</mandatory>
                     <constraints>
                         <constraint ref="usr:userNameConstraint"/>
                     </constraints>
