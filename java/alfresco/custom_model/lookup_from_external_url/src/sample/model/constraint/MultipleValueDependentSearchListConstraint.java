@@ -36,40 +36,40 @@ import org.apache.log4j.Logger;
 
 public class MultipleValueDependentSearchListConstraint extends LuceneSearchBasedListConstraint {
 
-	private static final long serialVersionUID = 1L;
-	private static Logger log = Logger.getLogger(MultipleValueDependentSearchListConstraint.class);
+    private static final long serialVersionUID = 1L;
+    private static Logger log = Logger.getLogger(MultipleValueDependentSearchListConstraint.class);
 
-	protected String propertyName;
+    protected String propertyName;
 
-	public MultipleValueDependentSearchListConstraint() {
-	}
+    public MultipleValueDependentSearchListConstraint() {
+    }
 
-	protected List<String> getSearchResult() {
-		if (log.isDebugEnabled())
-			log.debug("Original Query  " + propertyName);
+    protected List<String> getSearchResult() {
+        if (log.isDebugEnabled())
+            log.debug("Original Query  " + propertyName);
 
-		// for(String key : node.getProperties().keySet()) log.info(key + " " +
-		// node.getProperties().get(key));
-		List<String> allowedValues = new ArrayList<String>();
-		Object topFolders = node.getProperties().get(propertyName);
-		if (topFolders instanceof List) {
-			Map<String, String> map = new HashMap<String, String>();
-			for (String topFolder : (List<String>) topFolders) {
-				map.put("XXX", topFolder);
-				String finalQuery = replaceQueryParametersWithValues(query, map);
-				log.info("aftre " + finalQuery);
-				searchForAllowedValues(finalQuery, allowedValues);
-			}
-		}
-		// the UI cannot render drop down without any elements, so add at least
-		// one.
-		if (allowedValues.size() == 0)
-			allowedValues.add("");
-		return allowedValues;
-	}
+        // for(String key : node.getProperties().keySet()) log.info(key + " " +
+        // node.getProperties().get(key));
+        List<String> allowedValues = new ArrayList<String>();
+        Object topFolders = node.getProperties().get(propertyName);
+        if (topFolders instanceof List) {
+            Map<String, String> map = new HashMap<String, String>();
+            for (String topFolder : (List<String>) topFolders) {
+                map.put("XXX", topFolder);
+                String finalQuery = replaceQueryParametersWithValues(query, map);
+                log.info("aftre " + finalQuery);
+                searchForAllowedValues(finalQuery, allowedValues);
+            }
+        }
+        // the UI cannot render drop down without any elements, so add at least
+        // one.
+        if (allowedValues.size() == 0)
+            allowedValues.add("");
+        return allowedValues;
+    }
 
-	public void setPropertyName(String prop) {
-		propertyName = prop.trim();
-	}
+    public void setPropertyName(String prop) {
+        propertyName = prop.trim();
+    }
 
 }

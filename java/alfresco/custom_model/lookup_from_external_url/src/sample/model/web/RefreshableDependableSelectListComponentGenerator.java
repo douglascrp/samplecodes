@@ -23,30 +23,23 @@ import javax.faces.context.FacesContext;
 
 import org.alfresco.service.cmr.dictionary.PropertyDefinition;
 import org.alfresco.web.ui.repo.component.property.PropertySheetItem;
-import org.alfresco.web.ui.repo.component.property.UIProperty;
 import org.alfresco.web.ui.repo.component.property.UIPropertySheet;
 import org.apache.log4j.Logger;
 
-/**
- * Generates a text field component.
- * 
- * @author jbarmash
- */
 public class RefreshableDependableSelectListComponentGenerator extends RefreshableSelectListComponentGenerator {
     private static Logger log = Logger.getLogger(RefreshableDependableSelectListComponentGenerator.class);
 
     public UIComponent replaceOptions(FacesContext context, UIPropertySheet propertySheet, PropertySheetItem item) {
-        UIComponent component = null;
-        log.info("replaceOptions -------------------------");
         // this part makes it to be dynamic
         if (item.getChildCount() != 0) {
+            if (log.isDebugEnabled()) log.debug("Removing  " + item.getChildren().get(item.getChildCount() - 1));
             item.getChildren().remove(item.getChildCount() - 1);
         }
         // get the property definition
         PropertyDefinition propertyDef = getPropertyDefinition(context, propertySheet.getNode(), item.getName());
 
         // create the component and add it to the property sheet
-        component = createComponent(context, propertySheet, item);
+        UIComponent component = createComponent(context, propertySheet, item);
 
         // setup the component for multi value editing if necessary
         component = setupMultiValuePropertyIfNecessary(context, propertySheet, item, propertyDef, component);
