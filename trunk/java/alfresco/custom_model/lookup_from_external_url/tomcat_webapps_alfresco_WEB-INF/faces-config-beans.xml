@@ -6404,10 +6404,27 @@
 			Bean that generates a custom generator component
 		</description>
 		<managed-bean-name>
-			CustomListComponentGeneratorWithRefresh
+			selectListComponentGenerator
 		</managed-bean-name>
 		<managed-bean-class>
-			sample.model.web.CustomListComponentGenerator
+			sample.model.web.RefreshableSelectListComponentGenerator
+		</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>autoRefresh</property-name>
+			<value>false</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<description>
+			Bean that generates a custom generator component
+		</description>
+		<managed-bean-name>
+			refreshableSelectListComponentGenerator
+		</managed-bean-name>
+		<managed-bean-class>
+			sample.model.web.RefreshableSelectListComponentGenerator
 		</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
 		<managed-property>
@@ -6421,15 +6438,32 @@
 			Bean that generates a custom generator component
 		</description>
 		<managed-bean-name>
-			CustomDependentListComponentGenerator
+			dependableSelectListComponentGenerator
 		</managed-bean-name>
 		<managed-bean-class>
-			sample.model.web.CustomListComponentGenerator
+			sample.model.web.RefreshableDependableSelectListComponentGenerator
 		</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
 		<managed-property>
 			<property-name>autoRefresh</property-name>
 			<value>false</value>
+		</managed-property>
+	</managed-bean>
+
+	<managed-bean>
+		<description>
+			Bean that generates a custom generator component
+		</description>
+		<managed-bean-name>
+			refreshableDependableSelectListComponentGenerator
+		</managed-bean-name>
+		<managed-bean-class>
+			sample.model.web.RefreshableDependableSelectListComponentGenerator
+		</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>autoRefresh</property-name>
+			<value>true</value>
 		</managed-property>
 	</managed-bean>
 
