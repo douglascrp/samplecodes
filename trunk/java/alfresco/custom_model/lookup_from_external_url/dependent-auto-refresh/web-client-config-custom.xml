@@ -32,8 +32,8 @@
             <show-property name="sample:isConfirmed" display-label-id="isConfirmed"/>
             <show-property name="sample:zipCode" display-label-id="zipCode"/>
             <show-property name="sample:cost" display-label-id="cost"/>
-            <show-property name="sample:country" component-generator="CustomListComponentGeneratorWithRefresh"/>
-            <show-property name="sample:city" component-generator="CustomDependentListComponentGenerator"/>
+            <show-property name="sample:country" component-generator="refreshableSelectListComponentGenerator"/>
+            <show-property name="sample:city" component-generator="refreshableDependableSelectListComponentGenerator"/>
         </property-sheet>
 	</config>
 	<config evaluator="aspect-name" condition="sample:tagged">
