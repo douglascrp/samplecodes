@@ -57,8 +57,7 @@ public class LuceneSearchBasedListConstraint extends SearchBasedDependencyListCo
     }
 
     protected List<String> getSearchResult() {
-        if (log.isDebugEnabled())
-            log.debug("Original Query  " + query);
+        if (log.isDebugEnabled()) log.debug("Original Query  " + query);
 
         String finalQuery = resolveDependenciesOnProperties(query);
 
@@ -66,20 +65,18 @@ public class LuceneSearchBasedListConstraint extends SearchBasedDependencyListCo
         searchForAllowedValues(finalQuery, allowedValues);
         // the UI cannot render drop down without any elements, so add at least
         // one.
-        if (allowedValues.size() == 0)
-            allowedValues.add("");
+        if (allowedValues.size() == 0) allowedValues.add("");
         return allowedValues;
     }
 
     protected boolean searchForAllowedValues(String query, List<String> allowedValues) {
-        if (log.isDebugEnabled())
-            log.debug("Query to get Allowed values " + query);
+        if (log.isDebugEnabled()) log.debug("Query to get Allowed values " + query);
         StoreRef storeRef = getStoreRef();
         // search for all nodes that matches the query
         ResultSet resultSet = getServiceRegistry().getSearchService().query(storeRef, SearchService.LANGUAGE_LUCENE, query);
         NodeService nodeSvc = getServiceRegistry().getNodeService();
-        log.info("resultSet.length() " + resultSet.length());
-        log.info("childName " + childName);
+        if (log.isDebugEnabled()) log.debug("resultSet.length() " + resultSet.length());
+        if (log.isDebugEnabled()) log.debug("childName " + childName);
 
         if (childName != null && resultSet.length() != 0) {
             if (resultSet.length() != 1) {
@@ -89,11 +86,11 @@ public class LuceneSearchBasedListConstraint extends SearchBasedDependencyListCo
             ResultSetRow row = resultSet.getRow(0);
             for (ChildAssociationRef childAssociationRef : nodeSvc.getChildAssocs(row.getNodeRef())) {
                 NodeRef childNodeRef = childAssociationRef.getChildRef();
-                String nodeName = (String)nodeSvc.getProperty(childNodeRef, ContentModel.PROP_NAME);
+                String nodeName = (String) nodeSvc.getProperty(childNodeRef, ContentModel.PROP_NAME);
                 if (childName.equals(nodeName)) {
                     for (ChildAssociationRef childAssRef : nodeSvc.getChildAssocs(childNodeRef)) {
                         NodeRef grandChildNodeRef = childAssRef.getChildRef();
-                        allowedValues.add((String)nodeSvc.getProperty(grandChildNodeRef, ContentModel.PROP_NAME));
+                        allowedValues.add((String) nodeSvc.getProperty(grandChildNodeRef, ContentModel.PROP_NAME));
                     }
                     return true;
                 }
@@ -101,7 +98,7 @@ public class LuceneSearchBasedListConstraint extends SearchBasedDependencyListCo
         } else {
             // we have one node only so list all sub-nodes names
             for (ResultSetRow row : resultSet) {
-                allowedValues.add((String)nodeSvc.getProperty(row.getNodeRef(), ContentModel.PROP_NAME));
+                allowedValues.add((String) nodeSvc.getProperty(row.getNodeRef(), ContentModel.PROP_NAME));
             }
         }
         return false;

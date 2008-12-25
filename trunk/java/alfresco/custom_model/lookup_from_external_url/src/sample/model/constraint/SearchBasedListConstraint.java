@@ -25,68 +25,60 @@ import java.util.List;
 import org.alfresco.repo.dictionary.constraint.ListOfValuesConstraint;
 import org.alfresco.service.ServiceRegistry;
 
-/*
- * Sample configuration <constraint name="sample:searchBasedConstraint"
- * type="sample.model.constraint.SearchBasedListConstraint" > <parameter
- * name="query"> <value>
- * TYPE:"{http://www.alfresco.org/model/content/1.0}content" </value>
- * </parameter> </constraint> <property name="my:authorisedBy">
- * <title>Authorized By</title> <type>d:text</type> <constraints> <constraint
- * ref="sample:searchBasedConstraint" /> </constraints> </property>
- */
-
 public abstract class SearchBasedListConstraint extends ListOfValuesConstraint implements Serializable {
 
-	@Override
-	public void initialize() {
-	}
+    private static final long serialVersionUID = 1L;
 
-	@Override
-	public List<String> getAllowedValues() {
-		List<String> allowedValues = getSearchResult();
-		super.setAllowedValues(allowedValues);
-		return allowedValues;
-	}
+    @Override
+    public void initialize() {
+    }
 
-	protected abstract List<String> getSearchResult();
+    @Override
+    public List<String> getAllowedValues() {
+        List<String> allowedValues = getSearchResult();
+        super.setAllowedValues(allowedValues);
+        return allowedValues;
+    }
 
-	/**
-	 * Set the values that are allowed by the constraint.
-	 * 
-	 * @param values
-	 *            a list of allowed values
-	 */
-	@SuppressWarnings("unchecked")
-	public void setAllowedValues(List allowedValues) {
-	}
+    protected abstract List<String> getSearchResult();
 
-	@Override
-	protected void evaluateCollection(Collection<Object> collection) {
-	}
+    /**
+     * Set the values that are allowed by the constraint.
+     * 
+     * @param values
+     *            a list of allowed values
+     */
+    @SuppressWarnings("unchecked")
+    public void setAllowedValues(List allowedValues) {
+    }
 
-	/** Null implementation effectively turns of constraints checking */
-	@Override
-	protected void evaluateSingleValue(Object value) {
-	}
+    @Override
+    protected void evaluateCollection(Collection<Object> collection) {
+    }
 
-	private static ServiceRegistry registry;
+    /** Null implementation effectively turns of constraints checking */
+    @Override
+    protected void evaluateSingleValue(Object value) {
+    }
 
-	public ServiceRegistry getServiceRegistry() {
-		return registry;
-	}
+    private static ServiceRegistry registry;
 
-	public void setServiceRegistry(ServiceRegistry registry) {
-		SearchBasedListConstraint.registry = registry;
-	}
+    public ServiceRegistry getServiceRegistry() {
+        return registry;
+    }
 
-	protected static String tokenExpression = "\\$\\{.+\\}";
+    public void setServiceRegistry(ServiceRegistry registry) {
+        SearchBasedListConstraint.registry = registry;
+    }
 
-	public void setTokenExpression(String value) {
-		tokenExpression = value;
-	}
+    protected static String tokenExpression = "\\$\\{.+\\}";
 
-	public String getTokenExpression() {
-		return tokenExpression;
-	}
+    public void setTokenExpression(String value) {
+        tokenExpression = value;
+    }
+
+    public String getTokenExpression() {
+        return tokenExpression;
+    }
 
 }
