@@ -58,13 +58,12 @@ public class LuceneSearchBasedListConstraint extends SearchBasedDependencyListCo
 
     protected List<String> getSearchResult() {
         if (log.isDebugEnabled()) log.debug("Original Query  " + query);
-
         String finalQuery = resolveDependenciesOnProperties(query);
+        if (log.isDebugEnabled()) log.debug("final Query  " + finalQuery);
 
         List<String> allowedValues = new ArrayList<String>();
-        searchForAllowedValues(finalQuery, allowedValues);
-        // the UI cannot render drop down without any elements, so add at least
-        // one.
+        if(finalQuery != null) searchForAllowedValues(finalQuery, allowedValues);
+        // the UI cannot render drop down without any elements, so add at least one.
         if (allowedValues.size() == 0) allowedValues.add("");
         return allowedValues;
     }
