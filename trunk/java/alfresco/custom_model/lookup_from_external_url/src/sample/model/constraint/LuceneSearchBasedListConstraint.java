@@ -23,6 +23,7 @@ import java.util.List;
 
 import org.alfresco.model.ContentModel;
 import org.alfresco.service.cmr.repository.ChildAssociationRef;
+import org.alfresco.service.cmr.repository.NodeRef;
 import org.alfresco.service.cmr.repository.NodeService;
 import org.alfresco.service.cmr.repository.StoreRef;
 import org.alfresco.service.cmr.search.ResultSet;
@@ -41,64 +42,80 @@ import org.apache.log4j.Logger;
 
 public class LuceneSearchBasedListConstraint extends SearchBasedDependencyListConstraint {
 
-	private static final long serialVersionUID = 1L;
-	private static Logger log = Logger.getLogger(LuceneSearchBasedListConstraint.class);
+    private static final long serialVersionUID = 1L;
+    private static Logger log = Logger.getLogger(LuceneSearchBasedListConstraint.class);
 
-	protected String query;
+    protected String query;
 
-	protected StoreRef getStoreRef() {
-		return new StoreRef(StoreRef.PROTOCOL_WORKSPACE, "SpacesStore");
-	}
+    protected StoreRef getStoreRef() {
+        return new StoreRef(StoreRef.PROTOCOL_WORKSPACE, "SpacesStore");
+    }
 
-	private String childPattern;
+    private String childName;
 
-	public LuceneSearchBasedListConstraint() {
-	}
+    public LuceneSearchBasedListConstraint() {
+    }
 
-	protected List<String> getSearchResult() {
-		if (log.isDebugEnabled())
-			log.debug("Original Query  " + query);
+    protected List<String> getSearchResult() {
+        if (log.isDebugEnabled())
+            log.debug("Original Query  " + query);
 
-		String finalQuery = resolveDependenciesOnProperties(query);
+        String finalQuery = resolveDependenciesOnProperties(query);
 
-		List<String> allowedValues = new ArrayList<String>();
-		searchForAllowedValues(finalQuery, allowedValues);
-		// the UI cannot render drop down without any elements, so add at least
-		// one.
-		if (allowedValues.size() == 0)
-			allowedValues.add("");
-		return allowedValues;
-	}
+        List<String> allowedValues = new ArrayList<String>();
+        searchForAllowedValues(finalQuery, allowedValues);
+        // the UI cannot render drop down without any elements, so add at least
+        // one.
+        if (allowedValues.size() == 0)
+            allowedValues.add("");
+        return allowedValues;
+    }
 
-	protected void searchForAllowedValues(String query, List<String> allowedValues) {
-		if (log.isDebugEnabled())
-			log.debug("Query to get Allowed values " + query);
-		StoreRef storeRef = getStoreRef();
-		ResultSet resultSet = getServiceRegistry().getSearchService().query(storeRef, SearchService.LANGUAGE_LUCENE, query);
-		NodeService nodeSvc = getServiceRegistry().getNodeService();
-		log.info("resultSet.length() " + resultSet.length());
+    protected boolean searchForAllowedValues(String query, List<String> allowedValues) {
+        if (log.isDebugEnabled())
+            log.debug("Query to get Allowed values " + query);
+        StoreRef storeRef = getStoreRef();
+        // search for all nodes that matches the query
+        ResultSet resultSet = getServiceRegistry().getSearchService().query(storeRef, SearchService.LANGUAGE_LUCENE, query);
+        NodeService nodeSvc = getServiceRegistry().getNodeService();
+        log.info("resultSet.length() " + resultSet.length());
+        log.info("childName " + childName);
 
-		if (childPattern != null && resultSet.length() != 0) {
-			ResultSetRow row = resultSet.getRow(0);
-			for (ChildAssociationRef childAssociationRef : nodeSvc.getChildAssocs(row.getNodeRef())) {
-				allowedValues.add((String) nodeSvc.getProperty(childAssociationRef.getChildRef(), ContentModel.PROP_NAME));
-			}
-		} else {
-			for (ResultSetRow row : resultSet) {
-				allowedValues.add((String) nodeSvc.getProperty(row.getNodeRef(), ContentModel.PROP_NAME));
-			}
-		}
-	}
+        if (childName != null && resultSet.length() != 0) {
+            if (resultSet.length() != 1) {
+                // throw some exception
+            }
+            // here we pick one match and we look at its subfolders
+            ResultSetRow row = resultSet.getRow(0);
+            for (ChildAssociationRef childAssociationRef : nodeSvc.getChildAssocs(row.getNodeRef())) {
+                NodeRef childNodeRef = childAssociationRef.getChildRef();
+                String nodeName = (String)nodeSvc.getProperty(childNodeRef, ContentModel.PROP_NAME);
+                if (childName.equals(nodeName)) {
+                    for (ChildAssociationRef childAssRef : nodeSvc.getChildAssocs(childNodeRef)) {
+                        NodeRef grandChildNodeRef = childAssRef.getChildRef();
+                        allowedValues.add((String)nodeSvc.getProperty(grandChildNodeRef, ContentModel.PROP_NAME));
+                    }
+                    return true;
+                }
+            }
+        } else {
+            // we have one node only so list all sub-nodes names
+            for (ResultSetRow row : resultSet) {
+                allowedValues.add((String)nodeSvc.getProperty(row.getNodeRef(), ContentModel.PROP_NAME));
+            }
+        }
+        return false;
+    }
 
-	public void setQuery(String newquery) {
-		query = newquery;
-	}
+    public void setQuery(String newquery) {
+        query = newquery;
+    }
 
-	public String getChildPattern() {
-		return childPattern;
-	}
+    public String getChildName() {
+        return childName;
+    }
 
-	public void setChildPattern(String childPattern) {
-		this.childPattern = childPattern;
-	}
+    public void setChildName(String childName) {
+        this.childName = childName;
+    }
 }
