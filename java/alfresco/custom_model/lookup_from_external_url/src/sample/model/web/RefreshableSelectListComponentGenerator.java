@@ -28,7 +28,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
 import org.alfresco.repo.dictionary.constraint.ListOfValuesConstraint;
-import org.alfresco.service.cmr.dictionary.AssociationDefinition;
 import org.alfresco.service.cmr.dictionary.Constraint;
 import org.alfresco.service.cmr.dictionary.ConstraintDefinition;
 import org.alfresco.service.cmr.dictionary.DataTypeDefinition;
@@ -37,9 +36,7 @@ import org.alfresco.web.app.servlet.FacesHelper;
 import org.alfresco.web.bean.generator.TextFieldGenerator;
 import org.alfresco.web.bean.repository.Node;
 import org.alfresco.web.ui.repo.component.property.PropertySheetItem;
-import org.alfresco.web.ui.repo.component.property.UIProperty;
 import org.alfresco.web.ui.repo.component.property.UIPropertySheet;
-import org.alfresco.web.ui.repo.component.property.UISeparator;
 import org.apache.log4j.Logger;
 
 import sample.model.constraint.LuceneSearchBasedListConstraint;
@@ -50,8 +47,8 @@ import sample.model.constraint.SearchBasedListConstraint;
  * 
  * @author jbarmash
  */
-public class CustomListComponentGenerator extends TextFieldGenerator {
-    private static Logger log = Logger.getLogger(CustomListComponentGenerator.class);
+public class RefreshableSelectListComponentGenerator extends TextFieldGenerator {
+    private static Logger log = Logger.getLogger(RefreshableSelectListComponentGenerator.class);
 
     // private String tutorialQuery =
     // "( TYPE:\"{http://www.alfresco.org/model/content/1.0}content\" AND
@@ -78,6 +75,7 @@ public class CustomListComponentGenerator extends TextFieldGenerator {
         UIComponent component = null;
 
         if (propertySheet.inEditMode()) {
+            log.info("createComponent inEditMode -------------------------");
             // if the field has the list of values constraint
             // and it is editable a SelectOne component is
             // required otherwise create the standard edit component
@@ -115,16 +113,18 @@ public class CustomListComponentGenerator extends TextFieldGenerator {
                 }
                 log.info("value llll ---------------------" + items.size() + " " + ((String) ((SelectItem) items.get(0)).getValue()).trim().length());
                 if (items.size() == 0 || items.size() == 1 && ((String) ((SelectItem) items.get(0)).getValue()).trim().length() == 0) {
-                    component.getAttributes().put("empty", true);
-                    log.info("**************************>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> " + component.getAttributes().get("empty"));
+                    component.setRendered(false);
+                } else {
+                    component.setRendered(true);
                 }
-
+                log.info("Adding ...... " + itemsComponent);
                 itemsComponent.setValue(items);
 
                 // add the items as a child component
                 component.getChildren().add(itemsComponent);
                 if (isAutoRefresh()) {
                     component.getAttributes().put("onchange", "submit()");
+
                 }
             } else {
                 // use the standard component in edit mode
@@ -134,9 +134,9 @@ public class CustomListComponentGenerator extends TextFieldGenerator {
             // create an output text component in view mode
             component = createOutputTextComponent(context, item.getName());
         }
+
         return component;
     }
-
     /**
      * Retrieves the list of values constraint for the item, if it has one
      * 
@@ -162,10 +162,13 @@ public class CustomListComponentGenerator extends TextFieldGenerator {
             for (ConstraintDefinition constraintDef : constraints) {
                 Constraint constraint = constraintDef.getConstraint();
                 // log.info("constraint: " + constraint);
+                log.info("constraint class-------------------------------------------------- " + constraint.getClass());
                 if (constraint instanceof LuceneSearchBasedListConstraint) {
                     Node currentNode = (Node) propertySheet.getNode();
                     // This is a workaround for the fact that constraints do not
                     // have a reference to Node.
+                    log.info(">>" + currentNode);
+                
                     ((LuceneSearchBasedListConstraint) constraint).setNode(currentNode);
                     lovConstraint = (SearchBasedListConstraint) constraint;
                     break;
@@ -178,80 +181,5 @@ public class CustomListComponentGenerator extends TextFieldGenerator {
             }
         }
         return lovConstraint;
-    }
-
-    public UIComponent generateAndAdd(FacesContext context, UIPropertySheet propertySheet, PropertySheetItem item) {
-        log.info("generateAndAdd -------------------------------------------- generateAndAdd ------");
-        return super.generateAndAdd(context, propertySheet, item);
-    }
-
-    public UIComponent generateAndReplace(FacesContext context, UIPropertySheet propertySheet, PropertySheetItem item) {
-        UIComponent component = null;
-        log.info("generateAndReplace -------------------------------------------- generateAndReplace ------");
-        if (item instanceof UIProperty) {
-            if (item.getChildCount() != 0) {
-                item.getChildren().remove(item.getChildCount() - 1);
-            }
-            // get the property definition
-            PropertyDefinition propertyDef = getPropertyDefinition(context, propertySheet.getNode(), item.getName());
-
-            // create the component and add it to the property sheet
-            component = createComponent(context, propertySheet, item);
-
-            // setup the component for multi value editing if necessary
-            component = setupMultiValuePropertyIfNecessary(context, propertySheet, item, propertyDef, component);
-
-            // setup common aspects of the property i.e. value binding
-            setupProperty(context, propertySheet, item, propertyDef, component);
-
-            // add the component now, it needs to be added before the
-            // validations
-            // are setup as we need access to the component id, which in turn
-            // needs
-            // to have a parent to get the correct id
-
-            Boolean isEmpty;
-            if (component.getAttributes() == null || (isEmpty = (Boolean) component.getAttributes().get("empty")) == null || isEmpty == false) {
-                log.info("**************************>>>> " + component.getAttributes().get("empty"));
-                item.getChildren().add(component);
-            }
-
-            // setup the component for mandatory validation if necessary
-            setupMandatoryPropertyIfNecessary(context, propertySheet, item, propertyDef, component);
-
-            // setup any constraints the property has
-            setupConstraints(context, propertySheet, item, propertyDef, component);
-
-            // setup any converter the property needs
-            setupConverter(context, propertySheet, item, propertyDef, component);
-        } else if (item instanceof UISeparator) {
-            // just create the component and add it
-            component = createComponent(context, propertySheet, item);
-            item.getChildren().add(component);
-        } else {
-            // get the association definition
-            AssociationDefinition assocationDef = this.getAssociationDefinition(context, propertySheet.getNode(), item.getName());
-
-            // create the component and add it to the property sheet
-            component = createComponent(context, propertySheet, item);
-
-            // setup common aspects of the association i.e. value binding
-            setupAssociation(context, propertySheet, item, assocationDef, component);
-
-            // add the component now, it needs to be added before the
-            // validations
-            // are setup as we need access to the component id, which needs have
-            // a
-            // parent to get the correct id
-            item.getChildren().add(component);
-
-            // setup the component for mandatory validation if necessary
-            setupMandatoryAssociationIfNecessary(context, propertySheet, item, assocationDef, component);
-
-            // setup any converter the association needs
-            setupConverter(context, propertySheet, item, assocationDef, component);
-        }
-
-        return component;
     }
 }

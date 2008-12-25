@@ -47,8 +47,8 @@ public class RefreshableUIPropertySheet extends UIPropertySheet {
                 String componentGeneratorName = uiProperty.getComponentGenerator();
                 if (componentGeneratorName != null) {
                     IComponentGenerator componentGenerator = FacesHelper.getComponentGenerator(context, componentGeneratorName);
-                    if (componentGenerator instanceof CustomListComponentGenerator) {
-                        ((CustomListComponentGenerator) componentGenerator).generateAndReplace(context, this, uiProperty);
+                    if (componentGenerator instanceof RefreshableDependableSelectListComponentGenerator) {
+                        ((RefreshableDependableSelectListComponentGenerator) componentGenerator).replaceOptions(context, this, uiProperty);
                     }
                 }
             }
