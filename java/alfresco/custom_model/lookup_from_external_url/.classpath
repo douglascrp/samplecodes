@@ -7,5 +7,5 @@
 	<classpathentry kind="var" path="ALFRESCO_HOME/WEB-INF/lib/log4j-1.2.15.jar"/>
 	<classpathentry kind="var" path="ALFRESCO_HOME/WEB-INF/lib/alfresco-webscript-framework.jar"/>
 	<classpathentry kind="var" path="ALFRESCO_HOME/WEB-INF/lib/alfresco-web-client.jar" sourcepath="/ALFRESCO_SRC"/>
-	<classpathentry kind="output" path="classes"/>
+	<classpathentry kind="output" path="alfresco-WEB-INF/classes"/>
 </classpath>

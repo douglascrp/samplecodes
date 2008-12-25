@@ -63,11 +63,9 @@
 					@\{http\://www.alfresco.org/model/content/1.0\}name:"${sample:country}"
 				</value>
 			</parameter>
-			<parameter name="childPattern">
-				<value>
-					TYPE:"cm:folder"
-				</value>
-			</parameter>
+			<parameter name="childName">
+                <value>cities</value>
+             </parameter>
 		</constraint>
     </constraints>
     
@@ -206,7 +204,7 @@
                         <constraint ref="sample:searchBasedConstraint" />
                     </constraints>
                 </property>
-				<property name="sample:city.refresh">
+				<property name="sample:city">
 					<type>d:text</type>
 					<constraints>
 						<constraint ref="sample:dependentConstraint" />

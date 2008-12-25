@@ -19,44 +19,36 @@
 package sample.model.web;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 
 import org.alfresco.web.app.servlet.FacesHelper;
 import org.alfresco.web.bean.generator.IComponentGenerator;
-import org.alfresco.web.ui.repo.component.property.PropertySheetItem;
 import org.alfresco.web.ui.repo.component.property.UIProperty;
 import org.alfresco.web.ui.repo.component.property.UIPropertySheet;
-import org.apache.log4j.Logger;
 
 /**
  * Component that refreshes and reloads its subcomponents every single time.
  * This allows one property to be dependent on a value in another property.
  */
 public class RefreshableUIPropertySheet extends UIPropertySheet {
-    private static Logger log = Logger.getLogger(RefreshableUIPropertySheet.class);
 
     /**
      * @see javax.faces.component.UIComponent#encodeBegin(javax.faces.context.FacesContext)
      */
     @SuppressWarnings("unchecked")
     public void encodeBegin(FacesContext context) throws IOException {
-        Map<Integer, UIComponent> map = new HashMap<Integer, UIComponent>();
-        int indx = 0;
-        for (Iterator iterator = getChildren().iterator(); iterator.hasNext(); indx++) {
+        for (Iterator iterator = getChildren().iterator(); iterator.hasNext();) {
             UIComponent component = (UIComponent) iterator.next();
-            log.info(component.getClass() + " " + component.getId() + " ");
-            if(component instanceof UIProperty) {
-                UIProperty uiProperty = (UIProperty)component;
+            if (component instanceof UIProperty) {
+                UIProperty uiProperty = (UIProperty) component;
                 String componentGeneratorName = uiProperty.getComponentGenerator();
-                if(componentGeneratorName != null) {
+                if (componentGeneratorName != null) {
                     IComponentGenerator componentGenerator = FacesHelper.getComponentGenerator(context, componentGeneratorName);
-                    if(componentGenerator instanceof CustomListComponentGenerator) {
-                        ((CustomListComponentGenerator)componentGenerator).generateAndReplace(context, this, uiProperty);                   
+                    if (componentGenerator instanceof CustomListComponentGenerator) {
+                        ((CustomListComponentGenerator) componentGenerator).generateAndReplace(context, this, uiProperty);
                     }
                 }
             }

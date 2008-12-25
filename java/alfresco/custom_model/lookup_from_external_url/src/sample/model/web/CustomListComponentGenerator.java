@@ -18,22 +18,28 @@
 
 package sample.model.web;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.component.UIComponent;
+import javax.faces.component.UISelectItems;
 import javax.faces.component.UISelectOne;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 
 import org.alfresco.repo.dictionary.constraint.ListOfValuesConstraint;
 import org.alfresco.service.cmr.dictionary.AssociationDefinition;
 import org.alfresco.service.cmr.dictionary.Constraint;
 import org.alfresco.service.cmr.dictionary.ConstraintDefinition;
+import org.alfresco.service.cmr.dictionary.DataTypeDefinition;
 import org.alfresco.service.cmr.dictionary.PropertyDefinition;
+import org.alfresco.web.app.servlet.FacesHelper;
 import org.alfresco.web.bean.generator.TextFieldGenerator;
 import org.alfresco.web.bean.repository.Node;
 import org.alfresco.web.ui.repo.component.property.PropertySheetItem;
 import org.alfresco.web.ui.repo.component.property.UIProperty;
 import org.alfresco.web.ui.repo.component.property.UIPropertySheet;
+import org.alfresco.web.ui.repo.component.property.UISeparator;
 import org.apache.log4j.Logger;
 
 import sample.model.constraint.LuceneSearchBasedListConstraint;
@@ -67,14 +73,66 @@ public class CustomListComponentGenerator extends TextFieldGenerator {
         this.autoRefresh = autoRefresh;
     }
 
-    @Override
-    @SuppressWarnings("unchecked")
     protected UIComponent createComponent(FacesContext context, UIPropertySheet propertySheet, PropertySheetItem item) {
-        UIComponent component = super.createComponent(context, propertySheet, item);
-        // log.info("********************** " + item + " >" + component + " >" +
-        // (component instanceof UISelectOne) + " " + isAutoRefresh());
-        if (component instanceof UISelectOne && isAutoRefresh()) {
-            component.getAttributes().put("onchange", "submit()");
+        log.info("createComponent -------------------------");
+        UIComponent component = null;
+
+        if (propertySheet.inEditMode()) {
+            // if the field has the list of values constraint
+            // and it is editable a SelectOne component is
+            // required otherwise create the standard edit component
+            ListOfValuesConstraint constraint = getListOfValuesConstraint(context, propertySheet, item);
+
+            PropertyDefinition propDef = this.getPropertyDefinition(context, propertySheet.getNode(), item.getName());
+
+            if (constraint != null && item.isReadOnly() == false && propDef != null && propDef.isProtected() == false) {
+                component = context.getApplication().createComponent(UISelectOne.COMPONENT_TYPE);
+                FacesHelper.setupComponentId(context, component, item.getName());
+
+                // create the list of choices
+                UISelectItems itemsComponent = (UISelectItems) context.getApplication().createComponent("javax.faces.SelectItems");
+
+                List<SelectItem> items = new ArrayList<SelectItem>(3);
+                List<String> values = constraint.getAllowedValues();
+                for (String value : values) {
+                    Object obj = null;
+
+                    // we need to setup the list with objects of the correct
+                    // type
+                    if (propDef.getDataType().getName().equals(DataTypeDefinition.INT)) {
+                        obj = Integer.valueOf(value);
+                    } else if (propDef.getDataType().getName().equals(DataTypeDefinition.LONG)) {
+                        obj = Long.valueOf(value);
+                    } else if (propDef.getDataType().getName().equals(DataTypeDefinition.DOUBLE)) {
+                        obj = Double.valueOf(value);
+                    } else if (propDef.getDataType().getName().equals(DataTypeDefinition.FLOAT)) {
+                        obj = Float.valueOf(value);
+                    } else {
+                        obj = value;
+                    }
+
+                    items.add(new SelectItem(obj, value));
+                }
+                log.info("value llll ---------------------" + items.size() + " " + ((String) ((SelectItem) items.get(0)).getValue()).trim().length());
+                if (items.size() == 0 || items.size() == 1 && ((String) ((SelectItem) items.get(0)).getValue()).trim().length() == 0) {
+                    component.getAttributes().put("empty", true);
+                    log.info("**************************>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> " + component.getAttributes().get("empty"));
+                }
+
+                itemsComponent.setValue(items);
+
+                // add the items as a child component
+                component.getChildren().add(itemsComponent);
+                if (isAutoRefresh()) {
+                    component.getAttributes().put("onchange", "submit()");
+                }
+            } else {
+                // use the standard component in edit mode
+                component = generate(context, item.getName());
+            }
+        } else {
+            // create an output text component in view mode
+            component = createOutputTextComponent(context, item.getName());
         }
         return component;
     }
@@ -93,8 +151,7 @@ public class CustomListComponentGenerator extends TextFieldGenerator {
     protected ListOfValuesConstraint getListOfValuesConstraint(FacesContext context, UIPropertySheet propertySheet, PropertySheetItem item) {
         ListOfValuesConstraint lovConstraint = null;
 
-        // log.info("propertySheet: " + propertySheet.getNode() + " item: " +
-        // item.getName());
+        log.info("getListOfValuesConstraint -------------------------");
         // get the property definition for the item
         PropertyDefinition propertyDef = getPropertyDefinition(context, propertySheet.getNode(), item.getName());
 
@@ -123,8 +180,14 @@ public class CustomListComponentGenerator extends TextFieldGenerator {
         return lovConstraint;
     }
 
+    public UIComponent generateAndAdd(FacesContext context, UIPropertySheet propertySheet, PropertySheetItem item) {
+        log.info("generateAndAdd -------------------------------------------- generateAndAdd ------");
+        return super.generateAndAdd(context, propertySheet, item);
+    }
+
     public UIComponent generateAndReplace(FacesContext context, UIPropertySheet propertySheet, PropertySheetItem item) {
         UIComponent component = null;
+        log.info("generateAndReplace -------------------------------------------- generateAndReplace ------");
         if (item instanceof UIProperty) {
             if (item.getChildCount() != 0) {
                 item.getChildren().remove(item.getChildCount() - 1);
@@ -146,7 +209,12 @@ public class CustomListComponentGenerator extends TextFieldGenerator {
             // are setup as we need access to the component id, which in turn
             // needs
             // to have a parent to get the correct id
-            item.getChildren().add(component);
+
+            Boolean isEmpty;
+            if (component.getAttributes() == null || (isEmpty = (Boolean) component.getAttributes().get("empty")) == null || isEmpty == false) {
+                log.info("**************************>>>> " + component.getAttributes().get("empty"));
+                item.getChildren().add(component);
+            }
 
             // setup the component for mandatory validation if necessary
             setupMandatoryPropertyIfNecessary(context, propertySheet, item, propertyDef, component);
@@ -156,6 +224,10 @@ public class CustomListComponentGenerator extends TextFieldGenerator {
 
             // setup any converter the property needs
             setupConverter(context, propertySheet, item, propertyDef, component);
+        } else if (item instanceof UISeparator) {
+            // just create the component and add it
+            component = createComponent(context, propertySheet, item);
+            item.getChildren().add(component);
         } else {
             // get the association definition
             AssociationDefinition assocationDef = this.getAssociationDefinition(context, propertySheet.getNode(), item.getName());
