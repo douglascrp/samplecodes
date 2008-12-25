@@ -75,6 +75,9 @@ public class RefreshableSelectListComponentGenerator extends TextFieldGenerator 
                 UISelectItems itemsComponent = (UISelectItems) context.getApplication().createComponent("javax.faces.SelectItems");
 
                 List<SelectItem> items = new ArrayList<SelectItem>(3);
+                String name = item.getResolvedDisplayLabel();
+                if(name == null) name = item.getName();
+                items.add(new SelectItem("", "Select a " + name + " ..."));
                 List<String> values = constraint.getAllowedValues();
                 for (String value : values) {
                     Object obj = null;
@@ -92,7 +95,7 @@ public class RefreshableSelectListComponentGenerator extends TextFieldGenerator 
                         obj = value;
                     }
 
-                    items.add(new SelectItem(obj, value));
+                    if(value.trim().length() != 0) items.add(new SelectItem(obj, value));
                 }
                 if (log.isDebugEnabled()) log.debug("inspecting empty drop down" + items.size() + " " + ((String) ((SelectItem) items.get(0)).getValue()).trim().length());
                 if (items.size() == 0 || items.size() == 1 && ((String) ((SelectItem) items.get(0)).getValue()).trim().length() == 0) {

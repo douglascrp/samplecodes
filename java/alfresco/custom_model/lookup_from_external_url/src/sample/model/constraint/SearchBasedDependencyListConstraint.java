@@ -37,6 +37,11 @@ public abstract class SearchBasedDependencyListConstraint extends SearchBasedLis
     protected String resolveDependenciesOnProperties(String query) {
         List<String> propNames = getPropertyNames(query, getTokenExpression());
         Map<String, String> map = populateNodeValues(propNames, node);
+        // not allow any empty map value
+        for(Object key : map.keySet()) {
+            Object value = map.get(key);
+            if(value == null || value.toString().trim().length() == 0) return null;
+        }
         String newQuery = replaceQueryParametersWithValues(query, map);
         return newQuery;
     }
