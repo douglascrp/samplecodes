@@ -97,7 +97,9 @@ public class LuceneSearchBasedListConstraint extends SearchBasedDependencyListCo
         } else {
             // we have one node only so list all sub-nodes names
             for (ResultSetRow row : resultSet) {
-                allowedValues.add((String) nodeSvc.getProperty(row.getNodeRef(), ContentModel.PROP_NAME));
+                //allowedValues.add((String) nodeSvc.getProperty(row.getNodeRef(), ContentModel.PROP_NAME));
+                // we keep the node id because we need to find it later 
+                allowedValues.add(row.getNodeRef().getId());
             }
         }
         return false;

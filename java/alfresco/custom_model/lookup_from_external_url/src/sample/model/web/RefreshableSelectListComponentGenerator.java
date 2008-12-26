@@ -27,11 +27,16 @@ import javax.faces.component.UISelectOne;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
+import org.alfresco.model.ContentModel;
 import org.alfresco.repo.dictionary.constraint.ListOfValuesConstraint;
 import org.alfresco.service.cmr.dictionary.Constraint;
 import org.alfresco.service.cmr.dictionary.ConstraintDefinition;
 import org.alfresco.service.cmr.dictionary.DataTypeDefinition;
 import org.alfresco.service.cmr.dictionary.PropertyDefinition;
+import org.alfresco.service.cmr.repository.InvalidNodeRefException;
+import org.alfresco.service.cmr.repository.NodeRef;
+import org.alfresco.service.cmr.repository.NodeService;
+import org.alfresco.service.cmr.repository.StoreRef;
 import org.alfresco.web.app.servlet.FacesHelper;
 import org.alfresco.web.bean.generator.TextFieldGenerator;
 import org.alfresco.web.bean.repository.Node;
@@ -46,6 +51,15 @@ public class RefreshableSelectListComponentGenerator extends TextFieldGenerator 
     private static Logger log = Logger.getLogger(RefreshableSelectListComponentGenerator.class);
 
     private boolean autoRefresh = false;
+    private NodeService nodeService;
+
+    public NodeService getNodeService() {
+        return nodeService;
+    }
+
+    public void setNodeService(NodeService nodeService) {
+        this.nodeService = nodeService;
+    }
 
     public boolean isAutoRefresh() {
         return autoRefresh;
@@ -78,8 +92,16 @@ public class RefreshableSelectListComponentGenerator extends TextFieldGenerator 
                 String name = item.getResolvedDisplayLabel();
                 if(name == null) name = item.getName();
                 items.add(new SelectItem("", "Select a " + name + " ..."));
-                List<String> values = constraint.getAllowedValues();
-                for (String value : values) {
+                List<String> nodeIdList = constraint.getAllowedValues();
+                for (String nodeId : nodeIdList) {
+                    NodeRef nodeRef = new NodeRef(new StoreRef(StoreRef.PROTOCOL_WORKSPACE, "SpacesStore"), nodeId);
+                    String value = "";
+                    try {
+                        value = (String) nodeService.getProperty(nodeRef, ContentModel.PROP_NAME);
+                    } catch(InvalidNodeRefException exception) {
+                        // for now we ignore it
+                        log.info("ignoring " + exception);
+                    }
                     Object obj = null;
 
                     // we need to setup the list with objects of the correct type
