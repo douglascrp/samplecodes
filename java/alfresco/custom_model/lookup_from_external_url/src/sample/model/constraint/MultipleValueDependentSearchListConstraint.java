@@ -26,10 +26,10 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 /*
- * This class contains utilities that help convert propertyName string with
+ * This class contains utilities that help convert multiValuePropertyName string with
  * substitution tokens of form ${token} to the string with substituted values.
  * It should handle an arbitrary number of substitution tokens. For example:
- * propertyName TYPE:"{http://www.alfresco.org/model/content/1.0}content" AND
+ * multiValuePropertyName TYPE:"{http://www.alfresco.org/model/content/1.0}content" AND
  * (@\{http\://www.alfresco.org/model/content/1.0\}name:"${my:authorisedBy}"
  * will gets ${my:authorisedBy} replaced by its actual value.
  */
@@ -39,25 +39,29 @@ public class MultipleValueDependentSearchListConstraint extends LuceneSearchBase
     private static final long serialVersionUID = 1L;
     private static Logger log = Logger.getLogger(MultipleValueDependentSearchListConstraint.class);
 
-    protected String propertyName;
+    protected String multiValuePropertyName;
 
     public MultipleValueDependentSearchListConstraint() {
     }
 
     protected List<String> getSearchResult() {
-        if (log.isDebugEnabled())
-            log.debug("Original Query  " + propertyName);
+        if (log.isDebugEnabled()) log.debug("multiValuePropertyName Query  " + multiValuePropertyName);
 
         // for(String key : node.getProperties().keySet()) log.info(key + " " +
         // node.getProperties().get(key));
         List<String> allowedValues = new ArrayList<String>();
-        Object topFolders = node.getProperties().get(propertyName);
+        log.info(node);
+        Object topFolders = node.getProperties().get(multiValuePropertyName);
+        log.info("-------------------------------------------" + multiValuePropertyName);
+        log.info(topFolders);
         if (topFolders instanceof List) {
             Map<String, String> map = new HashMap<String, String>();
             for (String topFolder : (List<String>) topFolders) {
-                map.put("XXX", topFolder);
+                log.info("--------------------------------");
+                log.info(topFolder);
+                map.put("oneValueOfMultiValueProperty", topFolder);
                 String finalQuery = replaceQueryParametersWithValues(query, map);
-                log.info("aftre " + finalQuery);
+                if (log.isDebugEnabled()) log.debug("final Query " + finalQuery);
                 searchForAllowedValues(finalQuery, allowedValues);
             }
         }
@@ -68,8 +72,8 @@ public class MultipleValueDependentSearchListConstraint extends LuceneSearchBase
         return allowedValues;
     }
 
-    public void setPropertyName(String prop) {
-        propertyName = prop.trim();
+    public void setMultiValuePropertyName(String prop) {
+        multiValuePropertyName = prop.trim();
     }
 
 }
