@@ -6410,6 +6410,10 @@
 			sample.model.web.RefreshableSelectListComponentGenerator
 		</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+           <property-name>nodeService</property-name>
+           <value>#{NodeService}</value>
+        </managed-property>
 		<managed-property>
 			<property-name>autoRefresh</property-name>
 			<value>false</value>
@@ -6427,6 +6431,10 @@
 			sample.model.web.RefreshableSelectListComponentGenerator
 		</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+           <property-name>nodeService</property-name>
+           <value>#{NodeService}</value>
+        </managed-property>
 		<managed-property>
 			<property-name>autoRefresh</property-name>
 			<value>true</value>
@@ -6444,6 +6452,10 @@
 			sample.model.web.RefreshableDependableSelectListComponentGenerator
 		</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+           <property-name>nodeService</property-name>
+           <value>#{NodeService}</value>
+        </managed-property>
 		<managed-property>
 			<property-name>autoRefresh</property-name>
 			<value>false</value>
@@ -6461,6 +6473,10 @@
 			sample.model.web.RefreshableDependableSelectListComponentGenerator
 		</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+           <property-name>nodeService</property-name>
+           <value>#{NodeService}</value>
+        </managed-property>
 		<managed-property>
 			<property-name>autoRefresh</property-name>
 			<value>true</value>
