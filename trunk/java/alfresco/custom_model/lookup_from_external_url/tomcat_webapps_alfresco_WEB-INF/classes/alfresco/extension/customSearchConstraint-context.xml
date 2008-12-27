@@ -3,8 +3,8 @@
  
 <beans>
 
-	<bean id="LuceneSearchBasedListConstraintInitializer" 
-		class="sample.model.constraint.LuceneSearchBasedListConstraint"> 
+	<bean id="customSearchConstraint" 
+		class="sample.model.constraint.CustomSearchConstraint"> 
 
 		<property name="serviceRegistry">
 			<ref bean="ServiceRegistry"/>
