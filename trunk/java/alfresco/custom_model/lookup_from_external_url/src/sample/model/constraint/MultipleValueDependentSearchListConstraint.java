@@ -34,7 +34,7 @@ import org.apache.log4j.Logger;
  * will gets ${my:authorisedBy} replaced by its actual value.
  */
 
-public class MultipleValueDependentSearchListConstraint extends LuceneSearchBasedListConstraint {
+public class MultipleValueDependentSearchListConstraint extends CustomSearchConstraint {
 
     private static final long serialVersionUID = 1L;
     private static Logger log = Logger.getLogger(MultipleValueDependentSearchListConstraint.class);
@@ -60,15 +60,14 @@ public class MultipleValueDependentSearchListConstraint extends LuceneSearchBase
                 log.info("--------------------------------");
                 log.info(topFolder);
                 map.put("oneValueOfMultiValueProperty", topFolder);
-                String finalQuery = replaceQueryParametersWithValues(query, map);
+                String finalQuery = replaceQueryParametersWithValues(getQuery(), map);
                 if (log.isDebugEnabled()) log.debug("final Query " + finalQuery);
                 searchForAllowedValues(finalQuery, allowedValues);
             }
         }
         // the UI cannot render drop down without any elements, so add at least
         // one.
-        if (allowedValues.size() == 0)
-            allowedValues.add("");
+        if (allowedValues.size() == 0) allowedValues.add("");
         return allowedValues;
     }
 

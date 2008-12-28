@@ -32,17 +32,25 @@ public abstract class SearchBasedDependencyListConstraint extends SearchBasedLis
 
     private static final long serialVersionUID = 1L;
     private static Logger log = Logger.getLogger(SearchBasedDependencyListConstraint.class);
+    public static final String NotFoundValue = "VALUE_NOT_FOUND";
     protected Node node;
 
     protected String resolveDependenciesOnProperties(String query) {
         List<String> propNames = getPropertyNames(query, getTokenExpression());
         Map<String, String> map = populateNodeValues(propNames, node);
         // not allow any empty map value
-        for(Object key : map.keySet()) {
+        for (Object key : map.keySet()) {
             Object value = map.get(key);
-            if(value == null || value.toString().trim().length() == 0) return null;
+            if (value == null || value.toString().trim().length() == 0) return null;
         }
         String newQuery = replaceQueryParametersWithValues(query, map);
+
+        List<String> notFoundPropNames = getPropertyNames(newQuery, getTokenExpression());
+        Map<String, String> notFoundMap = populateNodeValuesWithNotFound(notFoundPropNames);
+        newQuery = replaceQueryParametersWithValues(newQuery, notFoundMap);
+        
+        newQuery = newQuery.replaceAll(" ", SPACE);
+
         return newQuery;
     }
 
@@ -81,6 +89,14 @@ public abstract class SearchBasedDependencyListConstraint extends SearchBasedLis
                 if (log.isDebugEnabled()) log.debug("find value " + node.getProperties().get(propName).toString());
                 result.put(propName, node.getProperties().get(propName).toString());
             }
+        }
+        return result;
+    }
+
+    private Map<String, String> populateNodeValuesWithNotFound(List<String> propNames) {
+        Map<String, String> result = new HashMap<String, String>();
+        for (String propName : propNames) {
+            result.put(propName, NotFoundValue);
         }
         return result;
     }

@@ -28,6 +28,8 @@ import org.alfresco.service.ServiceRegistry;
 public abstract class SearchBasedListConstraint extends ListOfValuesConstraint implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    public static final String AND = " AND ";
+    public static final String SPACE = "_x0020_";
 
     @Override
     public void initialize() {

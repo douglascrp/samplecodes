@@ -2,10 +2,12 @@
 <classpath>
 	<classpathentry excluding="**/.svn/**" kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="var" path="ALFRESCO_HOME/WEB-INF/lib/alfresco-repository.jar"/>
-	<classpathentry kind="var" path="ALFRESCO_HOME/WEB-INF/lib/myfaces-api-1.1.5.jar"/>
-	<classpathentry kind="var" path="ALFRESCO_HOME/WEB-INF/lib/log4j-1.2.15.jar"/>
+	<classpathentry kind="var" path="ALFRESCO_HOME/WEB-INF/lib/alfresco-core.jar"/>
+	<classpathentry kind="var" path="ALFRESCO_HOME/WEB-INF/lib/alfresco-repository.jar" sourcepath="/ALFRESCO_REP_SRC"/>
+	<classpathentry kind="var" path="ALFRESCO_HOME/WEB-INF/lib/alfresco-web-client.jar"/>
 	<classpathentry kind="var" path="ALFRESCO_HOME/WEB-INF/lib/alfresco-webscript-framework.jar"/>
-	<classpathentry kind="var" path="ALFRESCO_HOME/WEB-INF/lib/alfresco-web-client.jar" sourcepath="/ALFRESCO_SRC"/>
+	<classpathentry kind="var" path="ALFRESCO_HOME/WEB-INF/lib/myfaces-impl-1.1.5.jar"/>
+	<classpathentry kind="var" path="ALFRESCO_HOME/WEB-INF/lib/log4j-1.2.15.jar"/>
+	<classpathentry kind="var" path="ALFRESCO_HOME/WEB-INF/lib/myfaces-api-1.1.5.jar"/>
 	<classpathentry kind="output" path="alfresco-WEB-INF/classes"/>
 </classpath>
