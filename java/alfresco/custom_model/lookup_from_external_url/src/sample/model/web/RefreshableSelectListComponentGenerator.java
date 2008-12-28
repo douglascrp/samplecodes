@@ -44,8 +44,7 @@ import org.alfresco.web.ui.repo.component.property.PropertySheetItem;
 import org.alfresco.web.ui.repo.component.property.UIPropertySheet;
 import org.apache.log4j.Logger;
 
-import sample.model.constraint.LuceneSearchBasedListConstraint;
-import sample.model.constraint.SearchBasedListConstraint;
+import sample.model.constraint.CustomSearchConstraint;
 
 public class RefreshableSelectListComponentGenerator extends TextFieldGenerator {
     private static Logger log = Logger.getLogger(RefreshableSelectListComponentGenerator.class);
@@ -116,8 +115,8 @@ public class RefreshableSelectListComponentGenerator extends TextFieldGenerator 
                     } else {
                         obj = value;
                     }
-
-                    if(value.trim().length() != 0) items.add(new SelectItem(obj, value));
+                    SelectItem selectItem = new SelectItem(obj, value);
+                    if(value.trim().length() != 0) items.add(selectItem);
                 }
                 if (log.isDebugEnabled()) log.debug("inspecting empty drop down" + items.size() + " " + ((String) ((SelectItem) items.get(0)).getValue()).trim().length());
                 if (items.size() == 0 || items.size() == 1 && ((String) ((SelectItem) items.get(0)).getValue()).trim().length() == 0) {
@@ -162,11 +161,11 @@ public class RefreshableSelectListComponentGenerator extends TextFieldGenerator 
             List<ConstraintDefinition> constraints = propertyDef.getConstraints();
             for (ConstraintDefinition constraintDef : constraints) {
                 constraint = constraintDef.getConstraint();
-                if (constraint instanceof LuceneSearchBasedListConstraint) {
+                if (constraint instanceof CustomSearchConstraint) {
                     Node currentNode = (Node) propertySheet.getNode();
                     // This is a workaround for the fact that constraints do not have a reference to Node.
                     if (log.isDebugEnabled()) log.debug("current node: " + currentNode);
-                    ((LuceneSearchBasedListConstraint) constraint).setNode(currentNode);
+                    ((CustomSearchConstraint) constraint).setNode(currentNode);
                     break;
                 }
 

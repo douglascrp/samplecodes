@@ -23,14 +23,6 @@
     <constraints>
         <constraint name="usr:userNameConstraint" type="org.alfresco.repo.dictionary.constraint.UserNameConstraint"/>
         <constraint name="usr:authorityNameConstraint" type="org.alfresco.repo.dictionary.constraint.AuthorityNameConstraint"/>
-        <constraint name="sample:siteList" type="sample.model.constraint.Sites">
-            <parameter name="caseSensitive">
-                <value>true</value>
-            </parameter>
-            <parameter name="sourceUrl">
-                <value>http://localhost:8080/alfresco/d/d/workspace/SpacesStore/8805d4ef-248e-4628-b509-0f21c1dd186b/sites?guest=true </value>
-            </parameter>
-        </constraint>
         <constraint name="sample:languageList" type="LIST">
             <parameter name="allowedValues">
                 <list>
@@ -43,47 +35,21 @@
             </parameter>
         </constraint>
 		<constraint name="sample:countryConstraint"
-			type="sample.model.constraint.LuceneSearchBasedListConstraint">
-			<parameter name="query">
-				<value>
-					PRIMARYPARENT:"workspace://SpacesStore/a580e314-6468-4fd1-9064-ead45dbbcb6e"
-					AND
-					TYPE:"cm:folder"
-				</value>
+			type="sample.model.constraint.CustomSearchConstraint">
+			<parameter name="parentId">
+                <value>c5894792-67c4-4b53-b762-c2970f06c8e3</value>
 			</parameter>
 		</constraint>
 		<constraint name="sample:cityConstraint"
-			type="sample.model.constraint.LuceneSearchBasedListConstraint">
-			<parameter name="query">
-				<value>
-					PRIMARYPARENT:"workspace://SpacesStore/a580e314-6468-4fd1-9064-ead45dbbcb6e"
-					AND
-					TYPE:"cm:folder"
-					AND
-					@\{http\://www.alfresco.org/model/content/1.0\}name:"${sample:country}"
-				</value>
+			type="sample.model.constraint.CustomSearchConstraint">
+			<parameter name="path">
+				<value>//*/cm:${sample:country}/cm:states/*</value>
 			</parameter>
-			<parameter name="childName">
-                <value>cities</value>
-             </parameter>
 		</constraint>
 		<constraint name="sample:officeConstraint"
-			type="sample.model.constraint.MultipleValueDependentSearchListConstraint">
-			<parameter name="query">
-				<value>
-					PRIMARYPARENT:"workspace://SpacesStore/a580e314-6468-4fd1-9064-ead45dbbcb6e"
-					AND TYPE:"cm:folder" 
-                    AND
-					@\{http\://www.alfresco.org/model/content/1.0\}name:"${oneValueOfMultiValueProperty}"
-				</value>
-			</parameter>
-			<parameter name="childName">
-                <value>cities</value>
-             </parameter>
-			<parameter name="multiValuePropertyName">
-				<value>
-					{sample.model}branches
-				</value>
+			type="sample.model.constraint.CustomSearchConstraint">
+			<parameter name="path">
+				<value>//*/cm:${sample:country}/cm:states/*</value>
 			</parameter>
 		</constraint>
     </constraints>
@@ -193,13 +159,6 @@
                     <type>d:text</type>
                     <constraints>
                         <constraint ref="sample:languageList"/>
-                    </constraints>
-                </property>
-                <property name="sample:sites">
-                    <type>d:text</type>
-                    <multiple>true</multiple>
-                    <constraints>
-                        <constraint ref="sample:siteList"/>
                     </constraints>
                 </property>
                 <property name="sample:isConfirmed">
