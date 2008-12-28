@@ -1,0 +1,8 @@
+<webscript>
+  <shortname>My Files List</shortname>
+  <description>Lists all documents owned by authenticated user</description>
+  <url>/opsoro/myFiles</url>
+  <format default="json">extension</format>
+  <authentication>user</authentication>
+  <transaction>required</transaction>
+</webscript>

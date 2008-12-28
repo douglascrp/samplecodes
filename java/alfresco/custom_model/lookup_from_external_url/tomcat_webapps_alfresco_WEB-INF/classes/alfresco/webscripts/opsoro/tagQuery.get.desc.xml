@@ -1,0 +1,8 @@
+<webscript>
+  <shortname>Tagging Query</shortname>
+  <description>Query tag usage</description>
+  <url>/opsoro/tagQuery</url>
+  <format default="json"/>
+  <authentication>user</authentication>
+  <transaction>required</transaction>
+</webscript>

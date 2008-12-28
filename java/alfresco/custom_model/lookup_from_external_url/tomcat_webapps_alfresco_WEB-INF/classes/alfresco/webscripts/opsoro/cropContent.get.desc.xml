@@ -1,0 +1,8 @@
+<webscript>
+  <shortname>crop Content</shortname>
+  <description>gets cropped content as text</description>
+<url format="xml" template="/opsoro/cropContent.xml?node={node}"/>
+  <format default="xml">extension</format>
+  <authentication>user</authentication>
+  <transaction>required</transaction>
+</webscript>
