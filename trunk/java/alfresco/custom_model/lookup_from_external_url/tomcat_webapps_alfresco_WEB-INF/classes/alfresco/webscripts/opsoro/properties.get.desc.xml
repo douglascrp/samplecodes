@@ -1,0 +1,8 @@
+<webscript>
+  <shortname>get Properties as List</shortname>
+  <description>get Properties as List</description>
+<url format="json" template="/opsoro/properties.json?node={node}"/>
+  <format default="json">extension</format>
+  <authentication>user</authentication>
+  <transaction>required</transaction>
+</webscript>

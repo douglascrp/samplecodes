@@ -1,0 +1,8 @@
+<webscript>
+  <shortname>SubSpaces List</shortname>
+  <description>Lists all subspaces under a space specified by a nodeRef</description>
+  <url>/opsoro/tree?node={node}</url>
+  <format default="json">extension</format>
+  <authentication>user</authentication>
+  <transaction>required</transaction>
+</webscript>

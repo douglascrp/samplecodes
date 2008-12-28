@@ -1,0 +1,8 @@
+<webscript>
+  <shortname>browse categories </shortname>
+  <description>browse categories</description>
+<url format="xml" template="/opsoro/categories.xml?node={node}"/>
+  <format default="xml">extension</format>
+  <authentication>user</authentication>
+  <transaction>required</transaction>
+</webscript>
