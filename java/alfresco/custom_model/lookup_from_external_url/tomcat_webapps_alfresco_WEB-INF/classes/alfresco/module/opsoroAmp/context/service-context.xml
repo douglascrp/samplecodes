@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE beans PUBLIC '-//SPRING//DTD BEAN//EN' 'http://www.springframework.org/dtd/spring-beans.dtd'>
+
+<beans>
+    
+    <bean id="cropTemplateExtension" parent="baseTemplateImplementation" class="org.alfresco.repo.template.patch.CropContentMethod">
+        <property name="extensionName">
+            <value>crop</value>
+        </property>
+    </bean>
+    
+</beans>

@@ -1,0 +1,5 @@
+add|/WEB-INF/lib/alfresco-opsoro.jar
+add|/WEB-INF/classes/alfresco/module/opsoroAmp/context/service-context.xml
+add|/WEB-INF/classes/alfresco/module/opsoroAmp/module-context.xml
+mkdir|/WEB-INF/classes/alfresco/module/opsoroAmp/context
+mkdir|/WEB-INF/classes/alfresco/module/opsoroAmp
