@@ -1,0 +1,193 @@
+/*
+ * Copyright (C) 2008 fme AG.
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * As a special exception to the terms and conditions of version 2.0 of 
+ * the GPL, you may redistribute this Program in connection with Free/Libre 
+ * and Open Source Software ("FLOSS") applications as described in Alfresco's 
+ * FLOSS exception.  You should have recieved a copy of the text describing 
+ * the FLOSS exception, and it is also available here: 
+ * http://www.alfresco.com/legal/licensing
+ */
+#north {
+	background-image:url('images/webclient_top_bg.png');
+	background-repeat:repeat-x;
+}
+#north #logo {
+	position:absolute;
+	top:0px;
+	left:0px;	
+}
+.x-layout-panel-north {
+	 border:0px;		
+}
+img.icon16 {
+	margin:0px;
+	padding:0px;
+	vertical-align:middle;
+}
+.btn-checkout .x-btn-text {
+	background-image: url('images/icons/checkout.gif');
+}
+.btn-edit .x-btn-text {
+	background-image: url('images/icons/edit.gif');
+}		
+.btn-details .x-btn-text {
+	background-image: url('images/icons/details.gif');
+}
+.btn-delete .x-btn-text {
+	background-image: url('images/icons/delete.gif');
+}				
+.x-tree-node-leaf .x-tree-node-icon {
+	background-image:url('lib/ext/resources/images/default/tree/folder.gif');
+}		
+#searchPanel {
+	float:right;
+	margin-top:10px;
+	margin-right:10px;
+	background-image:url('images/search_24.png');
+	background-repeat:no-repeat;
+	padding-left:34px;
+	height:30px;
+	z-index:50;
+}
+html, body {
+    font:normal 12px verdana;
+    margin:0;
+    padding:0;
+    border:0 none;
+    overflow:hidden;
+    height:100%;
+}
+p {
+    margin:5px;
+}
+.settings {
+    background-image:url(images/icons/fam/folder_wrench.png) !important;
+}
+.nav {
+    background-image:url(images/icons/fam/folder_go.png) !important;
+}
+.tag {
+    background-image:url(images/icons/nav_tag.gif) !important;
+}
+.x-panel-body p {
+    margin:5px;
+}
+.search-item {
+    font:normal 11px tahoma, arial, helvetica, sans-serif;
+    padding:3px 10px 3px 10px;
+    border:1px solid #fff;
+    border-bottom:1px solid #eeeeee;
+    white-space:normal;
+    color:#555;
+    min-height:28px;
+}
+.search-item h3 {
+    display:block;
+    font:inherit;
+    font-weight:bold;
+    color:#222;
+}
+
+.search-item h3 span {
+    float: right;
+    font-weight:normal;
+    margin:0 0 5px 5px;
+    width:100px;
+    display:block;
+    clear:none;
+    white-space:nowrap;
+}
+
+.add {
+background-image:url(images/icons/tagit.gif) !important;
+}
+.remove {
+background-image:url(images/icons/fam/delete.gif) !important;
+}
+#tagCloud {
+	line-height:2em;
+}
+#tagCloud .tagContainer {
+	float:left;
+	padding:2px;
+}
+#tagCloud span.removeTag{
+	font-size:12px;
+}
+#tagCloud span.select{
+	padding:1px;
+
+	color:#0073E6;
+	outline-color:invert;
+	outline-style:none;
+	outline-width:medium;
+	text-decoration:none;
+	white-space:nowrap;
+	cursor:pointer;
+	
+}
+#tagCloud span.tagSelected {
+	background-color:#FFFF90;
+	font-size:12px;
+	margin:2px;
+	color:#0073E6;
+	outline-color:invert;
+	outline-style:none;
+	outline-width:medium;
+	text-decoration:none;
+	white-space:nowrap;
+	cursor:pointer;
+}
+#tagCloud span.tagName0 {
+	font-size:11px;
+}
+#tagCloud span.tagName1 {
+	font-size:12px;
+}
+#tagCloud span.tagName2 {
+	font-size:13px;
+}
+#tagCloud span.tagName3 {
+	font-size:14px;
+}
+#tagCloud span.tagName4 {
+	font-size:15px;
+}
+#tagCloud span.tagName5 {
+	font-size:16px;
+}
+#tagCloud span.tagName6 {
+	font-size:17px;
+}
+#tagCloud span.tagName7 {
+	font-size:18px;
+}
+#tagCloud span.tagName8 {
+	font-size:19px;
+}
+#tagCloud span.tagName9 {
+	font-size:20px;
+}
+#tagCloud span.tagName10 {
+	font-size:21px;
+}
+#tagCloud span.tagCount {
+	color:#CCCCCC;
+	font-size:11px;
+	padding-left:0.1em;	
+}
+.x-form-field-wrap .x-form-tag-trigger {
+	background-image:url(images/icons/tag-trigger.gif);
+	cursor:pointer;
+}
