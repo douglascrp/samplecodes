@@ -1,8 +1,8 @@
 <webscript>
   <shortname>Corp Doc List</shortname>
   <description>Lists all corporate documents</description>
-  <url>/sample/listCorpDocs</url>
-  <format default="html">extension</format>
+  <url>/sample/listCorpDocs?node={node}</url>
+  <format default="json">extension</format>
   <authentication>user</authentication>
   <transaction>required</transaction>
 </webscript>
