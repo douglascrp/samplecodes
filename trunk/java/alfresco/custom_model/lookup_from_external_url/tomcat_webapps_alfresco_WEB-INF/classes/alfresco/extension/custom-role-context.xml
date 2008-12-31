@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE beans PUBLIC '-//SPRING//DTD BEAN//EN' 'http://www.springframework.org/dtd/spring-beans.dtd'>
+<beans>
+    <bean id='permissionsModelDAO' class="org.alfresco.repo.security.permissions.impl.model.PermissionModel">
+        <property name="model">
+        	<!-- there shouldnt be any space between value tag and the path !! stupd haa, I know -->
+            <value>alfresco/extension/model/samplePermissionDefinitions.xml</value>
+        </property>
+        <property name="nodeService">
+            <ref bean="nodeService"/>
+        </property>
+        <property name="dictionaryService">
+            <ref bean="dictionaryService"/>
+        </property>
+    </bean>
+</beans>
