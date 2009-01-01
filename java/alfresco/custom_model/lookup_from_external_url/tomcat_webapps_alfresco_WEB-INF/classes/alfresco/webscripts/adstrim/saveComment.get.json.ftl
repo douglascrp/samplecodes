@@ -1,5 +1,6 @@
 <#setting locale="en_US">
 
 {
-	response: ${response}
+	"success": "${success}",
+	"content": "${content}"
 }
