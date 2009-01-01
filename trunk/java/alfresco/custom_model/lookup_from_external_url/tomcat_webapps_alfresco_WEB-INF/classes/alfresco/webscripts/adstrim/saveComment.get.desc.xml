@@ -1,0 +1,8 @@
+<webscript>
+  <shortname>Save comment</shortname>
+  <description>Get content of a file and save it</description>
+  <url>/file/comment?id={id}&amp;content={content}</url>
+  <format default="json">extension</format>
+  <authentication>user</authentication>
+  <transaction>required</transaction>
+</webscript>
