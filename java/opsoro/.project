@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>opsoro</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+	</buildSpec>
+	<natures>
+		<nature>com.aptana.ide.project.nature.web</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>webscript-opsoro</name>
+			<type>2</type>
+			<location>C:/Alfresco/tomcat/webapps/alfresco/WEB-INF/classes/alfresco/webscripts/opsoro</location>
+		</link>
+	</linkedResources>
+</projectDescription>
