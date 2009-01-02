@@ -1,0 +1,63 @@
+<html>
+<head>
+    <title>Ext Custom Theme Test</title>
+    <link rel="stylesheet" type="text/css" href="../../ext-2.0/resources/css/ext-all.css">
+    <script type="text/javascript" src="../../ext-2.0/adapter/ext/ext-base.js"></script>
+    <script type="text/javascript" src="../../ext-2.0/ext-all-debug.js"></script>
+    <style>
+        /* Window styles */
+        .qoox95 .x-window-header {background:#335EA8;}
+        .qoox95 .x-window-header-text {font-weight:normal;color:#fff;font-family:"Lucida Grande",Tahoma,Verdana,"Bitstream Vera Sans","Liberation Sans";}
+        .qoox95 .x-window-tr {background:#335EA8;border-right:2px solid #85878C;-moz-border-right-colors:#85878C rgb(167, 166, 170);}
+        .qoox95 .x-window-tl {background:#335EA8;border-left:2px solid #DCDFE4;border-top:2px solid #DCDFE4;}
+        .qoox95 .x-window-tl .x-window-header {padding:2px 0;}
+        .qoox95 .x-window-mc {background:#EBE9ED;border:0;}
+        .qoox95 .x-window-ml, .qoox95 .x-window-bl {padding-left:4;border-left:2px solid #DCDFE4;-moz-border-left-colors:#DCDFE4 white;background:#EBE9ED;}
+        .qoox95 .x-window-bl {border-bottom:2px solid #85878C;-moz-border-bottom-colors:#85878C rgb(167, 166, 170);}
+        .qoox95 .x-window-br, .qoox95 .x-window-mr {background:#EBE9ED;border-right:2px solid #85878C;-moz-border-right-colors:#85878C rgb(167, 166, 170);}
+        .qoox95 .x-window-bc {background:#EBE9ED;}
+        .qoox95 .x-panel-btns {background:#EBE9ED;}
+        /* Button styles */
+        .qoox95 .x-btn-left, .qoox95 .x-btn-center, .qoox95 .x-btn-right {background:#EBE9ED;}
+        .qoox95 .x-btn {
+            border-left:2px solid #DCDFE4;-moz-border-left-colors:#DCDFE4 white;
+            border-top:2px solid #DCDFE4;-moz-border-top-colors:#DCDFE4 white;
+            border-right:2px solid #85878C;-moz-border-right-colors:#85878C rgb(167, 166, 170);
+            border-bottom:2px solid #85878C;-moz-border-bottom-colors:#85878C rgb(167, 166, 170);
+        }
+        .qoox95 .x-btn-over .x-btn-left, .qoox95 .x-btn-over .x-btn-center, .qoox95 .x-btn-over .x-btn-right {background: rgb(246, 245, 247);}
+    </style>
+	<script>
+        Ext.onReady(function(){
+            var changeTheme = function(){
+                var w = Ext.getCmp('win');
+                var el = w.getEl();
+                if(el.hasClass('qoox95')){
+                    el.removeClass('qoox95').enableShadow(true);
+                    w.body.update('Ah, better...');
+                    w.setTitle('Ext Window');
+                }else{
+                    el.addClass('qoox95').disableShadow();
+                    w.body.update('Welcome to 1995! :)');
+                    w.setTitle('Qooxdoo Window');
+                }
+            };
+            new Ext.Window({
+                id: 'win',
+                title: 'Ext Window',
+                renderTo: Ext.getBody(),
+                width: 250,
+                autoHeight: true,
+                html: 'Click the button for a different theme.',
+                bodyStyle: 'padding:20px;',
+                buttons: [{
+                    text:'Change Theme', 
+                    handler: changeTheme
+                }]
+            }).show();
+        });
+	</script>
+</head>
+<body>
+</body>
+</html>
