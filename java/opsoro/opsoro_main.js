@@ -28,7 +28,7 @@ function viewDocument(url, tabTitle){
         title: tabTitle,
         closable: true,
         layout: 'fit',
-        html: '<iframe style="width:100%;height:100%" frameborder = "0"  src="' + ROOT_URL + url + '"></iframe>'
+        html: '<iframe style="width:100%;height:100%" frameborder = "0"  src="' + window.location.protocol + '//' + window.location.host + url + '"></iframe>'
     });
     mainTabPanel.add(tagWindow);
     
@@ -200,6 +200,10 @@ Opsoro = function(){
                     title: 'Documents',
                     autoScroll: true
                 }, {
+                    el: 'document-new',
+                    title: 'Create new Doc',
+                    autoScroll: true
+                }, {
                     xtype: 'portal',
                     title: 'My Alfresco',
                     autoScroll: true,
@@ -245,16 +249,6 @@ Opsoro = function(){
                     el: 'north',
                     height: 50
                 }), {
-                    region: 'south',
-                    contentEl: 'south',
-                    split: true,
-                    height: 80,
-                    minSize: 80,
-                    maxSize: 150,
-                    collapsible: false,
-                    title: 'Message Bar',
-                    margins: '0 0 0 0'
-                }, {
                     region: 'east',
                     title: 'Informations',
                     collapsible: true,
@@ -268,12 +262,19 @@ Opsoro = function(){
                     layoutConfig: {
                         animate: true
                     },
+                    
                     items: [propsGrid = new Ext.grid.PropertyGrid({
-                        title: 'Properties', 
-						source: {
-							"name" : "value", 
-							"name2" : "value2"
-						}
+                        title: 'Properties',
+                        collapsible: true,
+                        id: 'propsPanel',
+                        autoScroll: true,
+                        forceFit: true,
+                        buttons: [{
+                            text: 'Save',
+                            handler: saveProperties,
+                            disabled: true,
+                            id: 'saveProp'
+                        }]
                     }), previewPanel = new Ext.Panel({
                         collapsible: true,
                         id: 'previewPanel',
@@ -329,6 +330,12 @@ Opsoro = function(){
                     }]
                 }, mainTabPanel]
             });
+            propsGrid.on('propertychange', function(){
+                Ext.getCmp('saveProp').enable();
+            });
+            function saveProperties(){
+                alert('save');
+            }
         },
         initFolderTree: function(){
             // --------------------------------------------
@@ -672,6 +679,53 @@ Opsoro = function(){
                 displayMsg: 'Displaying documents {0} - {1} of {2}',
                 emptyMsg: "No documents to display"
             });
+            
+            var simpleForm = new Ext.FormPanel({
+                el: 'document-new',
+                id: 'document-new',
+                labelWidth: 75, // label settings here cascade unless overridden
+                url: ALFRESCO_URL + 'service/sample/file',
+                frame: true,
+                title: 'Simple Form',
+                bodyStyle: 'padding:5px 5px 0',
+                width: 350,
+                defaults: {
+                    width: 230
+                },
+                defaultType: 'textfield',
+                
+                items: [{
+                    fieldLabel: 'Name',
+                    name: 'name',
+                    allowBlank: false
+                }, {
+                    fieldLabel: 'Content',
+                    name: 'content',
+                    allowBlank: false
+                }],
+                
+                buttons: [{
+                    text: 'Save',
+                    handler: function(){
+                        simpleForm.getForm().submit({
+                            success: function(f, a){
+                                Ext.Msg.alert('Success', 'It worked');
+                            },
+                            failure: function(f, a){
+                                Ext.Msg.alert('Warning', 'Error');
+                            }
+                        });
+                    }
+                }, {
+                    text: 'Reset',
+                    handler: function(){
+                        simpleForm.getForm().reset();
+                    }
+                }]
+            });
+            
+            
+            
             // create the document grid
             var grid = new Ext.grid.GridPanel({
                 el: 'document-grid',
@@ -951,6 +1005,5 @@ Opsoro = function(){
             this.initTagCloud();
         }
     };
-}
-();
+}();
 Ext.EventManager.onDocumentReady(Opsoro.init, Opsoro, true);
