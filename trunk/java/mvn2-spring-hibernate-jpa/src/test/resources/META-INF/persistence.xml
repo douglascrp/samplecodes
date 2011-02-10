@@ -4,7 +4,7 @@
 		version="1.0">
 
 	<persistence-unit name="testa" transaction-type="RESOURCE_LOCAL">
-        <class>net.usefulbits.model.Person</class>
+        <class>com.samplecodes.model.Person</class>
     </persistence-unit>
 
 </persistence>
