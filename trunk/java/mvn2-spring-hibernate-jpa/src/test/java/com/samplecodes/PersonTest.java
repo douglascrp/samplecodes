@@ -14,7 +14,7 @@ import javax.annotation.Resource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@ContextConfiguration
+@ContextConfiguration(locations = {"application-context.xml" })
 public class PersonTest extends AbstractTransactionalJUnit4SpringContextTests {
 
     private PersonDao personDao;
@@ -78,6 +78,7 @@ public class PersonTest extends AbstractTransactionalJUnit4SpringContextTests {
         person.setName(name);
         person.setAge(age);
 
+        logger.info("PersonDao " + personDao);
         personDao.save(person);
 
         // Must flush the person to the database before trying to find it
