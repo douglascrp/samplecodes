@@ -133,16 +133,37 @@
             </extension>
         </extensions>
     </build>
-    <properties>
-        <hibernate.dialect>org.hibernate.dialect.HSQLDialect</hibernate.dialect>
-        <jdbc.groupId>hsqldb</jdbc.groupId>
-        <jdbc.artifactId>hsqldb</jdbc.artifactId>
-        <jdbc.version>1.8.0.7</jdbc.version>
-        <jdbc.driverClassName>org.hsqldb.jdbcDriver</jdbc.driverClassName>
-        <jdbc.url><![CDATA[jdbc:hsqldb:file:target/testdb;shutdown=true]]></jdbc.url>
-        <jdbc.username>sa</jdbc.username>
-        <jdbc.password></jdbc.password>
-        <jpa.database>HSQL</jpa.database>
-        <jpa.showSql>true</jpa.showSql>
-    </properties>
+    <profiles>
+        <profile>
+            <id>hsqldb</id>
+            <properties>
+                <hibernate.dialect>org.hibernate.dialect.HSQLDialect</hibernate.dialect>
+                <jdbc.groupId>hsqldb</jdbc.groupId>
+                <jdbc.artifactId>hsqldb</jdbc.artifactId>
+                <jdbc.version>1.8.0.7</jdbc.version>
+                <jdbc.driverClassName>org.hsqldb.jdbcDriver</jdbc.driverClassName>
+                <jdbc.url><![CDATA[jdbc:hsqldb:file:target/testdb]]></jdbc.url>
+                <!--<jdbc.url><![CDATA[jdbc:hsqldb:file:target/testdb;shutdown=true]]></jdbc.url>-->
+                <jdbc.username>sa</jdbc.username>
+                <jdbc.password></jdbc.password>
+                <jpa.database>HSQL</jpa.database>
+                <jpa.showSql>true</jpa.showSql>
+            </properties>
+        </profile>
+        <profile>
+            <id>mysql</id>
+            <properties>
+                <hibernate.dialect>org.hibernate.dialect.MySQLDialect</hibernate.dialect>
+                <jdbc.groupId>mysql</jdbc.groupId>
+                <jdbc.artifactId>mysql-connector-java</jdbc.artifactId>
+                <jdbc.version>5.0.5</jdbc.version>
+                <jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
+                <jdbc.url><![CDATA[jdbc:mysql://localhost:3306/test]]></jdbc.url>
+                <jdbc.username>root</jdbc.username>
+                <jdbc.password></jdbc.password>
+                <jpa.database>MYSQL</jpa.database>
+                <jpa.showSql>true</jpa.showSql>
+            </properties>
+        </profile>
+    </profiles>
 </project>
