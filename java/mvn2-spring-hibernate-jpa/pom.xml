@@ -46,13 +46,18 @@
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.4.2</version>
         </dependency>
+        <dependency>
+            <groupId>${jdbc.groupId}</groupId>
+            <artifactId>${jdbc.artifactId}</artifactId>
+            <version>${jdbc.version}</version>
+        </dependency>
     </dependencies>
     <build>
         <resources>
-          <resource>
-            <directory>${project.basedir}/src/main/resources</directory>
-            <filtering>true</filtering>
-          </resource>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
         </resources>
 
         <testResources>
@@ -86,7 +91,7 @@
                         <drop>true</drop>
                         <jdk5>true</jdk5>
                         <propertyfile>target/classes/jdbc.properties</propertyfile>
-                        <skip>${maven.test.skip}</skip>
+                        <skip>false</skip>
                     </componentProperties>
                 </configuration>
                 <executions>
@@ -97,13 +102,6 @@
                         </goals>
                     </execution>
                 </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>${jdbc.groupId}</groupId>
-                        <artifactId>${jdbc.artifactId}</artifactId>
-                        <version>${jdbc.version}</version>
-                    </dependency>
-                </dependencies>
             </plugin>
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
@@ -166,6 +164,7 @@
                 <jpa.database>MYSQL</jpa.database>
                 <jpa.showSql>true</jpa.showSql>
             </properties>
+
         </profile>
     </profiles>
 </project>
