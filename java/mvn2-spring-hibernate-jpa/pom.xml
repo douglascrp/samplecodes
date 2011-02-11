@@ -142,8 +142,8 @@
                 <jdbc.artifactId>hsqldb</jdbc.artifactId>
                 <jdbc.version>1.8.0.7</jdbc.version>
                 <jdbc.driverClassName>org.hsqldb.jdbcDriver</jdbc.driverClassName>
-                <jdbc.url><![CDATA[jdbc:hsqldb:file:target/testdb]]></jdbc.url>
-                <!--<jdbc.url><![CDATA[jdbc:hsqldb:file:target/testdb;shutdown=true]]></jdbc.url>-->
+                <!--<jdbc.url><![CDATA[jdbc:hsqldb:file:target/testdb]]></jdbc.url>-->
+                <jdbc.url><![CDATA[jdbc:hsqldb:file:target/testdb;shutdown=true]]></jdbc.url>
                 <jdbc.username>sa</jdbc.username>
                 <jdbc.password></jdbc.password>
                 <jpa.database>HSQL</jpa.database>
