@@ -14,7 +14,7 @@
     <!-- bean post-processor for JPA annotations -->
     <context:annotation-config/>
 
-    <tx:annotation-driven />
+    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
 
     <!-- Scan context package for any eligible annotation configured beans. -->
     <context:component-scan base-package="com.samplecodes.dao" />
