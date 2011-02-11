@@ -21,7 +21,6 @@ public abstract class BasicDaoImpl<E, I> implements BasicDao<E, I> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public List<E> list() {
         return entityManager.createQuery("from " + getEntityClass().getSimpleName()).getResultList();
     }
