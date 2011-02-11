@@ -107,7 +107,7 @@
   </component>
   <component name="DebuggerManager">
     <line_breakpoints>
-      <breakpoint url="file://$PROJECT_DIR$/src/test/java/com/samplecodes/Main.java" line="26" class="com.samplecodes.Main" package="com.samplecodes">
+      <breakpoint url="file://$PROJECT_DIR$/src/test/java/com/samplecodes/Main.java" line="25" class="com.samplecodes.Main" package="com.samplecodes">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -120,7 +120,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/test/java/com/samplecodes/PersonTest.java" line="85" class="com.samplecodes.PersonTest" package="com.samplecodes">
+      <breakpoint url="file://$PROJECT_DIR$/src/test/java/com/samplecodes/PersonTest.java" line="81" class="com.samplecodes.PersonTest" package="com.samplecodes">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -133,7 +133,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/test/java/com/samplecodes/PersonTest.java" line="29" class="com.samplecodes.PersonTest" package="com.samplecodes">
+      <breakpoint url="file://$PROJECT_DIR$/src/test/java/com/samplecodes/PersonTest.java" line="25" class="com.samplecodes.PersonTest" package="com.samplecodes">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -253,16 +253,16 @@
       <file leaf-file-name="BasicDaoImpl.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/samplecodes/base/BasicDaoImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="46" column="0" selection-start="1236" selection-end="1236" vertical-scroll-proportion="0.0">
+            <state line="33" column="0" selection-start="930" selection-end="930" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="48" column="31" selection-start="1824" selection-end="1824" vertical-scroll-proportion="0.4760274">
+            <state line="43" column="12" selection-start="1633" selection-end="1633" vertical-scroll-proportion="58.884617">
               <folding />
             </state>
           </provider>
@@ -286,10 +286,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/samplecodes/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="45" selection-start="813" selection-end="813" vertical-scroll-proportion="0.0">
+            <state line="24" column="31" selection-start="767" selection-end="767" vertical-scroll-proportion="0.7245902">
               <folding />
             </state>
           </provider>
@@ -298,7 +298,7 @@
       <file leaf-file-name="Person.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/samplecodes/model/Person.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="55" selection-start="196" selection-end="196" vertical-scroll-proportion="0.0">
+            <state line="10" column="32" selection-start="228" selection-end="228" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -307,7 +307,7 @@
       <file leaf-file-name="PersonTest.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/samplecodes/PersonTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="0" selection-start="1091" selection-end="1091" vertical-scroll-proportion="-5.6923075">
+            <state line="60" column="45" selection-start="1932" selection-end="1932" vertical-scroll-proportion="-8.461538">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -336,7 +336,7 @@
       <file leaf-file-name="AbstractTransactionalJUnit4SpringContextTests.class" pinned="false" current="false" current-in-tab="false">
         <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-test/2.5.6/spring-test-2.5.6.jar!/org/springframework/test/context/junit4/AbstractTransactionalJUnit4SpringContextTests.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="18" selection-start="941" selection-end="941" vertical-scroll-proportion="-10.88">
+            <state line="18" column="18" selection-start="941" selection-end="941" vertical-scroll-proportion="-12.24">
               <folding />
             </state>
           </provider>
@@ -361,10 +361,8 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/.svn/entries" />
         <option value="$PROJECT_DIR$/src/main/java/com/samplecodes/logic/Admin.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/samplecodes/Main.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/samplecodes/PersonTest.java" />
         <option value="$PROJECT_DIR$/src/test/resources/log4j.properties" />
         <option value="$USER_HOME$/.m2/settings.xml" />
         <option value="$PROJECT_DIR$/Readme.html" />
@@ -373,10 +371,12 @@
         <option value="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/samplecodes/dao/PersonDao.java" />
         <option value="$PROJECT_DIR$/src/test/resources/META-INF/persistence.xml" />
-        <option value="$PROJECT_DIR$/src/test/java/com/samplecodes/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/samplecodes/base/BasicDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/test/resources/com/samplecodes/application-context.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/samplecodes/model/Person.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/samplecodes/PersonTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/samplecodes/Main.java" />
       </list>
     </option>
   </component>
@@ -913,7 +913,7 @@
       <recent name="net.usefulbits" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.PersonTest.testSave">
+  <component name="RunManager" selected="Application.Main">
     <configuration default="false" name="PersonTest.testGetById" type="JUnit" factoryName="JUnit" temporary="true">
       <module name="mvn2-spring-hibernate-jpa" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -985,7 +985,9 @@
         <option name="TRANSPORT" value="0" />
         <option name="LOCAL" value="true" />
       </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Debug" />
+      <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
     <configuration default="true" type="MavenRunConfiguration" factoryName="Maven">
@@ -1242,7 +1244,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1254,7 +1256,7 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900432" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24979724" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32994652" sideWeight="0.39718616" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32994652" sideWeight="0.39718616" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3998378" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Log4jMonitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20160428" sideWeight="0.39718616" order="0" side_tool="false" content_ui="tabs" />
@@ -1384,36 +1386,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/samplecodes/model/Person.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="55" selection-start="196" selection-end="196" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/samplecodes/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="45" selection-start="813" selection-end="813" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-test/2.5.6/spring-test-2.5.6.jar!/org/springframework/test/context/junit4/AbstractTransactionalJUnit4SpringContextTests.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="18" selection-start="941" selection-end="941" vertical-scroll-proportion="-10.88">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/samplecodes/PersonTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="0" selection-start="1091" selection-end="1091" vertical-scroll-proportion="-5.6923075">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-test/2.5.6/spring-test-2.5.6.jar!/org/springframework/test/context/junit4/SpringTestMethod.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="26" column="16" selection-start="1172" selection-end="1172" vertical-scroll-proportion="-10.88">
@@ -1424,13 +1396,6 @@
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-test/2.5.6/spring-test-2.5.6.jar!/org/springframework/test/context/junit4/SpringMethodRoadie.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="28" column="19" selection-start="1542" selection-end="1542" vertical-scroll-proportion="-6.12">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/samplecodes/base/BasicDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="0" selection-start="1236" selection-end="1236" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1451,7 +1416,44 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="31" selection-start="1824" selection-end="1824" vertical-scroll-proportion="0.4760274">
+        <state line="43" column="12" selection-start="1633" selection-end="1633" vertical-scroll-proportion="58.884617">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/samplecodes/base/BasicDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="0" selection-start="930" selection-end="930" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/samplecodes/model/Person.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="32" selection-start="228" selection-end="228" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-test/2.5.6/spring-test-2.5.6.jar!/org/springframework/test/context/junit4/AbstractTransactionalJUnit4SpringContextTests.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="18" selection-start="941" selection-end="941" vertical-scroll-proportion="-12.24">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/samplecodes/PersonTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="60" column="45" selection-start="1932" selection-end="1932" vertical-scroll-proportion="-8.461538">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/samplecodes/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="31" selection-start="767" selection-end="767" vertical-scroll-proportion="0.7245902">
           <folding />
         </state>
       </provider>

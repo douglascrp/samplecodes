@@ -17,19 +17,15 @@ import java.sql.SQLException;
 @ContextConfiguration(locations = {"application-context.xml" })
 public class PersonTest extends AbstractTransactionalJUnit4SpringContextTests {
 
-    private PersonDao personDao;
-    
     @Resource
-    public void setPersonDao(PersonDao personDao) {
-        this.personDao = personDao;
-    }
+    private PersonDao personDao;
 
     @Test
     public void testSave() {
         createAndSavePerson("David", 28);
         assertEquals(1, countRowsInTable("person"));
 
-        Person david = getSinglePerson();
+        Person david = getSinglePerson("David");
         assertEquals("Name not saved correctly", "David", david.getName());
         assertEquals("Age not saved correctly", 28, david.getAge());
     }
@@ -62,15 +58,15 @@ public class PersonTest extends AbstractTransactionalJUnit4SpringContextTests {
         personDao.update(person);
         personDao.getEntityManager().flush();
 
-        Person jane = getSinglePerson();
+        Person jane = getSinglePerson("David");
         assertEquals(1, countRowsInTable("person"));
         assertEquals("The name didn't get changed", "Jane", jane.getName());
         assertEquals("The Age didn't get changed", 21, jane.getAge());
     }
 
-    private Person getSinglePerson() {
+    private Person getSinglePerson(String name) {
         return simpleJdbcTemplate.queryForObject(
-                "select * from person where id = ?", new PersonRowMapper(), 0);
+                "select * from person where name = ?", new PersonRowMapper(), name);
     }
 
     private void createAndSavePerson(String name, int age) {
