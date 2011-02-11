@@ -23,6 +23,7 @@ public class Main {
         person.setAge(44);
 
         personDao.save(person);
+        personDao.getEntityManager().flush();
         logger.info("Person " + person + " saved");
     }
 }
