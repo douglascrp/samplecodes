@@ -1,20 +1,20 @@
 package com.samplecodes.model;
 
+import javax.annotation.Generated;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Person {
-    private long id;
+    @Id
+    @GeneratedValue
+    private Long id;
+
     private String name;
     private int age;
-    
-    public void setId(long id) {
-        this.id = id;
-    }
-    
-    @Id
-    public long getId() {
+
+    public Long getId() {
         return id;
     }
     
