@@ -1,5 +1,8 @@
 package com.samplecodes.base;
 
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -26,6 +29,7 @@ public abstract class BasicDaoImpl<E, I> implements BasicDao<E, I> {
     }
 
     @Override
+    @Transactional(propagation= Propagation.REQUIRED)
     public void save(E entity) {
         entityManager.persist(entity);
     }
@@ -36,6 +40,7 @@ public abstract class BasicDaoImpl<E, I> implements BasicDao<E, I> {
     }
 
     @Override
+    @Transactional(propagation= Propagation.REQUIRED)
     public void update(E entity) {
         entityManager.persist(entity);
     }

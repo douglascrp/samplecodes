@@ -250,28 +250,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="BasicDao.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/samplecodes/base/BasicDao.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="0" selection-start="55" selection-end="55" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BasicDaoImpl.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="BasicDaoImpl.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/samplecodes/base/BasicDaoImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="8" selection-start="1291" selection-end="1291" vertical-scroll-proportion="1.8360655">
+            <state line="46" column="0" selection-start="1236" selection-end="1236" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="pom.xml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="104" column="0" selection-start="3931" selection-end="3931" vertical-scroll-proportion="-2.4230769">
+            <state line="48" column="31" selection-start="1824" selection-end="1824" vertical-scroll-proportion="0.4760274">
               <folding />
             </state>
           </provider>
@@ -280,7 +271,16 @@
       <file leaf-file-name="PersonDao.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/samplecodes/dao/PersonDao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="0" selection-start="173" selection-end="173" vertical-scroll-proportion="0.0">
+            <state line="12" column="49" selection-start="328" selection-end="328" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="application-context.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/resources/com/samplecodes/application-context.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="17" column="15" selection-start="993" selection-end="993" vertical-scroll-proportion="-2.2307692">
               <folding />
             </state>
           </provider>
@@ -290,15 +290,6 @@
         <entry file="file://$PROJECT_DIR$/src/test/java/com/samplecodes/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="25" column="45" selection-start="813" selection-end="813" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="persistence.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/resources/META-INF/persistence.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="40" selection-start="364" selection-end="364" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -316,10 +307,28 @@
       <file leaf-file-name="PersonTest.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/samplecodes/PersonTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="85" column="0" selection-start="2762" selection-end="2762" vertical-scroll-proportion="-22.192308">
+            <state line="34" column="0" selection-start="1091" selection-end="1091" vertical-scroll-proportion="-5.6923075">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SpringTestMethod.class" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-test/2.5.6/spring-test-2.5.6.jar!/org/springframework/test/context/junit4/SpringTestMethod.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="26" column="16" selection-start="1172" selection-end="1172" vertical-scroll-proportion="-10.88">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SpringMethodRoadie.class" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-test/2.5.6/spring-test-2.5.6.jar!/org/springframework/test/context/junit4/SpringMethodRoadie.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="28" column="19" selection-start="1542" selection-end="1542" vertical-scroll-proportion="-6.12">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -360,13 +369,13 @@
         <option value="$USER_HOME$/.m2/settings.xml" />
         <option value="$PROJECT_DIR$/Readme.html" />
         <option value="$PROJECT_DIR$/src/main/resources/jdbc.properties" />
-        <option value="$PROJECT_DIR$/src/test/resources/com/samplecodes/application-context.xml" />
         <option value="$PROJECT_DIR$/src/main/java/samplecodes/dao/PersonDao.java" />
         <option value="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/samplecodes/dao/PersonDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/samplecodes/base/BasicDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/test/resources/META-INF/persistence.xml" />
         <option value="$PROJECT_DIR$/src/test/java/com/samplecodes/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/samplecodes/base/BasicDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/test/resources/com/samplecodes/application-context.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
@@ -817,6 +826,36 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="dao" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mvn2-spring-hibernate-jpa" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mvn2-spring-hibernate-jpa" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="samplecodes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="base" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -1203,7 +1242,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1215,7 +1254,7 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900432" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24979724" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32994652" sideWeight="0.39718616" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32994652" sideWeight="0.39718616" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3998378" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Log4jMonitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20160428" sideWeight="0.39718616" order="0" side_tool="false" content_ui="tabs" />
@@ -1338,13 +1377,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/samplecodes/dao/PersonDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="0" selection-start="173" selection-end="173" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/resources/META-INF/persistence.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="40" selection-start="364" selection-end="364" vertical-scroll-proportion="0.0">
@@ -1375,23 +1407,51 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/samplecodes/PersonTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="85" column="0" selection-start="2762" selection-end="2762" vertical-scroll-proportion="-22.192308">
+        <state line="34" column="0" selection-start="1091" selection-end="1091" vertical-scroll-proportion="-5.6923075">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-test/2.5.6/spring-test-2.5.6.jar!/org/springframework/test/context/junit4/SpringTestMethod.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="104" column="0" selection-start="3931" selection-end="3931" vertical-scroll-proportion="-2.4230769">
+        <state line="26" column="16" selection-start="1172" selection-end="1172" vertical-scroll-proportion="-10.88">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-test/2.5.6/spring-test-2.5.6.jar!/org/springframework/test/context/junit4/SpringMethodRoadie.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="19" selection-start="1542" selection-end="1542" vertical-scroll-proportion="-6.12">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/samplecodes/base/BasicDaoImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="8" selection-start="1291" selection-end="1291" vertical-scroll-proportion="1.8360655">
+        <state line="46" column="0" selection-start="1236" selection-end="1236" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/samplecodes/dao/PersonDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="49" selection-start="328" selection-end="328" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/resources/com/samplecodes/application-context.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="15" selection-start="993" selection-end="993" vertical-scroll-proportion="-2.2307692">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="31" selection-start="1824" selection-end="1824" vertical-scroll-proportion="0.4760274">
           <folding />
         </state>
       </provider>
