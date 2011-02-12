@@ -24,25 +24,30 @@ public abstract class BasicDaoImpl<E, I> implements BasicDao<E, I> {
     }
 
     @Override
-    public List<E> list() {
-        return entityManager.createQuery("from " + getEntityClass().getSimpleName()).getResultList();
-    }
-
-    @Override
     @Transactional(propagation= Propagation.REQUIRED)
     public void save(E entity) {
         entityManager.persist(entity);
     }
     
     @Override
-    public E findById(I id) {
-        return entityManager.find(getEntityClass(), id);
-    }
-
-    @Override
     @Transactional(propagation= Propagation.REQUIRED)
     public void update(E entity) {
         entityManager.persist(entity);
+    }
+
+    @Transactional(propagation= Propagation.REQUIRED)
+    public void delete(E entity) {
+       entityManager.remove(entity);
+    }
+
+    @Override
+    public List<E> list() {
+        return entityManager.createQuery("from " + getEntityClass().getSimpleName()).getResultList();
+    }
+
+    @Override
+    public E findById(I id) {
+        return entityManager.find(getEntityClass(), id);
     }
 
     @Override
@@ -67,7 +72,5 @@ public abstract class BasicDaoImpl<E, I> implements BasicDao<E, I> {
         return queryObject.getResultList();
 
     }
-    public void delete(E entity) {
-       entityManager.remove(entity);
-    }
+
 }
