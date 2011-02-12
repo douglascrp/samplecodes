@@ -266,7 +266,16 @@
       <file leaf-file-name="BasicDaoImpl.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/samplecodes/base/BasicDaoImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="13" selection-start="1007" selection-end="1007" vertical-scroll-proportion="0.0">
+            <state line="47" column="0" selection-start="1262" selection-end="1262" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BasicDao.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/samplecodes/base/BasicDao.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="12" column="54" selection-start="186" selection-end="186" vertical-scroll-proportion="0.4654088">
               <folding />
             </state>
           </provider>
@@ -290,15 +299,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PersonDao.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/samplecodes/dao/PersonDao.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="49" selection-start="328" selection-end="328" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="application-context.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/resources/com/samplecodes/application-context.xml">
           <provider selected="true" editor-type-id="text-editor">
@@ -311,7 +311,7 @@
       <file leaf-file-name="Main.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/samplecodes/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="31" selection-start="767" selection-end="767" vertical-scroll-proportion="0.0">
+            <state line="22" column="70" selection-start="734" selection-end="734" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -337,10 +337,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SpringTestMethod.class" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="SpringTestMethod.class" pinned="false" current="false" current-in-tab="false">
         <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-test/2.5.6/spring-test-2.5.6.jar!/org/springframework/test/context/junit4/SpringTestMethod.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="16" selection-start="1172" selection-end="1172" vertical-scroll-proportion="1.5785714">
+            <state line="9" column="9" selection-start="375" selection-end="375" vertical-scroll-proportion="-6.12">
               <folding />
             </state>
           </provider>
@@ -374,7 +374,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/samplecodes/logic/Admin.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/samplecodes/Main.java" />
         <option value="$PROJECT_DIR$/src/test/resources/log4j.properties" />
         <option value="$USER_HOME$/.m2/settings.xml" />
@@ -384,12 +383,13 @@
         <option value="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/samplecodes/dao/PersonDao.java" />
         <option value="$PROJECT_DIR$/src/test/resources/META-INF/persistence.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/samplecodes/base/BasicDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/test/resources/com/samplecodes/application-context.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/samplecodes/model/Person.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/samplecodes/Main.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/samplecodes/PersonTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/samplecodes/base/BasicDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/samplecodes/base/BasicDao.java" />
       </list>
     </option>
   </component>
@@ -1288,7 +1288,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1305,7 +1305,7 @@
       <window_info id="Log4jMonitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20160428" sideWeight="0.39718616" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.60281384" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.60281384" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Runner Output" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.38134593" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Aspects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1416,13 +1416,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/samplecodes/base/BasicDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="0" selection-start="55" selection-end="55" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/resources/META-INF/persistence.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="40" selection-start="364" selection-end="364" vertical-scroll-proportion="0.0">
@@ -1472,23 +1465,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/samplecodes/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="31" selection-start="767" selection-end="767" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/javax/persistence/persistence-api/1.0/persistence-api-1.0.jar!/javax/persistence/EntityManager.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="9" selection-start="190" selection-end="190" vertical-scroll-proportion="-2.2">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/samplecodes/base/BasicDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="13" selection-start="1007" selection-end="1007" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1504,7 +1483,28 @@
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-test/2.5.6/spring-test-2.5.6.jar!/org/springframework/test/context/junit4/SpringTestMethod.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="16" selection-start="1172" selection-end="1172" vertical-scroll-proportion="1.5785714">
+        <state line="9" column="9" selection-start="375" selection-end="375" vertical-scroll-proportion="-6.12">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/samplecodes/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="70" selection-start="734" selection-end="734" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/samplecodes/base/BasicDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="47" column="0" selection-start="1262" selection-end="1262" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/samplecodes/base/BasicDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="54" selection-start="186" selection-end="186" vertical-scroll-proportion="0.4654088">
           <folding />
         </state>
       </provider>
