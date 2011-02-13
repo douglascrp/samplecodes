@@ -1,18 +1,17 @@
 package com.samplecodes;
 
 import com.samplecodes.dao.CompanyDao;
-import com.samplecodes.dao.EmployeeDao;
 import com.samplecodes.model.Company;
+import org.junit.Test;
+import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
-import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
-
-import static org.junit.Assert.*;
-import org.junit.Test;
 
 import javax.annotation.Resource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import static org.junit.Assert.assertEquals;
 
 @ContextConfiguration(locations = {"application-context.xml" })
 public class CompanyTest extends AbstractTransactionalJUnit4SpringContextTests {
@@ -22,8 +21,6 @@ public class CompanyTest extends AbstractTransactionalJUnit4SpringContextTests {
 
     @Resource
     private CompanyDao companyDao;
-    @Resource
-    private EmployeeDao employeeDao;
 
     @Test
     public void testSave() {
@@ -32,7 +29,6 @@ public class CompanyTest extends AbstractTransactionalJUnit4SpringContextTests {
 
         company = getSingleCompany(DEFAULT_COMPANY_NAME);
         assertEquals("Name not saved correctly", DEFAULT_COMPANY_NAME, company.getName());
-        //assertEquals("Age not saved correctly", 28, company.getAge());
     }
 
     @Test
@@ -40,8 +36,7 @@ public class CompanyTest extends AbstractTransactionalJUnit4SpringContextTests {
         Company company = createAndSaveCompany(DEFAULT_COMPANY_NAME);
         company = companyDao.findById(company.getId());
         assertEquals(company.getName(), DEFAULT_COMPANY_NAME);
-        //assertEquals(company.getAge(), 28);
-    }
+     }
 
     @Test
     public void testDelete() {
@@ -59,14 +54,12 @@ public class CompanyTest extends AbstractTransactionalJUnit4SpringContextTests {
         assertEquals("The Company didn't get saved.", 1, countRowsInTable(Company.class.getSimpleName()));
 
         company.setName(NEW_COMPANY_NAME);
-        //company.setAge(21);
         companyDao.update(company);
         companyDao.getEntityManager().flush();
 
         Company newCompany = getSingleCompany(NEW_COMPANY_NAME);
         assertEquals(1, countRowsInTable(Company.class.getSimpleName()));
         assertEquals("The name didn't get changed", NEW_COMPANY_NAME, newCompany.getName());
-        //assertEquals("The Age didn't get changed", 21, newCompany.getAge());
     }
 
     private Company getSingleCompany(String name) {
@@ -86,11 +79,10 @@ public class CompanyTest extends AbstractTransactionalJUnit4SpringContextTests {
         return company;
     }
 
-    private static class RowMapper implements ParameterizedRowMapper<Company> {
+    public static class RowMapper implements ParameterizedRowMapper<Company> {
         public Company mapRow(ResultSet rs, int rowNum) throws SQLException {
             Company result = new Company();
             result.setName(rs.getString("name"));
-            //result.setAge(rs.getInt("age"));
             return result;
         }
     }

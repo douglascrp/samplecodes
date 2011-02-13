@@ -29,7 +29,7 @@ public class Main {
         employee.setAge(22);
         employee.setCompany(company);
 
-        companyDao.save(company);
+        employeeDao.save(employee);
         logger.info("Company " + company + " saved");
     }
 }
