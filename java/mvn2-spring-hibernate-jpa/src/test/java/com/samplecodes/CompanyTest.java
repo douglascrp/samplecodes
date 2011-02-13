@@ -1,6 +1,7 @@
 package com.samplecodes;
 
 import com.samplecodes.dao.CompanyDao;
+import com.samplecodes.dao.EmployeeDao;
 import com.samplecodes.model.Company;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
@@ -18,8 +19,11 @@ public class CompanyTest extends AbstractTransactionalJUnit4SpringContextTests {
 
     private static final String DEFAULT_COMPANY_NAME = "SampleCodes";
     private static final String NEW_COMPANY_NAME = "In20Seconds";
+
     @Resource
     private CompanyDao companyDao;
+    @Resource
+    private EmployeeDao employeeDao;
 
     @Test
     public void testSave() {
