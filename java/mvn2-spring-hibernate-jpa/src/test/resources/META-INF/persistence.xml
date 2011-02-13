@@ -4,7 +4,7 @@
 		version="1.0">
 
 	<persistence-unit name="default" transaction-type="RESOURCE_LOCAL">
-        <class>com.samplecodes.model.Person</class>
+        <class>com.samplecodes.model.Company</class>
     </persistence-unit>
 
 </persistence>
