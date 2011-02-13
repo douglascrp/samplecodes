@@ -10,6 +10,8 @@ public interface BasicDao<E, I> {
 
     void update(E entity);
 
+    void delete(E entity);
+
     List<E> list();
 
     E findById(Class<E> c, I id);

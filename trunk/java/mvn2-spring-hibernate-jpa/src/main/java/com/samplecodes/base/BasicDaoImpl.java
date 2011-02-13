@@ -23,24 +23,27 @@ public abstract class BasicDaoImpl<E, I> implements BasicDao<E, I> {
         return entityManager;
     }
 
-    @Override
+
     @Transactional(propagation= Propagation.REQUIRED)
+    @Override
     public void save(E entity) {
         entityManager.persist(entity);
     }
-    
-    @Override
+
     @Transactional(propagation= Propagation.REQUIRED)
+    @Override
     public void update(E entity) {
         entityManager.persist(entity);
     }
 
     @Transactional(propagation= Propagation.REQUIRED)
+    @Override
     public void delete(E entity) {
        entityManager.remove(entity);
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<E> list() {
         return entityManager.createQuery("from " + getEntityClass().getSimpleName()).getResultList();
     }

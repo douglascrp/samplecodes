@@ -1,7 +1,7 @@
 package com.samplecodes;
 
-import com.samplecodes.dao.PersonDao;
-import com.samplecodes.model.Person;
+import com.samplecodes.dao.CompanyDao;
+import com.samplecodes.model.Company;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -16,13 +16,13 @@ public class Main {
 
         ApplicationContext context = new ClassPathXmlApplicationContext(new String[]{"com/samplecodes/application-context.xml"});
 
-        PersonDao personDao = (PersonDao) context.getBean("personDao");
+        CompanyDao companyDao = (CompanyDao) context.getBean("companyDao");
 
-        Person person = new Person();
-        person.setName("hossein");
-        person.setAge(44);
+        Company company = new Company();
+        company.setName("hossein");
+        //company.setAge(44);
 
-        personDao.save(person);
-        logger.info("Person " + person + " saved");
+        companyDao.save(company);
+        logger.info("Company " + company + " saved");
     }
 }
