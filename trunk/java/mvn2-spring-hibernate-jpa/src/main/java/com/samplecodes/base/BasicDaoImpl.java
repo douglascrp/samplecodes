@@ -63,8 +63,8 @@ public abstract class BasicDaoImpl<E, I> implements BasicDao<E, I> {
         return findByNamedQuery(queryName, new Object[]{});
     }
 
-    @SuppressWarnings("unchecked")
     @Override
+    @SuppressWarnings("unchecked")
     public List<E> findByNamedQuery(final String queryName, final Object... values) /*throws DataAccessException*/ {
         Query queryObject = entityManager.createNamedQuery(queryName);
         if (values != null) {
