@@ -1,14 +1,19 @@
 package com.samplecodes.model;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.Set;
 
+@NamedQueries({
+@NamedQuery(name="company.name.like",
+            query="select r from Company r where r.name like ?"),
+@NamedQuery(name="company.name",
+            query="select r from Company r where r.name = ?")
+})
 @Entity
 public class Company {
+
+    public final static String QUERY_NAME = "company.name";
 
     @Id
     @GeneratedValue
