@@ -15,7 +15,7 @@ public class AdminService extends CommonService {
     @Resource
     AdminDao adminDao;
 
-    public Admin saveOrUpdate(Admin admin) {
+    public Admin merge(Admin admin) {
        return adminDao.merge(admin);
     }
 
@@ -59,34 +59,4 @@ public class AdminService extends CommonService {
     public List<Cargo> listCargos() {
         return cargoDao.list();
     }
-
-
-    public boolean deleteCargo(Cargo cargo) {
-        if (cargo.getShipmentList() == null) {
-            cargo.getCustomer().getOrders().remove(cargo);
-            cargoDao.remove(cargo);
-            // TODO: remove respective row from database
-            // and merge all references to it
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public void assignDriver(Shipment shipment, Driver driver) {
-        if (shipment.hasDriver() == false) {
-            driver.addShipment(shipment);
-            shipment.assignDriver(driver);
-            // TODO: as you can see here, one change is made
-            // and that is: I added a new relation between a
-            // driver and a shipment. Now, notice that this means
-            // two changes in our fields. One is in driver.shipments
-            // and the other is in cargo.driver
-            //
-            // These two fields are changed in the two methods above
-            // and they can be handled deeper, or they can be handled
-            // here.
-        }
-    }
-
 }

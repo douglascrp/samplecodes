@@ -1,6 +1,7 @@
 package com.samplecodes.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -14,10 +15,12 @@ public class Customer extends User {
 
     public Customer() {
         super();
+        orders = new ArrayList<Cargo>();
     }
 
 	public Customer(String username, String password) {
 		super(username, password, User.CUSTOMER);
+        orders = new ArrayList<Cargo>();
 	}
 
     public List<Cargo> getOrders() {

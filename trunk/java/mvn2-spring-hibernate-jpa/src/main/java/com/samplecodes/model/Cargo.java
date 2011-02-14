@@ -45,8 +45,6 @@ public class Cargo {
         this.destination = destination;
         this.origin = origin;
         this.weight = weight;
-
-        // TODO: create respective row in database
     }
 
     public Long getId() {

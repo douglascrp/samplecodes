@@ -6,7 +6,7 @@ public interface BasicDao<E, I> {
 
     E findById(I id);
 
-    void save(E entity);
+    void persist(E entity);
 
     E merge(E entity);
 
