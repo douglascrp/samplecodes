@@ -21,12 +21,12 @@ public class Company {
 
     private String name;
 
-//    private Set<Employee> employees;
+    @OneToMany(mappedBy="company")
+    private Set<Employee> employees;
 
-//    @OneToMany(mappedBy="troop")
-//    public Set<Employee> getEmployee() {
-//        return employees;
-//    }
+   public Set<Employee> getEmployee() {
+       return employees;
+  }
 
     public Long getId() {
         return id;

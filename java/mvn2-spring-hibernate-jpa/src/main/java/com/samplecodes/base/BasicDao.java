@@ -8,9 +8,9 @@ public interface BasicDao<E, I> {
 
     void save(E entity);
 
-    void update(E entity);
+    void merge(E entity);
 
-    void delete(E entity);
+    void remove(E entity);
 
     List<E> list();
 

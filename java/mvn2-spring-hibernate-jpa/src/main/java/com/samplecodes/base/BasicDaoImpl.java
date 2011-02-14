@@ -32,13 +32,13 @@ public abstract class BasicDaoImpl<E, I> implements BasicDao<E, I> {
 
     @Transactional(propagation= Propagation.REQUIRED)
     @Override
-    public void update(E entity) {
-        entityManager.persist(entity);
+    public void merge(E entity) {
+        entityManager.merge(entity);
     }
 
     @Transactional(propagation= Propagation.REQUIRED)
     @Override
-    public void delete(E entity) {
+    public void remove(E entity) {
        entityManager.remove(entity);
     }
 

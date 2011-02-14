@@ -6,6 +6,13 @@
 	<persistence-unit name="default" transaction-type="RESOURCE_LOCAL">
         <class>com.samplecodes.model.Company</class>
         <class>com.samplecodes.model.Employee</class>
+        <class>com.samplecodes.model.User</class>
+        <class>com.samplecodes.model.Cargo</class>
+        <class>com.samplecodes.model.Location</class>
+        <class>com.samplecodes.model.Customer</class>
+        <class>com.samplecodes.model.Driver</class>
+        <class>com.samplecodes.model.Event</class>
+        <class>com.samplecodes.model.Shipment</class>
     </persistence-unit>
 
 </persistence>
