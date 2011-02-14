@@ -13,13 +13,23 @@ public class CustomerService extends CommonService {
     @Resource
     CustomerDao customerDao;
 
-    public Customer saveOrUpdate(Customer customer) {
+    public Customer merge(Customer customer) {
        return customerDao.merge(customer);
     }
 
-    public void addOrder(Customer customer, Cargo order) {
+    public Customer addOrder(Customer customer, Cargo order) {
         customer.addOrder(order);
-        customerDao.save(customer);
-
+        return customerDao.merge(customer);
     }
-}
+
+    public boolean deleteCargo(Customer customer, Cargo cargo) {
+        if (cargo.getShipmentList() == null || cargo.getShipmentList().size() == 0) {
+            //customer.getOrders().remove(cargo);
+            cargoDao.remove(cargo);
+            // TODO: remove respective row from database
+            // and merge all references to it
+            return true;
+        } else {
+            return false;
+        }
+    }}

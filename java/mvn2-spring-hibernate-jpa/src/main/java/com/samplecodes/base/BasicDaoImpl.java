@@ -26,7 +26,7 @@ public abstract class BasicDaoImpl<E, I> implements BasicDao<E, I> {
 
     @Transactional(propagation= Propagation.REQUIRED)
     @Override
-    public void save(E entity) {
+    public void persist(E entity) {
         entityManager.persist(entity);
     }
 

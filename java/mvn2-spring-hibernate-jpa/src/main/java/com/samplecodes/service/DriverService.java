@@ -18,11 +18,11 @@ public class DriverService extends CommonService {
     @Resource
     ShipmentDao shipmentDao;
 
-    public Driver saveOrUpdate(Driver driver) {
+    public Driver merge(Driver driver) {
        return driverDao.merge(driver);
     }
 
-    public Shipment saveOrUpdate(Shipment shipment) {
+    public Shipment merge(Shipment shipment) {
        return shipmentDao.merge(shipment);
     }
 
@@ -38,7 +38,7 @@ public class DriverService extends CommonService {
 
     public void reportShipment(Shipment shipment, Location location){
         shipment.add(new Event(new Date(), location));
-        shipmentDao.save(shipment);
+        shipmentDao.persist(shipment);
     }
 
     public boolean canPickup(Driver driver, Shipment shipment) {
@@ -68,7 +68,7 @@ public class DriverService extends CommonService {
                 reportShipment(shipment, location);
             }
         }
-        driverDao.save(driver);
+        driverDao.persist(driver);
         // System.err.println("Reported " + currentLocation.getName());
     }
 
@@ -79,6 +79,22 @@ public class DriverService extends CommonService {
                 returnValue++;
         }
         return returnValue;
+    }
+
+    public void assignDriver(Driver driver, Shipment shipment) {
+        if (shipment.hasDriver() == false) {
+            driver.addShipment(shipment);
+            shipment.assignDriver(driver);
+            // TODO: as you can see here, one change is made
+            // and that is: I added a new relation between a
+            // driver and a shipment. Now, notice that this means
+            // two changes in our fields. One is in driver.shipments
+            // and the other is in cargo.driver
+            //
+            // These two fields are changed in the two methods above
+            // and they can be handled deeper, or they can be handled
+            // here.
+        }
     }
 
 //	public ArrayList<String> listAdjacentLocations() {

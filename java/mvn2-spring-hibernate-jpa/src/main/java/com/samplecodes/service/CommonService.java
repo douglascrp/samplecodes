@@ -22,6 +22,10 @@ public class CommonService {
     @Resource
     private StationDao stationDao;
 
+    public void flush() {
+        cargoDao.getEntityManager().flush();
+    }
+
     public City saveOrUpdate(City city) {
         return cityDao.merge(city);
     }

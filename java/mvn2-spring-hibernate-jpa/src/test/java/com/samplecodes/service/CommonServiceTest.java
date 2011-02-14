@@ -12,7 +12,7 @@ import javax.annotation.Resource;
 
 import static org.junit.Assert.assertEquals;
 
-@ContextConfiguration(locations = {"../application-context.xml"})
+@ContextConfiguration(locations = {"/com/samplecodes/application-context.xml"})
 public class CommonServiceTest extends AbstractTransactionalJUnit4SpringContextTests {
 
     @Resource

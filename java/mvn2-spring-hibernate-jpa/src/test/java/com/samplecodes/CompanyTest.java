@@ -79,7 +79,7 @@ public class CompanyTest extends AbstractTransactionalJUnit4SpringContextTests {
         Company company = new Company();
         company.setName(name);
 
-        companyDao.save(company);
+        companyDao.persist(company);
 
         // Must flush the company to the database before trying to find it
         companyDao.getEntityManager().flush();

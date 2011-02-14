@@ -2,6 +2,7 @@ package com.samplecodes.service;
 
 import com.samplecodes.dao.CargoDao;
 import com.samplecodes.model.Cargo;
+import com.samplecodes.model.Location;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.test.context.ContextConfiguration;
@@ -13,7 +14,7 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
 
 
-@ContextConfiguration(locations = {"../application-context.xml"})
+@ContextConfiguration(locations = {"/com/samplecodes/application-context.xml"})
 public class AdminServiceTest extends AbstractTransactionalJUnit4SpringContextTests {
 
     @Resource
@@ -37,7 +38,10 @@ public class AdminServiceTest extends AbstractTransactionalJUnit4SpringContextTe
 
     @Test
     public void testEditCargoDestination() throws Exception {
-
+        Cargo cargo = new Cargo();
+        Location destination = new Location("SF");
+        cargo = adminService.editCargoDestination(cargo, destination);
+        assertEquals(cargoDao.findById(cargo.getId()).getDestination().getName(), "SF");
     }
 
     @Test
@@ -60,13 +64,4 @@ public class AdminServiceTest extends AbstractTransactionalJUnit4SpringContextTe
 
     }
 
-    @Test
-    public void testDeleteCargo() throws Exception {
-
-    }
-
-    @Test
-    public void testAssignDriver() throws Exception {
-
-    }
 }
