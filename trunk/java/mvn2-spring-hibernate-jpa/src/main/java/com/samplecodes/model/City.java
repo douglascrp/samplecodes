@@ -11,4 +11,8 @@ public class City extends Location {
     public City(String name) {
         super(name);
     }
+
+    public City() {
+        super();
+    }
 }

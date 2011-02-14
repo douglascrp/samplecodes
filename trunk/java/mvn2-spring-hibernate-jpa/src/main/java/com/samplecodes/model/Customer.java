@@ -15,13 +15,17 @@ public class Customer extends User {
     @OrderBy("orderDate")
     private List<Cargo> orders;
 
-    public List<Cargo> getOrders() {
-        return orders;
+    public Customer() {
+        super();
     }
 
 	public Customer(String username, String password) {
 		super(username, password, User.CUSTOMER);
 	}
+
+    public List<Cargo> getOrders() {
+        return orders;
+    }
 
     public void addOrder(Cargo order) {
         orders.add(order);

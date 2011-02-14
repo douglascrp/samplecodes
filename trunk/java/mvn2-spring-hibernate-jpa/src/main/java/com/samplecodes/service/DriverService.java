@@ -18,12 +18,12 @@ public class DriverService extends CommonService {
     @Resource
     ShipmentDao shipmentDao;
 
-    public void saveOrUpdate(Driver driver) {
-       driverDao.merge(driver);
+    public Driver saveOrUpdate(Driver driver) {
+       return driverDao.merge(driver);
     }
 
-    public void saveOrUpdate(Shipment shipment) {
-       shipmentDao.merge(shipment);
+    public Shipment saveOrUpdate(Shipment shipment) {
+       return shipmentDao.merge(shipment);
     }
 
 
@@ -43,7 +43,7 @@ public class DriverService extends CommonService {
 
     public boolean canPickup(Driver driver, Shipment shipment) {
         return driver.getShipmentList().contains(shipment)
-                && driver.getCurrentLocation() == shipment.getOrigin()
+                && driver.getLocation() == shipment.getOrigin()
                 && shipment.getDriver() == driver
                 && shipment.getState() == Shipment.ASSIGNED_DRIVER;
     }
@@ -57,12 +57,12 @@ public class DriverService extends CommonService {
     }
 
     public void reportLocation(Driver driver, Location location) {
-        driver.setCurrentLocation(location);
+        driver.setLocation(location);
         // TODO: merge respective field for currentLocation
         for (Shipment shipment : driver.getShipmentList()) {
             if (shipment.getState() == Shipment.ON_THE_WAY) {
-                if (driver.getCurrentLocation() == shipment.getCargo().getDestination()) {
-                    driver.setCurrentLocation(location);
+                if (driver.getLocation() == shipment.getCargo().getDestination()) {
+                    driver.setLocation(location);
                     shipment.setState(Shipment.DELIVERED);
                 }
                 reportShipment(shipment, location);

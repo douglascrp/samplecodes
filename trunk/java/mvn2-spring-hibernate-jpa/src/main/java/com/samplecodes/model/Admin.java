@@ -10,9 +10,11 @@ import java.util.List;
 @Entity
 @DiscriminatorValue("Admin")
 public class Admin extends User {
+    public Admin() {
+        super();
+    }
 
-
-	public Admin(String username, String password) {
+    public Admin(String username, String password) {
 		super(username, password, User.ADMIN);
 	}
 

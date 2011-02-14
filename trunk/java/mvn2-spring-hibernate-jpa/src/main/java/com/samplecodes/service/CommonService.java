@@ -20,6 +20,14 @@ public class CommonService {
     @Resource
     private StationDao stationDao;
 
+    public City saveOrUpdate(City city) {
+        return cityDao.merge(city);
+    }
+
+    public Station saveOrUpdate(Station station) {
+        return stationDao.merge(station);
+    }
+
 
     public List<City> listCities() {
         return cityDao.list();

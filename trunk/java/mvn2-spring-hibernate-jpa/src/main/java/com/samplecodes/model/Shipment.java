@@ -26,6 +26,8 @@ public class Shipment {
     private Date deliveryDate;
     private int state;
 
+    public Shipment() {
+    }
 
     public Shipment(Cargo shipment) {
         this.cargo = shipment;
