@@ -14,13 +14,13 @@ public class Shipment {
     @GeneratedValue
     private Long id;
 
-    @ManyToOne
+    @ManyToOne( cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
 	private Cargo cargo;
 
-    @ManyToOne
+    @ManyToOne( cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
 	private Driver driver;
 
-    @OneToMany(mappedBy = "location")
+    @OneToMany(mappedBy = "location", cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
     private List<Event> eventList;
 
     private Date deliveryDate;
@@ -35,6 +35,13 @@ public class Shipment {
         this.eventList = new ArrayList<Event>();
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public List<Event> getEventList() {
+        return eventList;
+    }
 
     public void add(Event event) {
        eventList.add(event);

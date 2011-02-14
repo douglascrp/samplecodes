@@ -1,9 +1,6 @@
 package com.samplecodes.model;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
+import javax.persistence.*;
 import java.util.List;
 
 
@@ -11,7 +8,7 @@ import java.util.List;
 @DiscriminatorValue("Customer")
 public class Customer extends User {
 
-    @OneToMany(mappedBy="customer")
+    @OneToMany(mappedBy="customer", cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
     @OrderBy("orderDate")
     private List<Cargo> orders;
 

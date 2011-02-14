@@ -12,7 +12,7 @@ public class Driver extends User {
     @OneToOne
     private Location location;
 
-    @OneToMany(mappedBy="driver")
+    @OneToMany(mappedBy="driver", cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
     @OrderBy("deliveryDate")
 	private List<Shipment> shipmentList;
 

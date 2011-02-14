@@ -19,7 +19,7 @@ public class AdminService extends CommonService {
        return adminDao.merge(admin);
     }
 
-    public void assignShipments(Cargo cargo, int pieces) {
+    public Cargo assignShipments(Cargo cargo, int pieces) {
         // TODO: This part creates a bunch of shipments that
         // are part of a cargo. Before this method is called
         // the cargo had no shipments. A cargo can be composed
@@ -28,31 +28,31 @@ public class AdminService extends CommonService {
 
         List<Shipment> shipmentList = new ArrayList<Shipment>();
         for (int i = 0; i < pieces; ++i) {
-            shipmentList.add(new Shipment(cargo));
+            Shipment shipment = new Shipment(cargo);
+            shipmentList.add(shipment);
         }
         cargo.setShipmentList(shipmentList);
-        cargoDao.merge(cargo);
-
+        return cargoDao.merge(cargo);
     }
 
-    public void editCargoDestination(Cargo cargo, Location destination){
+    public Cargo editCargoDestination(Cargo cargo, Location destination){
         cargo.setDestination(destination);
-        cargoDao.merge(cargo);
+        return cargoDao.merge(cargo);
     }
 
-    public void editCargoType(Cargo cargo, String type){
+    public Cargo editCargoType(Cargo cargo, String type){
         cargo.setType(type);
-        cargoDao.merge(cargo);
+        return cargoDao.merge(cargo);
     }
 
-    public void editCargoDueDate(Cargo cargo, Date date){
+    public Cargo editCargoDueDate(Cargo cargo, Date date){
         cargo.setDueDate(date);
-        cargoDao.merge(cargo);
+        return cargoDao.merge(cargo);
     }
 
-    public void editCargoWeight(Cargo cargo, long weight){
+    public Cargo editCargoWeight(Cargo cargo, long weight){
         cargo.setWeight(weight);
-        cargoDao.merge(cargo);
+        return cargoDao.merge(cargo);
     }
 
 
