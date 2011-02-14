@@ -1,7 +1,6 @@
 package com.samplecodes.service;
 
 import com.samplecodes.dao.AdminDao;
-import com.samplecodes.dao.CargoDao;
 import com.samplecodes.model.*;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +18,6 @@ public class AdminService extends CommonService {
     public Admin saveOrUpdate(Admin admin) {
        return adminDao.merge(admin);
     }
-
 
     public void assignShipments(Cargo cargo, int pieces) {
         // TODO: This part creates a bunch of shipments that

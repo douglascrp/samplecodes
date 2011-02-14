@@ -2,9 +2,11 @@ package com.samplecodes.service;
 
 import com.samplecodes.dao.CargoDao;
 import com.samplecodes.dao.CityDao;
-import com.samplecodes.dao.LocationDao;
 import com.samplecodes.dao.StationDao;
-import com.samplecodes.model.*;
+import com.samplecodes.model.Cargo;
+import com.samplecodes.model.City;
+import com.samplecodes.model.Station;
+import com.samplecodes.model.User;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

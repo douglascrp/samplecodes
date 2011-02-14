@@ -1,14 +1,11 @@
 package com.samplecodes.service;
 
-import com.samplecodes.dao.CargoDao;
 import com.samplecodes.dao.CustomerDao;
-import com.samplecodes.model.Admin;
 import com.samplecodes.model.Cargo;
 import com.samplecodes.model.Customer;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 @Service
 public class CustomerService extends CommonService {

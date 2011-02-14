@@ -15,10 +15,8 @@ import static org.junit.Assert.assertEquals;
 @ContextConfiguration(locations = {"../application-context.xml"})
 public class CommonServiceTest extends AbstractTransactionalJUnit4SpringContextTests {
 
-
     @Resource
     CommonService commonService;
-
 
     @Before
     public void setup() {
@@ -27,7 +25,6 @@ public class CommonServiceTest extends AbstractTransactionalJUnit4SpringContextT
         commonService.saveOrUpdate(new City("Berkeley"));
         commonService.saveOrUpdate(new Cargo());
         commonService.saveOrUpdate(new Cargo());
-
     }
 
     @Test
@@ -40,13 +37,10 @@ public class CommonServiceTest extends AbstractTransactionalJUnit4SpringContextT
         assertEquals(commonService.getCity("SF").getName(), "SF");
     }
 
-
     @Test
     public void testListCargos() throws Exception {
         assertEquals(2, commonService.listCargos().size());
     }
-
-
 
     @Test
     public void testLogin() throws Exception {
