@@ -2,8 +2,6 @@ package com.samplecodes;
 
 import com.samplecodes.dao.CompanyDao;
 import com.samplecodes.model.Company;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 import org.springframework.test.context.ContextConfiguration;
@@ -12,8 +10,6 @@ import org.springframework.test.context.junit4.AbstractTransactionalJUnit4Spring
 import javax.annotation.Resource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -54,7 +50,7 @@ public class CompanyTest extends AbstractTransactionalJUnit4SpringContextTests {
         int before = countRowsInTable(Company.class.getSimpleName());
         Company company = createAndSaveCompany(DEFAULT_COMPANY_NAME);
         company = companyDao.findById(company.getId());
-        companyDao.delete(company);
+        companyDao.remove(company);
         companyDao.getEntityManager().flush();
         assertEquals("Deleting company failed.", before - 1, countRowsInTable(Company.class.getSimpleName()));
     }
@@ -66,7 +62,7 @@ public class CompanyTest extends AbstractTransactionalJUnit4SpringContextTests {
         assertTrue("The Company didn't get saved.", countRowsInTable(Company.class.getSimpleName()) > 0);
 
         company.setName(NEW_COMPANY_NAME);
-        companyDao.update(company);
+        companyDao.merge(company);
         companyDao.getEntityManager().flush();
 
 //        Company newCompany = getSingleCompany(NEW_COMPANY_NAME);
@@ -92,7 +88,7 @@ public class CompanyTest extends AbstractTransactionalJUnit4SpringContextTests {
 
     private void cleanup(String name) {
         for (Company company : companyDao.findByNamedQuery(Company.QUERY_NAME, name)) {
-            companyDao.delete(company);
+            companyDao.remove(company);
         }
     }
 
