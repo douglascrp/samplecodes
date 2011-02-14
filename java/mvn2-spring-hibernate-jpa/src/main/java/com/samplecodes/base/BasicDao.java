@@ -8,7 +8,7 @@ public interface BasicDao<E, I> {
 
     void save(E entity);
 
-    void merge(E entity);
+    E merge(E entity);
 
     void remove(E entity);
 

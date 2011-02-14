@@ -17,6 +17,9 @@ public class Event{
     @ManyToOne
     private Location location;
 
+    public Event() {
+    }
+
     public Event(Date date, Location location) {
         this.date = date;
         this.location = location;

@@ -10,36 +10,36 @@ import java.util.List;
 public class Driver extends User {
 
     @OneToOne
-    private Location currentLocation;
+    private Location location;
 
     @OneToMany(mappedBy="driver")
     @OrderBy("deliveryDate")
 	private List<Shipment> shipmentList;
 
+    public Driver() {
+        super();
+    }
+
+    public Driver(String username, String password, Location location) {
+        super(username, password, User.DRIVER);
+        this.location = location;
+    }
+
 	public Location getLocation() {
-		return currentLocation;
+		return location;
 	}
 
 	public void addShipment(Shipment shipment) {
 		shipmentList.add(shipment);
 	}
 
-	public Driver(String username, String password, Location currentLocation) {
-        super(username, password, User.DRIVER);
-		shipmentList = new ArrayList<Shipment>();
-		this.currentLocation = currentLocation;
-	}
 
-    public void setCurrentLocation(Location currentLocation) {
-        this.currentLocation = currentLocation;
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
     public void setShipmentList(ArrayList<Shipment> shipmentList) {
         this.shipmentList = shipmentList;
-    }
-
-    public Location getCurrentLocation() {
-        return currentLocation;
     }
 
     public List<Shipment> getShipmentList() {

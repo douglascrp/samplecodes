@@ -17,7 +17,7 @@
     <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
 
     <!-- Scan context package for any eligible annotation configured beans. -->
-    <context:component-scan base-package="com.samplecodes.dao" />
+    <context:component-scan base-package="com.samplecodes" />
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"
 		p:driverClassName="${jdbc.driverClassName}" p:url="${jdbc.url}" p:username="${jdbc.username}" p:password="${jdbc.password}" />

@@ -10,4 +10,8 @@ public class Station extends Location{
     public Station(String name) {
         super(name);
     }
+
+    public Station() {
+        super();
+    }
 }

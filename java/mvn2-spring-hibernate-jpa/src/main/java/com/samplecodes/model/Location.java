@@ -26,11 +26,12 @@ public class Location {
 		return new ArrayList<Location>(adjacentList);
 	}
 	
-	public Location(String name) {
-		this.name = name;
-		this.adjacentList = new ArrayList<Location>();
-		this.adjacentList.add(this);
-	}
+    public Location() {
+    }
+
+    public Location(String name) {
+        this.name = name;
+    }
 
 	public String getName() {
 		return this.name;

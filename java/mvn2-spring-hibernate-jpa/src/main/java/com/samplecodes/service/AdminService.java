@@ -16,8 +16,8 @@ public class AdminService extends CommonService {
     @Resource
     AdminDao adminDao;
 
-    public void saveOrUpdate(Admin admin) {
-       adminDao.merge(admin);
+    public Admin saveOrUpdate(Admin admin) {
+       return adminDao.merge(admin);
     }
 
 

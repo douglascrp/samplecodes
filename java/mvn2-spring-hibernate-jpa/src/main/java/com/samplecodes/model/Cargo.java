@@ -30,6 +30,10 @@ public class Cargo {
     @JoinColumn(name = "destination")
     private Location destination;
 
+     public Cargo() {
+
+     }
+
     public Cargo(String type, Date orderDate, Date dueDate, Location origin,
             Location destination, long weight) throws InstantiationException {
 

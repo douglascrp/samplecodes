@@ -16,8 +16,8 @@ public class CustomerService extends CommonService {
     @Resource
     CustomerDao customerDao;
 
-    public void saveOrUpdate(Customer customer) {
-       customerDao.merge(customer);
+    public Customer saveOrUpdate(Customer customer) {
+       return customerDao.merge(customer);
     }
 
     public void addOrder(Customer customer, Cargo order) {
