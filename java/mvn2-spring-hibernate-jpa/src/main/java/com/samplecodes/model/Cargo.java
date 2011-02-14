@@ -19,19 +19,18 @@ public class Cargo {
     @ManyToOne( cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
     private Customer customer;
 
-    @OneToMany(mappedBy = "cargo")
+    @OneToMany(mappedBy = "cargo", cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
 	private List<Shipment> shipmentList;
 
-    @ManyToOne
+    @ManyToOne( cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
     @JoinColumn(name = "origin")
     private Location origin;
 
-    @ManyToOne
+    @ManyToOne( cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
     @JoinColumn(name = "destination")
     private Location destination;
 
      public Cargo() {
-
      }
 
     public Cargo(String type, Date orderDate, Date dueDate, Location origin,
@@ -48,6 +47,10 @@ public class Cargo {
         this.weight = weight;
 
         // TODO: create respective row in database
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public void setCustomer(Customer customer) {

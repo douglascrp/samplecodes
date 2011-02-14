@@ -1,9 +1,6 @@
 package com.samplecodes.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -14,7 +11,7 @@ public class Event{
     private Long id;
     private Date date;
 
-    @ManyToOne
+    @ManyToOne( cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
     private Location location;
 
     public Event() {
@@ -23,6 +20,10 @@ public class Event{
     public Event(Date date, Location location) {
         this.date = date;
         this.location = location;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public Location getLocation() {

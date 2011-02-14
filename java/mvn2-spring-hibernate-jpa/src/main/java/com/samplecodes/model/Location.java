@@ -16,10 +16,10 @@ public class Location {
 	@Id
     protected String name;
 
-    @ManyToOne
+    @ManyToOne( cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
     private Location adjacent;
 	
-    @OneToMany(mappedBy = "adjacent")
+    @OneToMany(mappedBy = "adjacent", cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
     private List<Location> adjacentList;
 
 	public List<Location> getNeighbours(){

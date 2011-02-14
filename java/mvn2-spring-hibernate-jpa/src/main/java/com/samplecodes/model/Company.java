@@ -21,7 +21,7 @@ public class Company {
 
     private String name;
 
-    @OneToMany(mappedBy="company")
+    @OneToMany(mappedBy="company", cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
     private Set<Employee> employees;
 
    public Set<Employee> getEmployee() {
