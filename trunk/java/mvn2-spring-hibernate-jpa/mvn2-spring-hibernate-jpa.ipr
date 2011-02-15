@@ -98,6 +98,7 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/../../../maven-install4j/maven-install4j-plugin/pom.xml" />
       </list>
     </option>
     <option name="activeProfiles">
@@ -279,6 +280,7 @@
   </component>
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="svn" />
+    <mapping directory="$PROJECT_DIR$/../../../maven-install4j/maven-install4j-plugin" vcs="svn" />
   </component>
   <component name="WebServicesPlugin" addRequiredLibraries="true" />
   <component name="libraryTable">

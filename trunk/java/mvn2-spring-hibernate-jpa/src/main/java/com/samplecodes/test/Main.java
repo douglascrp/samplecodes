@@ -1,4 +1,4 @@
-package com.samplecodes;
+package com.samplecodes.test;
 
 import com.samplecodes.dao.CompanyDao;
 import com.samplecodes.dao.EmployeeDao;
@@ -19,7 +19,7 @@ public class Main {
     public static void main(final String args[]) throws Exception {
 
         CustomerService customerService = (CustomerService) context.getBean("customerService");
-        Customer customer = new Customer("hossein", "1235");
+        Customer customer = new Customer("hossein", "1289");
         Cargo cargo = new Cargo();
         customer = customerService.addOrder(customer, cargo);
         //customerService.deleteCargo(customer, cargo);
