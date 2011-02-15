@@ -20,7 +20,7 @@ public class CustomerServiceTest extends AbstractTransactionalJUnit4SpringContex
     public void testAddOrder() throws Exception {
         Customer customer = new Customer("hossein", "1234");
         Cargo cargo = new Cargo();
-        customer = customerService.addOrder(customer, cargo);
+        customerService.addOrder(customer, cargo);
         assertEquals(customer.getOrders().size(), 1);
 
     }
@@ -29,7 +29,7 @@ public class CustomerServiceTest extends AbstractTransactionalJUnit4SpringContex
     public void testDeleteCargo() throws Exception {
         Customer customer = new Customer("hossein", "1234");
         Cargo cargo = new Cargo();
-        customer = customerService.addOrder(customer, cargo);
+        cargo = customerService.addOrder(customer, cargo);
         customerService.deleteCargo(customer, cargo);
         assertEquals(customer.getOrders().size(), 0);
     }

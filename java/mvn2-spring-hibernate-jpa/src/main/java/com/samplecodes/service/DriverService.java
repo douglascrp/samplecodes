@@ -26,7 +26,6 @@ public class DriverService extends CommonService {
        return shipmentDao.merge(shipment);
     }
 
-
     public Driver getDriver(String name) {
         return driverDao.findById(name);
     }
@@ -34,7 +33,6 @@ public class DriverService extends CommonService {
     public List<Driver> listDrivers() {
         return driverDao.list();
     }
-
 
     public void reportShipment(Shipment shipment, Location location){
         shipment.add(new Event(new Date(), location));
