@@ -18,6 +18,7 @@ public class CustomerService extends CommonService {
     }
 
     public Customer addOrder(Customer customer, Cargo order) {
+        customer = customerDao.merge(customer);
         customer.addOrder(order);
         return customerDao.merge(customer);
     }

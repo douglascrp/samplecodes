@@ -131,6 +131,22 @@
                     </scanTargetPatterns>
                 </configuration>
             </plugin>
+
+
+             <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.samplecodes.Main</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+            </plugin>
+
         </plugins>
         <extensions>
             <extension>
@@ -174,4 +190,13 @@
 
         </profile>
     </profiles>
+
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>googlecode-maven-install4j</id>
+            <name>googlecode-maven-install4j</name>
+            <url>http://maven-install4j.googlecode.com/svn/m2-repo</url>
+        </pluginRepository>
+    </pluginRepositories>
 </project>

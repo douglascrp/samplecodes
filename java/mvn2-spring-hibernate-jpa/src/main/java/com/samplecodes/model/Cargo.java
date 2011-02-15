@@ -16,7 +16,7 @@ public class Cargo {
     private Date orderDate;
     private Date dueDate;
 
-    @ManyToOne( cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
+    @ManyToOne( cascade = {CascadeType.ALL} )
     private Customer customer;
 
     @OneToMany(mappedBy = "cargo", cascade = {CascadeType.PERSIST, CascadeType.MERGE} )

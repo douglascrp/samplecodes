@@ -9,18 +9,15 @@ import java.util.List;
 @DiscriminatorValue("Customer")
 public class Customer extends User {
 
-    @OneToMany(mappedBy="customer", cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
+    @OneToMany(mappedBy="customer", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @OrderBy("orderDate")
-    private List<Cargo> orders;
+    private List<Cargo> orders = new ArrayList<Cargo>();
 
     public Customer() {
-        super();
-        orders = new ArrayList<Cargo>();
     }
 
 	public Customer(String username, String password) {
 		super(username, password, User.CUSTOMER);
-        orders = new ArrayList<Cargo>();
 	}
 
     public List<Cargo> getOrders() {
@@ -28,7 +25,7 @@ public class Customer extends User {
     }
 
     public void addOrder(Cargo order) {
-        orders.add(order);
+        getOrders().add(order);
     }
 
 }
