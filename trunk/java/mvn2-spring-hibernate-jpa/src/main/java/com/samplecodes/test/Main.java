@@ -19,10 +19,12 @@ public class Main {
     public static void main(final String args[]) throws Exception {
 
         CustomerService customerService = (CustomerService) context.getBean("customerService");
-        Customer customer = new Customer("hossein", "1289");
+        Customer customer = customerService.refershCustomer("hossein", "1289");
         Cargo cargo = new Cargo();
-        customer = customerService.addOrder(customer, cargo);
-        //customerService.deleteCargo(customer, cargo);
+        cargo = customerService.addOrder(customer, cargo);
+        // This part id pretty important
+        customer = cargo.getCustomer();
+        customerService.deleteCargo(customer, cargo);
         logger.info("Done");
     }
 
