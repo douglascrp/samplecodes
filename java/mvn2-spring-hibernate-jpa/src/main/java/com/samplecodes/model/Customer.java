@@ -25,6 +25,7 @@ public class Customer extends User {
     }
 
     public void addOrder(Cargo order) {
+        order.setCustomer(this);
         getOrders().add(order);
     }
 
