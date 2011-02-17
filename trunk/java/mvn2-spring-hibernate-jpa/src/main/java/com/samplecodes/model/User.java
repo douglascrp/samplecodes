@@ -1,6 +1,7 @@
 package com.samplecodes.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
@@ -13,27 +14,35 @@ public class User {
 
     public static final int ADMIN = 1, CUSTOMER = 2, DRIVER = 3;
 
-    @Id
-    protected String username;
-    protected int privilege;
+    @EmbeddedId
+    private UserId userId;
+
+    public void setUserId(UserId userId) {
+        this.userId = userId;
+    }
+
+    public UserId getUserId() {
+        return userId;
+    }
+
     protected String password;
 
 
     public User() {
+        userId = new UserId(null, 0);
     }
 
     public User(String username, String password, int privilege) {
-        this.username = username;
+        userId = new UserId(username, privilege);
         this.password = password;
-        this.privilege = privilege;
     }
 
     public String getUsername() {
-        return username;
+        return userId.username;
     }
 
     public int getPrivilege() {
-        return privilege;
+        return userId.privilege;
     }
 
     public String getPassword() {
@@ -47,6 +56,6 @@ public class User {
 
     @Override
     public String toString() {
-        return username;
+        return userId.username;
     }
 }

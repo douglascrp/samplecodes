@@ -26,12 +26,12 @@ public class DriverService extends CommonService {
        return shipmentDao.merge(shipment);
     }
 
-    public Driver getDriver(String name) {
-        return driverDao.findById(name);
+    public Driver getDriver(String username) {
+        return driverDao.findById(new UserId(username, User.DRIVER));
     }
 
     public Driver refreshDriver(String username, String password, Location location) {
-        Driver driver = driverDao.findById(username);
+        Driver driver = driverDao.findById(new UserId(username, User.DRIVER));
         if(driver == null) {
             driver = new Driver(username, password, location);
         } else {
