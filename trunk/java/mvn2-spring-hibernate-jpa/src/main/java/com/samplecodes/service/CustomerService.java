@@ -19,6 +19,11 @@ public class CustomerService extends CommonService {
        return customerDao.merge(customer);
     }
 
+    @Override
+    public Customer getUser(String username) {
+         return customerDao.findById(new UserId(username, User.CUSTOMER));
+    }
+
     public synchronized Cargo addOrder(Customer customer, Cargo order) {
         customer.addOrder(order);
         customer = customerDao.merge(customer);

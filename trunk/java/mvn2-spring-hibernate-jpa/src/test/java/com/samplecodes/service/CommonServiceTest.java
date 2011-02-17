@@ -16,7 +16,7 @@ import static org.junit.Assert.assertEquals;
 public class CommonServiceTest extends AbstractTransactionalJUnit4SpringContextTests {
 
     @Resource
-    CommonService commonService;
+    AdminService commonService;
 
     @Before
     public void setup() {

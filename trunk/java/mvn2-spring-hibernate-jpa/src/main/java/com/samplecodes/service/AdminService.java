@@ -19,6 +19,11 @@ public class AdminService extends CommonService {
        return adminDao.merge(admin);
     }
 
+    @Override
+    public Admin getUser(String userName) {
+        return adminDao.findById(new UserId(userName, User.ADMIN));
+    }
+
     public Cargo assignShipments(Cargo cargo, int pieces) {
         // TODO: This part creates a bunch of shipments that
         // are part of a cargo. Before this method is called
@@ -55,8 +60,16 @@ public class AdminService extends CommonService {
         return cargoDao.merge(cargo);
     }
 
-
     public List<Cargo> listCargos() {
         return cargoDao.list();
+    }
+    public Admin refershAdmin(String username, String password) {
+        Admin admin = adminDao.findById(new UserId(username, User.CUSTOMER));
+        if(admin == null) {
+            admin = new Admin(username, password);
+        } else if(password != null) {
+            admin.setPassword(password);
+        }
+        return adminDao.merge(admin);
     }
 }

@@ -13,7 +13,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class CommonService {
+public abstract class CommonService {
 
     @Resource
     protected CargoDao cargoDao;
@@ -21,6 +21,8 @@ public class CommonService {
     private CityDao cityDao;
     @Resource
     private StationDao stationDao;
+
+    protected abstract User getUser(String userName);
 
     public void flush() {
         cargoDao.getEntityManager().flush();
@@ -59,14 +61,12 @@ public class CommonService {
         cargoDao.merge(cargo);
     }
 
-    public User login(String username, String password) {
-        User returnValue = null;// (User)getAdmin(username);
-        if (returnValue != null && returnValue.getPassword().matches(password)) {
-            return returnValue;
+    public User login(String userName, String password) {
+        User user = getUser(userName);
+        if(user != null && user.getPassword().endsWith(password)) {
+            return user;
         } else {
             return null;
         }
     }
-
-
 }
