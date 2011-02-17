@@ -9,7 +9,7 @@ import java.util.List;
 @DiscriminatorValue("Driver")
 public class Driver extends User {
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
     private Location location;
 
     @OneToMany(mappedBy="driver", cascade = {CascadeType.PERSIST, CascadeType.MERGE} )

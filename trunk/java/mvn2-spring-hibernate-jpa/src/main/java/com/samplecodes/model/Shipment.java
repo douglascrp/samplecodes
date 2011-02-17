@@ -29,8 +29,8 @@ public class Shipment {
     public Shipment() {
     }
 
-    public Shipment(Cargo shipment) {
-        this.cargo = shipment;
+    public Shipment(Cargo cargo) {
+        this.cargo = cargo;
         this.state = ORDERED;
         this.eventList = new ArrayList<Event>();
     }
@@ -75,7 +75,7 @@ public class Shipment {
 		return deliveryDate;
 	}
 	
-	public void assignDriver(Driver driver){
+	public void setDriver(Driver driver){
 		state = ASSIGNED_DRIVER;
 		this.driver = driver;
 	}

@@ -30,7 +30,7 @@ public class CustomerServiceTest extends AbstractTransactionalJUnit4SpringContex
         Customer customer = new Customer("hossein", "1234");
         Cargo cargo = new Cargo();
         cargo = customerService.addOrder(customer, cargo);
-        customerService.deleteCargo(customer, cargo);
+        customerService.deleteCargo(cargo.getCustomer(), cargo);
         assertEquals(customer.getOrders().size(), 0);
     }
 }

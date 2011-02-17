@@ -18,6 +18,11 @@ public class Main {
 
     public static void main(final String args[]) throws Exception {
 
+        CustomerServiceTest();
+        logger.info("Done");
+    }
+
+    private static void CustomerServiceTest() {
         CustomerService customerService = (CustomerService) context.getBean("customerService");
         Customer customer = customerService.refershCustomer("hossein", "1289");
         Cargo cargo = new Cargo();
@@ -25,7 +30,6 @@ public class Main {
         // This part id pretty important
         customer = cargo.getCustomer();
         customerService.deleteCargo(customer, cargo);
-        logger.info("Done");
     }
 
     private static void AdminServiceTest() {
@@ -46,7 +50,7 @@ public class Main {
         employee.setAge(22);
         employee.setCompany(company);
 
-        employeeDao.persist(employee);
+        employeeDao.merge(employee);
         return company;
     }
 }
