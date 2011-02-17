@@ -4,6 +4,7 @@ package com.samplecodes.service;
 import com.samplecodes.dao.DriverDao;
 import com.samplecodes.dao.ShipmentDao;
 import com.samplecodes.model.*;
+import com.sun.xml.internal.messaging.saaj.packaging.mime.internet.ParameterList;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -17,6 +18,8 @@ public class DriverService extends CommonService {
     DriverDao driverDao;
     @Resource
     ShipmentDao shipmentDao;
+    // What is this
+    private List<Shipment> assignedShipments;
 
     public Driver merge(Driver driver) {
        return driverDao.merge(driver);
@@ -26,7 +29,8 @@ public class DriverService extends CommonService {
        return shipmentDao.merge(shipment);
     }
 
-    public Driver getDriver(String username) {
+    @Override
+    public Driver getUser(String username) {
         return driverDao.findById(new UserId(username, User.DRIVER));
     }
 
@@ -119,4 +123,7 @@ public class DriverService extends CommonService {
 //		return returnValue;
 //	}
 
+    public List<Shipment> getAssignedShipments() {
+        return assignedShipments;
+    }
 }
