@@ -1,5 +1,6 @@
 package com.samplecodes.model;
 
+import com.samplecodes.base.Constants;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
@@ -10,17 +11,15 @@ import static org.hibernate.annotations.CascadeType.*;
 
 
 @Entity
-@DiscriminatorValue(Customer.CLASS_TYPE)
+@DiscriminatorValue("Customer")
 public class Customer extends User {
-
-    public static final String CLASS_TYPE = "Driver";
 
     // IT is important to add annotation to the decalation if you add it to getOrders you get
     // Could not determine type for: java.util.List, at table: User, for columns: [org.hibernate.mapping.Column(orders)]
     // no idea why this is red @OneToMany(orphanRemoval=true
-    @OneToMany(mappedBy="customer", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy= CUSTOMER_FOREIGN_KEY_FIELD, cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @Cascade(DELETE_ORPHAN)
-    @OrderBy("orderDate")
+    @OrderBy(ORDERS_ORDER_BY_FIELD)
     private List<Cargo> orders;
 
     public Customer() {

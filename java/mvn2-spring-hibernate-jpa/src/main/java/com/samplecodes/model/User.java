@@ -1,26 +1,24 @@
 package com.samplecodes.model;
 
+import com.samplecodes.base.Constants;
+
 import javax.persistence.*;
 
 import static com.samplecodes.model.Privilege.USER;
 
 @NamedQueries({
-@NamedQuery(name= User.USER_QUERY,
-            query="select u from User u where u.userId.userName = ? and u.password = ?")
+@NamedQuery(name= User.USER_QUERY_NAME,
+            query= User.USER_QUERY)
 })
 
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(
-    name=User.TYPE,
+    name="type",
     discriminatorType= DiscriminatorType.STRING
 )
-@DiscriminatorValue(User.CLASS_TYPE)
-public class User {
-
-    public static final String TYPE = "type";
-    public static final String CLASS_TYPE = "User";
-    public static final String USER_QUERY = "find_user";
+@DiscriminatorValue("User")
+public class User implements Constants {
 
     @EmbeddedId
     private UserId userId;

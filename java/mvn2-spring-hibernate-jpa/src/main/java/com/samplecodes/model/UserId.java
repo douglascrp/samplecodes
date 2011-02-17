@@ -5,6 +5,7 @@ import java.io.Serializable;
 
 @Embeddable
 public class UserId implements Serializable {
+
     String userName;
     Privilege privilege;
 

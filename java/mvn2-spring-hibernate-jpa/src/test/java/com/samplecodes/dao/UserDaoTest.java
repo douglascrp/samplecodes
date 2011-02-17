@@ -1,5 +1,6 @@
 package com.samplecodes.dao;
 
+import com.samplecodes.base.Constants;
 import com.samplecodes.model.Privilege;
 import com.samplecodes.service.AdminService;
 import org.junit.Test;
@@ -14,8 +15,8 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 
-@ContextConfiguration(locations = {"/com/samplecodes/application-context.xml"})
-public class UserDaoTest extends AbstractTransactionalJUnit4SpringContextTests {
+@ContextConfiguration(locations = {UserDaoTest.APPLICATION_CONTEXT_SOURCE})
+public class UserDaoTest extends AbstractTransactionalJUnit4SpringContextTests implements Constants {
 
     @Resource
     UserDao userDao;

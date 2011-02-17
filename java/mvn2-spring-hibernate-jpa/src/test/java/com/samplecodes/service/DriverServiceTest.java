@@ -1,5 +1,6 @@
 package com.samplecodes.service;
 
+import com.samplecodes.base.Constants;
 import com.samplecodes.model.Cargo;
 import com.samplecodes.model.Driver;
 import com.samplecodes.model.Location;
@@ -11,11 +12,11 @@ import org.springframework.test.context.junit4.AbstractTransactionalJUnit4Spring
 import javax.annotation.Resource;
 import java.util.Locale;
 
-@ContextConfiguration(locations = {"/com/samplecodes/application-context.xml"})
-public class DriverServiceTest extends AbstractTransactionalJUnit4SpringContextTests {
+@ContextConfiguration(locations = {DriverServiceTest.APPLICATION_CONTEXT_SOURCE})
+public class DriverServiceTest extends AbstractTransactionalJUnit4SpringContextTests implements Constants {
 
     @Resource
-     DriverService driverService;
+    DriverService driverService;
 
     @Test
     public void testListDrivers() throws Exception {
@@ -27,7 +28,7 @@ public class DriverServiceTest extends AbstractTransactionalJUnit4SpringContextT
         Location location = new Location("tehran");
         Driver driver = driverService.refreshDriver("hossein", "1234", location);
         Cargo cargo = new Cargo();
-        Shipment shipment =  new Shipment(cargo);
+        Shipment shipment = new Shipment(cargo);
         shipment.setDriver(driver);
         driverService.reportShipment(shipment, driver.getLocation());
     }

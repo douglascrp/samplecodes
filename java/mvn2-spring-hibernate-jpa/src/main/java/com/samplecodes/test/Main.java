@@ -1,5 +1,6 @@
 package com.samplecodes.test;
 
+import com.samplecodes.base.Constants;
 import com.samplecodes.dao.CompanyDao;
 import com.samplecodes.dao.EmployeeDao;
 import com.samplecodes.model.*;
@@ -14,10 +15,10 @@ import javax.swing.*;
 import java.util.logging.Logger;
 
 
-public class Main {
+public class Main implements Constants {
 
     static final Logger logger = Logger.getLogger(Main.class.getName());
-    static final ApplicationContext context = new ClassPathXmlApplicationContext(new String[]{"com/samplecodes/application-context.xml"});
+    static final ApplicationContext context = new ClassPathXmlApplicationContext(new String[]{APPLICATION_CONTEXT_SOURCE});
 
     public static void main(final String args[]) throws Exception {
         AdminServiceTest();
