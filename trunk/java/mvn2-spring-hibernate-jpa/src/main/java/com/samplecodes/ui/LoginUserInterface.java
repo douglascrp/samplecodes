@@ -1,5 +1,8 @@
 package com.samplecodes.ui;
 
+import com.samplecodes.dao.UserDao;
+import com.samplecodes.model.Privilege;
+import com.samplecodes.service.DriverService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -11,6 +14,9 @@ import java.awt.event.ActionListener;
 public class LoginUserInterface implements ActionListener {
 
     static final ApplicationContext context = new ClassPathXmlApplicationContext(new String[]{"com/samplecodes/application-context.xml"});
+
+    //@Resource
+    private UserDao userDao = (UserDao) context.getBean("userDao");
 
 	private JPanel graphicPanel;
 
@@ -80,16 +86,19 @@ public class LoginUserInterface implements ActionListener {
 		if (event.getActionCommand().matches("login")) {
             String userName = userNameField.getText();
             String password = new String(passwordField.getPassword());
-//			User user = commonService.login(, );
-//			if(user == null){
-//				this.update("invalid user/pass");
-//			}else if(user.getPrivilege() == User.ADMIN){
-				new AdminUserInterface(userName, password, graphicPanel, this);
-//			}else if(user.getPrivilege() == User.CUSTOMER){
-				//new CustomerUserInterface(userName, password, graphicPanel, this);
-//			}else if(user.getPrivilege() == User.DRIVER){
-				//new DriverUserInterface(userName, password, graphicPanel, this);
-//			}
+            for(Privilege privilege : userDao.getUserPrivilege(userName, password)) {
+                switch (privilege) {
+                    case ADMIN:
+                        new AdminUserInterface(userName, password, graphicPanel, this);
+                        break;
+                    case CUSTOMER:
+                        new CustomerUserInterface(userName, password, graphicPanel, this);
+                        break;
+                    case DRIVER:
+                        new DriverUserInterface(userName, password, graphicPanel, this);
+                        break;
+                }
+            }
 		}
 	}
 }

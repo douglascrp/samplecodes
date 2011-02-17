@@ -6,8 +6,10 @@ import java.util.List;
 
 
 @Entity
-@DiscriminatorValue("Driver")
+@DiscriminatorValue(Driver.CLASS_TYPE)
 public class Driver extends User {
+
+    public static final String CLASS_TYPE = "Driver";
 
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
     private Location location;
@@ -21,7 +23,7 @@ public class Driver extends User {
     }
 
     public Driver(String username, String password, Location location) {
-        super(username, password, User.DRIVER);
+        super(username, password, Privilege.DRIVER);
         this.location = location;
     }
 

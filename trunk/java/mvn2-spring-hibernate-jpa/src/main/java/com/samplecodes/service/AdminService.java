@@ -21,7 +21,7 @@ public class AdminService extends CommonService {
 
     @Override
     public Admin getUser(String userName) {
-        return adminDao.findById(new UserId(userName, User.ADMIN));
+        return adminDao.findById(new UserId(userName, Privilege.ADMIN));
     }
 
     public Cargo assignShipments(Cargo cargo, int pieces) {
@@ -64,7 +64,7 @@ public class AdminService extends CommonService {
         return cargoDao.list();
     }
     public Admin refershAdmin(String username, String password) {
-        Admin admin = adminDao.findById(new UserId(username, User.CUSTOMER));
+        Admin admin = adminDao.findById(new UserId(username, Privilege.CUSTOMER));
         if(admin == null) {
             admin = new Admin(username, password);
         } else if(password != null) {

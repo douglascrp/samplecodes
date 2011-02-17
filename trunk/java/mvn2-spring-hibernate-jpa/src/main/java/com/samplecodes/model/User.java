@@ -1,18 +1,26 @@
 package com.samplecodes.model;
 
 import javax.persistence.*;
-import java.io.Serializable;
+
+import static com.samplecodes.model.Privilege.USER;
+
+@NamedQueries({
+@NamedQuery(name= User.USER_QUERY,
+            query="select u from User u where u.userId.userName = ? and u.password = ?")
+})
 
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(
-    name="type",
+    name=User.TYPE,
     discriminatorType= DiscriminatorType.STRING
 )
-@DiscriminatorValue("User")
+@DiscriminatorValue(User.CLASS_TYPE)
 public class User {
 
-    public static final int ADMIN = 1, CUSTOMER = 2, DRIVER = 3;
+    public static final String TYPE = "type";
+    public static final String CLASS_TYPE = "User";
+    public static final String USER_QUERY = "find_user";
 
     @EmbeddedId
     private UserId userId;
@@ -29,19 +37,19 @@ public class User {
 
 
     public User() {
-        userId = new UserId(null, 0);
+        userId = new UserId(null, USER);
     }
 
-    public User(String username, String password, int privilege) {
+    public User(String username, String password, Privilege privilege) {
         userId = new UserId(username, privilege);
         this.password = password;
     }
 
     public String getUsername() {
-        return userId.username;
+        return userId.userName;
     }
 
-    public int getPrivilege() {
+    public Privilege getPrivilege() {
         return userId.privilege;
     }
 
@@ -56,6 +64,6 @@ public class User {
 
     @Override
     public String toString() {
-        return userId.username;
+        return userId.userName;
     }
 }

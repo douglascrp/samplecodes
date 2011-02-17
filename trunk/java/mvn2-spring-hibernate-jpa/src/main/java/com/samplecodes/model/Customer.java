@@ -10,8 +10,10 @@ import static org.hibernate.annotations.CascadeType.*;
 
 
 @Entity
-@DiscriminatorValue("Customer")
+@DiscriminatorValue(Customer.CLASS_TYPE)
 public class Customer extends User {
+
+    public static final String CLASS_TYPE = "Driver";
 
     // IT is important to add annotation to the decalation if you add it to getOrders you get
     // Could not determine type for: java.util.List, at table: User, for columns: [org.hibernate.mapping.Column(orders)]
@@ -25,7 +27,7 @@ public class Customer extends User {
     }
 
 	public Customer(String username, String password) {
-		super(username, password, User.CUSTOMER);
+		super(username, password, Privilege.CUSTOMER);
 	}
 
     public List<Cargo> getOrders() {
