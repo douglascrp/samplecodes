@@ -1,10 +1,7 @@
 package com.samplecodes.service;
 
 import com.samplecodes.dao.CustomerDao;
-import com.samplecodes.model.Cargo;
-import com.samplecodes.model.Customer;
-import com.samplecodes.model.User;
-import com.samplecodes.model.UserId;
+import com.samplecodes.model.*;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -21,7 +18,7 @@ public class CustomerService extends CommonService {
 
     @Override
     public Customer getUser(String username) {
-         return customerDao.findById(new UserId(username, User.CUSTOMER));
+         return customerDao.findById(new UserId(username, Privilege.CUSTOMER));
     }
 
     public synchronized Cargo addOrder(Customer customer, Cargo order) {
@@ -41,7 +38,7 @@ public class CustomerService extends CommonService {
     }
 
     public Customer refershCustomer(String username, String password) {
-        Customer customer = customerDao.findById(new UserId(username, User.CUSTOMER));
+        Customer customer = customerDao.findById(new UserId(username, Privilege.CUSTOMER));
         if(customer == null) {
             customer = new Customer(username, password);
         } else if(password != null) {

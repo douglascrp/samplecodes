@@ -2,10 +2,7 @@ package com.samplecodes.test;
 
 import com.samplecodes.dao.CompanyDao;
 import com.samplecodes.dao.EmployeeDao;
-import com.samplecodes.model.Cargo;
-import com.samplecodes.model.Company;
-import com.samplecodes.model.Customer;
-import com.samplecodes.model.Employee;
+import com.samplecodes.model.*;
 import com.samplecodes.service.AdminService;
 import com.samplecodes.service.CustomerService;
 import com.samplecodes.service.DriverService;
@@ -23,14 +20,16 @@ public class Main {
     static final ApplicationContext context = new ClassPathXmlApplicationContext(new String[]{"com/samplecodes/application-context.xml"});
 
     public static void main(final String args[]) throws Exception {
-         AdminServiceTest();
-         uiTest();
-         logger.info("Done");
+        AdminServiceTest();
+        CustomerServiceTest();
+        DriverServiceTest();
+        uiTest();
+        logger.info("Done");
     }
 
     private static void CustomerServiceTest() {
         CustomerService customerService = (CustomerService) context.getBean("customerService");
-        Customer customer = customerService.refershCustomer("hossein", "1289");
+        Customer customer = customerService.refershCustomer("customer", "123");
         Cargo cargo = new Cargo();
         cargo = customerService.addOrder(customer, cargo);
         // This part id pretty important
@@ -40,12 +39,13 @@ public class Main {
 
     private static void DriverServiceTest() {
         DriverService driverService = (DriverService) context.getBean("driverService");
+        Driver driver = driverService.refreshDriver("driver", "123", new Location("Tehran"));
     }
 
     private static void AdminServiceTest() {
         AdminService adminService = (AdminService) context.getBean("adminService");
-        adminService.refershAdmin("hossein", "123");
-        Cargo cargo = new Cargo();
+        adminService.refershAdmin("admin", "123");
+         Cargo cargo = new Cargo();
         cargo = adminService.assignShipments(cargo, 5);
     }
 

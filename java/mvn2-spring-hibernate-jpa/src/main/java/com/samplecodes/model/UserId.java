@@ -5,14 +5,14 @@ import java.io.Serializable;
 
 @Embeddable
 public class UserId implements Serializable {
-  String username;
-  int privilege;
+    String userName;
+    Privilege privilege;
 
     public UserId() {
     }
 
-    public UserId(String username, int privilege) {
-        this.username = username;
+    public UserId(String userName, Privilege privilege) {
+        this.userName = userName;
         this.privilege = privilege;
     }
 }

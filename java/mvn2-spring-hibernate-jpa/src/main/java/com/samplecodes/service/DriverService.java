@@ -31,11 +31,11 @@ public class DriverService extends CommonService {
 
     @Override
     public Driver getUser(String username) {
-        return driverDao.findById(new UserId(username, User.DRIVER));
+        return driverDao.findById(new UserId(username, Privilege.DRIVER));
     }
 
     public Driver refreshDriver(String username, String password, Location location) {
-        Driver driver = driverDao.findById(new UserId(username, User.DRIVER));
+        Driver driver = driverDao.findById(new UserId(username, Privilege.DRIVER));
         if(driver == null) {
             driver = new Driver(username, password, location);
         } else {
