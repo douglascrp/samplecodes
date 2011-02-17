@@ -30,13 +30,27 @@ public class DriverService extends CommonService {
         return driverDao.findById(name);
     }
 
+    public Driver refreshDriver(String username, String password, Location location) {
+        Driver driver = driverDao.findById(username);
+        if(driver == null) {
+            driver = new Driver(username, password, location);
+        } else {
+            if(password != null) {
+                driver.setPassword(password);
+            }
+            if(location != null) {
+                driver.setLocation(location);
+            }
+        }
+        return driverDao.merge(driver);
+    }
     public List<Driver> listDrivers() {
         return driverDao.list();
     }
 
     public void reportShipment(Shipment shipment, Location location){
         shipment.add(new Event(new Date(), location));
-        shipmentDao.persist(shipment);
+        shipmentDao.merge(shipment);
     }
 
     public boolean canPickup(Driver driver, Shipment shipment) {
@@ -66,7 +80,7 @@ public class DriverService extends CommonService {
                 reportShipment(shipment, location);
             }
         }
-        driverDao.persist(driver);
+        driverDao.merge(driver);
         // System.err.println("Reported " + currentLocation.getName());
     }
 
@@ -82,7 +96,7 @@ public class DriverService extends CommonService {
     public void assignDriver(Driver driver, Shipment shipment) {
         if (shipment.hasDriver() == false) {
             driver.addShipment(shipment);
-            shipment.assignDriver(driver);
+            shipment.setDriver(driver);
             // TODO: as you can see here, one change is made
             // and that is: I added a new relation between a
             // driver and a shipment. Now, notice that this means

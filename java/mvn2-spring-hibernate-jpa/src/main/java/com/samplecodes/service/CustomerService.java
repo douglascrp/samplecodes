@@ -27,9 +27,6 @@ public class CustomerService extends CommonService {
         if (cargo.getShipmentList() == null || cargo.getShipmentList().size() == 0) {
             customer.getOrders().remove(cargo);
             customerDao.merge(customer);
-            //cargoDao.remove(cargo);
-            // TODO: remove respective row from database
-            // and merge all references to it
             return true;
         } else {
             return false;
