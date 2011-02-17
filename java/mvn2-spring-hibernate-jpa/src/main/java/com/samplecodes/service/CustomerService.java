@@ -3,6 +3,8 @@ package com.samplecodes.service;
 import com.samplecodes.dao.CustomerDao;
 import com.samplecodes.model.Cargo;
 import com.samplecodes.model.Customer;
+import com.samplecodes.model.User;
+import com.samplecodes.model.UserId;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -34,7 +36,7 @@ public class CustomerService extends CommonService {
     }
 
     public Customer refershCustomer(String username, String password) {
-        Customer customer = customerDao.findById(username);
+        Customer customer = customerDao.findById(new UserId(username, User.CUSTOMER));
         if(customer == null) {
             customer = new Customer(username, password);
         } else if(password != null) {
