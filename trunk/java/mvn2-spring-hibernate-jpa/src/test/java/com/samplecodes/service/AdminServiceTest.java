@@ -1,5 +1,6 @@
 package com.samplecodes.service;
 
+import com.samplecodes.base.Constants;
 import com.samplecodes.dao.CargoDao;
 import com.samplecodes.model.Cargo;
 import com.samplecodes.model.Location;
@@ -14,8 +15,8 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
 
 
-@ContextConfiguration(locations = {"/com/samplecodes/application-context.xml"})
-public class AdminServiceTest extends AbstractTransactionalJUnit4SpringContextTests {
+@ContextConfiguration(locations = {AdminServiceTest.APPLICATION_CONTEXT_SOURCE})
+public class AdminServiceTest extends AbstractTransactionalJUnit4SpringContextTests implements Constants {
 
     @Resource
     AdminService adminService;

@@ -1,5 +1,7 @@
 package com.samplecodes.model;
 
+import com.samplecodes.base.Constants;
+
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;

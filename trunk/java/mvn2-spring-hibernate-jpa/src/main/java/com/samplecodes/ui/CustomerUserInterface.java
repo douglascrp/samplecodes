@@ -1,5 +1,6 @@
 package com.samplecodes.ui;
 
+import com.samplecodes.base.Constants;
 import com.samplecodes.model.Cargo;
 import com.samplecodes.model.City;
 import com.samplecodes.model.Customer;
@@ -16,9 +17,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class CustomerUserInterface implements ActionListener {
+public class CustomerUserInterface implements ActionListener, Constants {
 
-    static final ApplicationContext context = new ClassPathXmlApplicationContext(new String[]{"com/samplecodes/application-context.xml"});
+    static final ApplicationContext context = new ClassPathXmlApplicationContext(new String[]{APPLICATION_CONTEXT_SOURCE});
 
     //@Resource
     private CustomerService customerService = (CustomerService) context.getBean("customerService");;

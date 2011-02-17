@@ -1,5 +1,6 @@
 package com.samplecodes.ui;
 
+import com.samplecodes.base.Constants;
 import com.samplecodes.model.Driver;
 import com.samplecodes.model.Location;
 import com.samplecodes.model.Shipment;
@@ -13,9 +14,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class DriverUserInterface implements ActionListener {
+public class DriverUserInterface implements ActionListener, Constants {
 
-    static final ApplicationContext context = new ClassPathXmlApplicationContext(new String[]{"com/samplecodes/application-context.xml"});
+    static final ApplicationContext context = new ClassPathXmlApplicationContext(new String[]{APPLICATION_CONTEXT_SOURCE});
 
     //@Resource
     private DriverService driverService = (DriverService) context.getBean("driverService");

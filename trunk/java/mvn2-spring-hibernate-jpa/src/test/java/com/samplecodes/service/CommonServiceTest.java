@@ -1,5 +1,6 @@
 package com.samplecodes.service;
 
+import com.samplecodes.base.Constants;
 import com.samplecodes.dao.CargoDao;
 import com.samplecodes.model.Cargo;
 import com.samplecodes.model.City;
@@ -12,8 +13,8 @@ import javax.annotation.Resource;
 
 import static org.junit.Assert.assertEquals;
 
-@ContextConfiguration(locations = {"/com/samplecodes/application-context.xml"})
-public class CommonServiceTest extends AbstractTransactionalJUnit4SpringContextTests {
+@ContextConfiguration(locations = {CommonServiceTest.APPLICATION_CONTEXT_SOURCE})
+public class CommonServiceTest extends AbstractTransactionalJUnit4SpringContextTests implements Constants {
 
     @Resource
     AdminService commonService;
