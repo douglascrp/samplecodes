@@ -1,0 +1,1 @@
+In wiki, knol, google docs that I publish I refer to this codes.
